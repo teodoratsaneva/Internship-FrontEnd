@@ -1,0 +1,11 @@
+table, td, th{
+    border: 1px solid;
+}
+
+.wrapper {
+    margin-left: 50%;
+}
+
+.lastRow {
+    background-color: rgb(153, 216, 216);
+}

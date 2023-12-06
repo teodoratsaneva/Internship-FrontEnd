@@ -1,0 +1,22 @@
+table, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 1.5%;
+}
+
+.container {
+    display: flex;
+}
+
+.haracteristics {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+p {
+    display:table-cell;
+    text-size-adjust: 10px;
+}
