@@ -6,6 +6,8 @@
 <head>
     <title>TENKU</title>
     <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 
 <body>
@@ -14,13 +16,20 @@
             <img src="./tik-tok.png" alt="tik-tok" width="1%">
             <img src="./facebook-logo.png" alt="facebook-logo" width="1%">
             <img src="social.png" alt="social" width="1%">
-            <img src="./youtube.png" alt="youtube" width="1%">
+            <img src="./youtube.png" alt="youtube" width="1%;">
         </div>
-        <h1 class = "title">TENKU</h1>
-        <input type="text" placeholder="Search">
+
+        <div class="search-container">
+            <form action="/action_page.php">
+              <input type="text" placeholder="Search.." name="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+
+        <h1 class="title">TENKU</h1>
     </div>
 
-    <ul>
+    <ul class="navigation">
         <li><a href="">Fashion</a></li>
         <li><a href="">Food</a></li>
         <li><a href="">Shopping</a></li>
@@ -143,7 +152,38 @@
     </div>
 
     <h3>ARCHIVES</h3>
-    <p style="  margin-right: 30px; margin-left: 30px; font-size: 50px; font-family: Serif, serif; margin-top: 0%;">Health. Fashion. Food. Shopping. Events. Fiction. Travel. Japan. Education.</p>
+    <p style="  margin-right: 30px; margin-left: 30px; font-size: 50px; font-family: Serif, serif; margin-top: 0%;">
+        Health. Fashion. Food. Shopping. Events. Fiction. Travel. Japan. Education.</p>
+
+    <div class="bottom">
+        <p style="color: white; margin-left: 30%; margin-right: 30%;">Lorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Corporis nobis ut obcaecati magni libero veritatis,
+            blanditiis dicta dolores quis quia vel laborum inventore quae nemo voluptatem? Vitae numquam adipisci.Lorem
+            ipsum dolor sit amet consectetur, adipisicing elit. Corporis nobis ut obcaecati magni libero veritatis.</p>
+        <p style="color: white; margin-left: 38%; margin-top: 2%;">Subscribe to out newsletters. We'll kepp you in the
+            loop.</p>
+
+            <div class="search-container">
+                <form>
+                  <input type="text" placeholder="Enter your email.." name="search">
+                  <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                </form>
+              </div>
+
+        <div class="icons">
+            <img src="./tik-tok.png" alt="tik-tok" width="1%" style="margin-left: 45%;margin-top: 2%;">
+            <img src="./facebook-logo.png" alt="facebook-logo" width="1%">
+            <img src="social.png" alt="social" width="1%">
+            <img src="./youtube.png" alt="youtube" width="1%">
+        </div>
+
+        <ul class="bottom-navigation">
+            <il>Contact</il>
+            <il>Primary Policy</il>
+            <il>Terms & Conflicts</il>
+        </ul>
+
+    </div>
 </body>
 
 </html>

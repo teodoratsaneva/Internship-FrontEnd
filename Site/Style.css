@@ -1,4 +1,4 @@
-.header {
+.header, .bottom {
   overflow: hidden;
   background-color: black;
   border-bottom: 0.5px groove rgb(49, 48, 48);
@@ -15,24 +15,38 @@
   font-size: 17px;
 }
 
-.header input[type=text] {
+.header .search-container {
   float: right;
-  padding: 10px black;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 15px;
-  position: absolute;
-  top: 8px;
-  right: 16px;
-  border: 2px solid #ffffff;
 }
 
-ul {
+.header input[type=text] {
+  padding: 6px;
+  font-size: 17px;
+  border: none;
+}
+
+.header .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+.navigation {
+  display: flex;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: black;
+  justify-content: center
 }
 
 li {
@@ -54,9 +68,9 @@ li a:hover {
 
 .title {
   margin-top: 40px;
-  margin-bottom: 40px;
-  margin-right: 50%;
-  margin-left: 50%;
+  margin-bottom: 20px;
+  margin-right: 45%;
+  margin-left: 45%;
   color: white;
 }
 
@@ -96,7 +110,22 @@ h3 {
   margin-right: 30px;
 }
 
-.icons {
-  margin: 10px;
+
+.bottom input[text=email] {
+  float: right;
+  padding: 10px black;
+  margin-top: 8px;
+  margin-right: 40%;
+  font-size: 15px;
+  position: absolute;
+  border: 2px solid #ffffff;
 }
 
+body {
+  margin:0%;
+}
+
+.bottom-navigation {
+  display: flex;
+  list-style-type: none;
+}
