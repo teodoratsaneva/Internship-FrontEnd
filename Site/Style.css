@@ -1,0 +1,102 @@
+.header {
+  overflow: hidden;
+  background-color: black;
+  border-bottom: 0.5px groove rgb(49, 48, 48);
+  padding: 20px 30px;
+}
+
+.header a {
+  float: right;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.header input[type=text] {
+  float: right;
+  padding: 10px black;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 15px;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  border: 2px solid #ffffff;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+li {
+  display: inline;
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.title {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-right: 50%;
+  margin-left: 50%;
+  color: white;
+}
+
+h3 {
+  position: static;
+  border-bottom: 3px solid black;
+  padding: 5px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.imageAndText {
+  float: left;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.container {
+  display:flex;
+}
+
+.container2 {
+  display: flex;
+}
+
+.imageAndText2 {
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.imageAndText3 {
+  margin-left: 30px;
+}
+
+.imageAndText4 {
+  margin-right: 30px;
+}
+
+.icons {
+  margin: 10px;
+}
+
