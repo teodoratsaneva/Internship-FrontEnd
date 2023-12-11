@@ -1,4 +1,4 @@
-.header, .bottom {
+.header, .bottom-container {
   overflow: hidden;
   background-color: black;
   border-bottom: 0.5px groove rgb(49, 48, 48);
@@ -23,20 +23,22 @@
   padding: 6px;
   font-size: 17px;
   border: none;
+  border: 0.5px groove rgb(83, 83, 83);
 }
 
 .header .search-container button {
   float: right;
   padding: 6px 10px;
   margin-right: 16px;
-  background: #ddd;
+  background: #1b1b1b;
   font-size: 17px;
   border: none;
   cursor: pointer;
+  border: 0.5px groove rgb(83, 83, 83);
 }
 
 .topnav .search-container button:hover {
-  background: #ccc;
+  background: #2b2a2a;
 }
 
 .navigation {
@@ -111,14 +113,29 @@ h3 {
 }
 
 
-.bottom input[text=email] {
+.bottom-container input[type=text] {
+  padding: 6px;
+  width: 500px;
+  height: 30px;
+  border: none;
+  border: 0.5px groove rgb(83, 83, 83);
+}
+
+.bottom-container .email-container button {
   float: right;
-  padding: 10px black;
-  margin-top: 8px;
-  margin-right: 40%;
-  font-size: 15px;
-  position: absolute;
-  border: 2px solid #ffffff;
+  padding: 6px 10px;
+  margin-right: 16px;
+  background: #1b1b1b;
+  font-size: 26px;
+  border: none;
+  cursor: pointer;
+  border: 0.5px groove rgb(83, 83, 83);
+}
+
+.bottom-container .email-container {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 body {
@@ -126,6 +143,15 @@ body {
 }
 
 .bottom-navigation {
+  color: white;
   display: flex;
-  list-style-type: none;
+  justify-content: center;
+  margin-top: 2%;
+}
+
+.bottom {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
 }
