@@ -6,9 +6,8 @@
 <head>
     <title>TENKU</title>
     <link rel="stylesheet" href="Style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -36,7 +35,28 @@
         <li><a href="">Shopping</a></li>
         <li><a href="">Travel</a></li>
         <li><a href="">Event</a></li>
+        <li><button id="toggle-button"><a href="">More info</a></button></li>
+        <li class="item hidden-item hidden"><a href="">Contact</a></li>
+        <li class="item hidden-item hidden"><a href="">Primary Policy</a></li>
+        <li class="item hidden-item hidden"><a href="">Terms & Conflicts</a></li>
     </ul>
+
+<script>
+    const button = document.getElementById('toggle-button');
+    let isHidden = true;
+
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        button.textContent = isHidden
+        ? 'Show less'
+        : 'More info';
+        isHidden = !isHidden;
+
+        const hiddenItems = Array.from(document.getElementsByClassName('hidden-item'));
+        hiddenItems.forEach(item => item.classList.toggle('hidden'));
+        });
+</script>
 
     <h3>LATEST</h3>
     <div class="imageAndText">
@@ -131,7 +151,7 @@
 
         <div class="imageAndText2">
             <img src="./image4.png" alt="img1" width="100%" height="50%">
-            <p style="font-size: 14px; font-family: Cursive, serif; margin:0%;">Event</p>
+            <p class="parag">Event</p>
             <p style="font-size: 25px; margin-bottom:0%; width: 450px;">Lorem ipsum dolor sit amet consectetur
                 adipisicing elit.</p>
             <p style="font-size: 14px; font-family: Cursive, serif; margin:0%; width: 450px; margin-bottom: 10px">Lorem
@@ -157,10 +177,9 @@
         Health. Fashion. Food. Shopping. Events. Fiction. Travel. Japan. Education.</p>
 
     <div class="bottom-container">
-        <p style="color: white; margin-left: 20%; margin-right: 20%; margin-top: 2%; justify-content: center; font-size: 30px; text-align: justify;
-        text-align-last: center;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus ratione ut dignissimos odit magnam illo corporis eum sequi repellendus 
+        <p class = "paragraf">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus ratione ut dignissimos odit magnam illo corporis eum sequi repellendus 
             laudantium quis pariatur cum atque vel, minima in maiores accusamus. At.  Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-        <p style="color: white; display: flex; margin-top: 2%; justify-content: center; font-size: 23px;">Subscribe to out newsletters. We'll kepp you in the loop.</p>
+        <p class="subscribe">Subscribe to out newsletters. We'll kepp you in the loop.</p>
 
             <div class="email-container">
                 <form action="/action_page.php">
