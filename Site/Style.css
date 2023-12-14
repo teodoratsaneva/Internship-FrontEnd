@@ -1,4 +1,5 @@
-.header, .bottom-container {
+.header,
+.bottom-container {
   overflow: hidden;
   background-color: black;
   border-bottom: 0.5px groove rgb(49, 48, 48);
@@ -78,10 +79,7 @@ li a:hover {
 }
 
 .title {
-  margin-top: 40px;
-  margin-bottom: 20px;
-  margin-right: 45%;
-  margin-left: 45%;
+  margin: 40px 45% 20px 45%;
   color: white;
 }
 
@@ -93,34 +91,59 @@ h3 {
   margin-right: 30px;
 }
 
+.latestItemscontainer {
+  margin: 0 30px;
+  display: flex;
+  gap: 2rem;
+  flex-direction: row;
+}
+
 .imageAndText {
-  float: left;
-  margin-left: 30px;
-  margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 0;
+  flex-grow: 1;
 }
 
 .container {
-  display:flex;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-around;
+  overflow: hidden;
 }
 
-.container2 {
+.TrendingItemtsContainer {
   display: flex;
+  overflow: hidden;
+  justify-content: space-around;
+}
+
+@media only screen and (max-width: 1450px) {
+  .latest-container {
+    flex-direction: column;
+  }
+
+  .TrendingItemtsContainer {
+    flex-direction: column;
+  }
 }
 
 .imageAndText2 {
-  float: left;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-right: 30px;
+  overflow: hidden;
+  font-family: Cursive, serif;
 }
 
 .imageAndText3 {
   margin-left: 30px;
+  overflow: hidden;
+  font-family: Cursive, serif;
 }
 
-.imageAndText4 {
-  margin-right: 30px;
+.imageAndText2 p {
+  font-size: 14px;
 }
-
 
 .bottom-container input[type=text] {
   padding: 6px;
@@ -142,13 +165,13 @@ h3 {
 }
 
 .bottom-container .email-container {
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
 body {
-  margin:0%;
+  margin: 0%;
 }
 
 .bottom-navigation {
@@ -170,16 +193,26 @@ body {
 }
 
 .parag {
-  font-size: 14px; 
-  font-family: Cursive, serif; 
-  margin:0%;
+  font-size: 14px;
+  font-family: Cursive, serif;
+  margin: 0%;
 }
 
 .paragraf {
-  color: white; margin-left: 20%; margin-right: 20%; margin-top: 2%; justify-content: center; font-size: 30px; text-align: justify;
-        text-align-last: center;
+  color: white;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 2%;
+  justify-content: center;
+  font-size: 30px;
+  text-align: justify;
+  text-align-last: center;
 }
 
 .subscribe {
-  color: white; display: flex; margin-top: 2%; justify-content: center; font-size: 23px;
+  color: white;
+  display: flex;
+  margin-top: 2%;
+  justify-content: center;
+  font-size: 23px;
 }
