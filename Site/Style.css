@@ -94,23 +94,36 @@ h3 {
 .latestItemscontainer {
   margin: 0 30px;
   display: flex;
-  gap: 2rem;
-  flex-direction: row;
+  gap: 1.25em;
+}
+
+.container {
+  flex-basis: 0;
+  flex-grow: 1;
 }
 
 .imageAndText {
   display: flex;
   flex-direction: column;
-  flex-basis: 0;
-  flex-grow: 1;
 }
 
-.container {
+.container ul {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: space-around;
-  overflow: hidden;
+  flex-flow: row wrap;
+  gap: 1.25em;
+  padding: 0;
+  margin-block-start: 0;
+}
+
+.container ul li {
+  list-style-type: none;
+  width: calc(50% - 0.65em);
+}
+
+.container ul li img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3/2;
 }
 
 .TrendingItemtsContainer {
@@ -120,7 +133,7 @@ h3 {
 }
 
 @media only screen and (max-width: 1450px) {
-  .latest-container {
+  .latestItemscontainer {
     flex-direction: column;
   }
 
@@ -210,4 +223,11 @@ body {
   margin-top: 2%;
   justify-content: center;
   font-size: 23px;
+}
+
+.imageAndTextMain {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 0;
+  flex-grow: 1;
 }
