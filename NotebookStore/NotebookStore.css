@@ -21,3 +21,8 @@ p {
     display: table-cell;
     text-size-adjust: 10px;
 }
+
+.image {
+    width: 150x; 
+    height: 100px;
+}
