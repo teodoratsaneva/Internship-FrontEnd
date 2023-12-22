@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function findMinMaxProperties(obj) {
+            const properties = Object.keys(obj).sort();
+            const smallestProperty = properties[0];
+            const largestProperty = properties[properties.length - 1];
+
+            return { smallestProperty, largestProperty };
+        }
+
+        const documentMinMax = findMinMaxProperties(document);
+        const windowMinMax = findMinMaxProperties(window);
+        const navigatorMinMax = findMinMaxProperties(navigator);
+
+        console.log('Document:', documentMinMax);
+        console.log('Window:', windowMinMax);
+        console.log('Navigator:', navigatorMinMax);
+
+    </script>
+
+</body>
+
+</html>
