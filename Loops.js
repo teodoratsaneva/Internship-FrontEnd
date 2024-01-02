@@ -1,23 +1,22 @@
 //TASK 1
-
 function printNumbersUpToN(arr) {
     const N = parseInt(arr[0], 10);
-  
-    if (Number.isInteger(N) && N > 0) {
-      for (let i = 1; i <= N; i++) {
-        process.stdout.write(i + ' ');
-      }
-      process.stdout.write('\n');
-    } else {
-      console.log('Invalid input. Please provide a valid positive integer.');
-    }
-  }
-  
-  const inputArray = ['5'];
-  printNumbersUpToN(inputArray);
 
-  //TASK 2
-  function analyzeNumbers(numbers) {
+    if (Number.isInteger(N) && N > 0) {
+        for (let i = 1; i <= N; i++) {
+            process.stdout.write(i + ' ');
+        }
+        process.stdout.write('\n');
+    } else {
+        console.log('Invalid input. Please provide a valid positive integer.');
+    }
+}
+
+const inputArray = ['5'];
+printNumbersUpToN(inputArray);
+
+//TASK 2
+function analyzeNumbers(numbers) {
     const floatNumbers = numbers.map(parseFloat);
 
     const min = Math.min(...floatNumbers);
@@ -30,7 +29,7 @@ function printNumbersUpToN(arr) {
     const formattedSum = sum.toFixed(2);
     const formattedAvg = avg.toFixed(2);
 
-    const output = 'min=${formattedMin}\nmax=${formattedMax}\nsum=${formattedSum}\navg=${formattedAvg}';
+    const output = "min=${formattedMin}\nmax=${formattedMax}\nsum=${formattedSum}\navg=${formattedAvg}';
 
     return output;
 }
@@ -76,8 +75,8 @@ function hexToDecimal(hexNumber) {
 const hexNumber = "123abc";
 const hexNumber2 = "7b2";
 
- const decimal = hexToDecimal(hexNumber);
- const decimal2 = hexToDecimal(hexNumber2);
+const decimal = hexToDecimal(hexNumber);
+const decimal2 = hexToDecimal(hexNumber2);
 
- console.log(decimal);
- console.log(decimal2);
+console.log(decimal);
+console.log(decimal2);
