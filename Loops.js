@@ -1,9 +1,9 @@
 //TASK 1
 function printNumbersUpToN(arr) {
-    const N = parseInt(arr[0], 10);
+    const n = parseInt(arr[0], 10);
 
-    if (Number.isInteger(N) && N > 0) {
-        for (let i = 1; i <= N; i++) {
+    if (Number.isInteger(n) && n > 0) {
+        for (let i = 1; i <= n; i++) {
             process.stdout.write(i + ' ');
         }
         process.stdout.write('\n');
@@ -40,12 +40,12 @@ console.log(result);
 
 
 //TASK 3
-function printMatrix(N) {
-    N = parseInt(N);
+function printMatrix(n) {
+    n = parseInt(n);
 
-    for (let i = 1; i <= N; i++) {
+    for (let i = 1; i <= n; i++) {
         let row = '';
-        for (let j = i; j < i + N; j++) {
+        for (let j = i; j < i + n; j++) {
             row += j + ' ';
         }
         console.log(row.trim());

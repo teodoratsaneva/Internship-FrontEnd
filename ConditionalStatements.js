@@ -1,9 +1,9 @@
 //TASK 1
-const inputArray1 = ['2.5', '-3', '4'];
+const inputArrayTask1 = ['2.5', '-3', '4'];
 
-var a1 = parseFloat(inputArray1[0]);
-var b1 = parseFloat(inputArray1[1]);
-var c1 = parseFloat(inputArray1[2]);
+var a1 = parseFloat(inputArrayTask1[0]);
+var b1 = parseFloat(inputArrayTask1[1]);
+var c1 = parseFloat(inputArrayTask1[2]);
 
 if (a1 > b1) {
     const temp = a1;
@@ -15,11 +15,11 @@ console.log(`${a1} ${b1}`);
 
 
 //TASK 2
-const inputArray2 = ['2.5', '-3', '4'];
+const inputArrayTask2 = ['2.5', '-3', '4'];
 
-var a2 = parseFloat(inputArray2[0]);
-var b2 = parseFloat(inputArray2[1]);
-var c2 = parseFloat(inputArray2[2]);
+var a2 = parseFloat(inputArrayTask2[0]);
+var b2 = parseFloat(inputArrayTask2[1]);
+var c2 = parseFloat(inputArrayTask2[2]);
 
 let productSign;
 
@@ -34,66 +34,66 @@ if (a2 === 0 || b2 === 0 || c2 === 0) {
 console.log(productSign);
 
 //TASK 3
-const inputArray3 = ['5', '2.3', '-1'];
+const inputArrayTask3 = ['5', '2.3', '-1'];
 
-var a3 = parseFloat(inputArray3[0]);
-var b3 = parseFloat(inputArray3[1]);
-var c3 = parseFloat(inputArray3[2]);
+var a3 = parseFloat(inputArrayTask3[0]);
+var b3 = parseFloat(inputArrayTask3[1]);
+var c3 = parseFloat(inputArrayTask3[2]);
 
-let biggestNumber3;
+function findTheBiggestOfThree(a3, b3, c3) {
+    let biggestNumberTask3;
 
-if (a3 >= b3) {
-    if (a3 >= c3) {
-        biggestNumber3 = a3;
+    if (a3 >= b3) {
+        if (a3 >= c3) {
+            biggestNumberTask3 = a3;
+        } else {
+            biggestNumberTask3 = c3;
+        }
     } else {
-        biggestNumber3 = c3;
+        if (b3 >= c3) {
+            biggestNumberTask3 = b3;
+        } else {
+            biggestNumberTask3 = c3;
+        }
     }
-} else {
-    if (b3 >= c3) {
-        biggestNumber3 = b3;
-    } else {
-        biggestNumber3 = c3;
-    }
+
+    return biggestNumberTask3;
 }
 
-console.log(biggestNumber3);
-
 //TASK 4
-const inputArray4 = ['5', '2.3', '-1'];
+const inputArrayTask4 = ['5', '2.3', '-1'];
 
-var a4 = parseFloat(inputArray4[0]);
-var b4 = parseFloat(inputArray4[1]);
-var c4 = parseFloat(inputArray4[2]);
+var a4 = parseFloat(inputArrayTask4[0]);
+var b4 = parseFloat(inputArrayTask4[1]);
+var c4 = parseFloat(inputArrayTask4[2]);
 
 let first, second, third;
 
-if (a4 >= b4) {
-    if (b4 >= c4) {
-        first = a4;
-        second = b4;
+first = findTheBiggestOfThree(a4, b4, c4);
+
+if (a4 === first) {
+    second = findTheBiggestOfThree(b4, c4);
+
+    if (b4 === second) {
         third = c4;
-    } else if (a4 >= c4) {
-        first = a4;
-        second = c4;
-        third = b4;
     } else {
-        first = c4;
-        second = a4;
         third = b4;
     }
-} else {
-    if (a4 >= c4) {
-        first = b4;
-        second = a4;
+} else if (b4 === first) {
+    second = findTheBiggestOfThree(a4, c4);
+
+    if (a4 === second) {
         third = c4;
-    } else if (b4 >= c4) {
-        first = b4;
-        second = c4;
-        third = a4;
     } else {
-        first = c4;
-        second = b4;
         third = a4;
+    }
+} else {
+    second = findTheBiggestOfThree(a4, b4);
+
+    if (b4 === second) {
+        third = c4;
+    } else {
+        third = b4;
     }
 }
 
@@ -101,11 +101,11 @@ console.log(`${first} ${second} ${third}`);
 
 
 //TASK 5
-const inputArray5 = ['3'];
+const inputArrayTask5 = ['3'];
 
-const inputString5 = inputArray5[0];
+const inputStringTask5 = inputArrayTask5[0];
 
-var digit = parseInt(inputString5);
+var digit = parseInt(inputStringTask5);
 
 switch (digit) {
     case 0:
@@ -144,11 +144,11 @@ switch (digit) {
 }
 
 //TASK 6
-const inputArray6 = ['1', '-3', '2'];
+const inputArrayTask6 = ['1', '-3', '2'];
 
-var a6 = parseFloat(inputArray6[0]);
-var b6 = parseFloat(inputArray6[1]);
-var c6 = parseFloat(inputArray6[2]);
+var a6 = parseFloat(inputArrayTask6[0]);
+var b6 = parseFloat(inputArrayTask6[1]);
+var c6 = parseFloat(inputArrayTask6[2]);
 
 var discriminant = b6 * b6 - 4 * a6 * c6;
 
@@ -166,87 +166,27 @@ if (discriminant > 0) {
 }
 
 //TASK 7
-const inputArray7 = ['5', '2.3', '-1', '10', '7'];
+const inputArrayTask7 = ['5', '2.3', '-1', '10', '7'];
 
-var a7 = parseFloat(inputArray7[0]);
-var b7 = parseFloat(inputArray7[1]);
-var c7 = parseFloat(inputArray7[2]);
-var d7 = parseFloat(inputArray7[3]);
-var e7 = parseFloat(inputArray7[4]);
+var a7 = parseFloat(inputArrayTask7[0]);
+var b7 = parseFloat(inputArrayTask7[1]);
+var c7 = parseFloat(inputArrayTask7[2]);
+var d7 = parseFloat(inputArrayTask7[3]);
+var e7 = parseFloat(inputArrayTask7[4]);
 
-let biggestNumber7;
+let biggestNumberTask7;
 
-if (a7 >= b7) {
-    if (a7 >= c7) {
-        if (a7 >= d7) {
-            if (a7 >= e7) {
-                biggestNumber7 = a7;
-            } else {
-                biggestNumber7 = e7;
-            }
-        } else {
-            if (d7 >= e7) {
-                biggestNumber7 = d7;
-            } else {
-                biggestNumber7 = e7;
-            }
-        }
-    } else {
-        if (c7 >= d7) {
-            if (c7 >= e7) {
-                biggestNumber7 = c7;
-            } else {
-                biggestNumber7 = e7;
-            }
-        } else {
-            if (d >= e) {
-                biggestNumber7 = d7;
-            } else {
-                biggestNumber7 = e7;
-            }
-        }
-    }
-} else {
-    if (b7 >= c7) {
-        if (b7 >= d7) {
-            if (b7 >= e7) {
-                biggestNumber7 = b7;
-            } else {
-                biggestNumber7 = e7;
-            }
-        } else {
-            if (d >= e) {
-                biggestNumber7 = d7;
-            } else {
-                biggestNumber7 = e7;
-            }
-        }
-    } else {
-        if (c7 >= d7) {
-            if (c7 >= e7) {
-                biggestNumber7 = c7;
-            } else {
-                biggestNumber7 = e7;
-            }
-        } else {
-            if (d7 >= e7) {
-                biggestNumber7 = d7;
-            } else {
-                biggestNumber7 = e7;
-            }
-        }
-    }
-}
-
-console.log(biggestNumber7);
+biggestNumberTask7 = findTheBiggestOfThree(a7, b7, c7);
+biggestNumberTask7 = findTheBiggestOfThree(biggestNumberTask7, d7, e7);
+console.log(biggestNumberTask7);
 
 
 //TASK 8
-const inputArray8 = ['356'];
+const inputArrayTask8 = ['356'];
 
-const inputString8 = inputArray8[0];
+const inputStringTask8 = inputArrayTask8[0];
 
-var number = parseInt(inputString8, 10);
+var number = parseInt(inputStringTask8, 10);
 
 function convertToWords(num) {
     const units = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
@@ -264,11 +204,8 @@ function convertToWords(num) {
     } else {
         const hundredDigit = Math.floor(num / 100);
         const remainder = num % 100;
-        if (remainder === 0) {
-            return `${units[hundredDigit]} Hundred`;
-        } else {
-            return `${units[hundredDigit]} Hundred and ${convertToWords(remainder)}`;
-        }
+
+        return remainder === 0 ? `${units[hundredDigit]} Hundred` : `${units[hundredDigit]} Hundred and ${convertToWords(remainder)}`;
     }
 }
 

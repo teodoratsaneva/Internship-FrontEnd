@@ -29,7 +29,6 @@ rl.question("Enter N: ", (N) => {
 
 //TASK 2
 function compareArrays(array1, array2) {
-
     if (array1.length < array2.length) {
         return "<";
     } else if (array1.length > array2.length) {
@@ -62,6 +61,7 @@ function maxSequence(array) {
     }
 
     maxLength = Math.max(maxLength, currLength);
+
     return maxLength;
 }
 
@@ -106,18 +106,18 @@ function maxIncreasingSeq(array) {
     return maxLength;
 }
 
-let array2 = [];
+let arrayTask4 = [];
 
 rl.question("Enter N: ", (N) => {
     let count = 0;
 
     function askForElement() {
         rl.question(`Enter element ${count + 1}: `, (element) => {
-            array2.push(parseInt(element));
+            arrayTask4.push(parseInt(element));
             count++;
 
             if (count === parseInt(N)) {
-                const maxLength = maxIncreasingSeq(array2);
+                const maxLength = maxIncreasingSeq(arrayTask4);
                 console.log(`Length of the maximal sequence: ${maxLength}`);
                 rl.close();
             } else {
@@ -150,18 +150,18 @@ function selectionSort(array) {
     return array;
 }
 
-let array5 = [];
+let arrayTask5 = [];
 
 rl.question("Enter N: ", (N) => {
     let count = 0;
 
     function askForElement() {
         rl.question(`Enter element ${count + 1}: `, (element) => {
-            array5.push(parseInt(element));
+            arrayTask5.push(parseInt(element));
             count++;
 
             if (count === parseInt(N)) {
-                const sortedArray = selectionSort(array5);
+                const sortedArray = selectionSort(arrayTask5);
                 sortedArray.forEach((num) => {
                     console.log(num);
                 });
@@ -205,18 +205,18 @@ function findMostFrequentNumber(array) {
     return { mostFrequentNumber, maxFrequency };
 }
 
-let array6 = [];
+let arrayTask6 = [];
 
 rl.question("Enter N: ", (N) => {
     let count = 0;
 
     function askForElement() {
         rl.question(`Enter element ${count + 1}: `, (element) => {
-            array6.push(parseInt(element));
+            arrayTask6.push(parseInt(element));
             count++;
 
             if (count === parseInt(N)) {
-                const { mostFrequentNumber, maxFrequency } = findMostFrequentNumber(array6);
+                const { mostFrequentNumber, maxFrequency } = findMostFrequentNumber(arrayTask6);
                 console.log(`${mostFrequentNumber} (${maxFrequency} times)`);
                 rl.close();
             } else {
@@ -248,7 +248,7 @@ function binarySearch(arr, target) {
     return -1;
 }
 
-let array7 = [];
+let arrayTask7 = [];
 let target;
 
 rl.question("Enter N: ", (N) => {
@@ -256,13 +256,13 @@ rl.question("Enter N: ", (N) => {
 
     function askForElement() {
         rl7.question(`Enter element ${count + 1}: `, (element) => {
-            array7.push(parseInt(element));
+            arrayTask7.push(parseInt(element));
             count++;
 
             if (count === parseInt(N)) {
                 rl.question("Enter X: ", (X) => {
                     target = parseInt(X);
-                    const index = binarySearch(array7, target);
+                    const index = binarySearch(arrayTask7, target);
                     console.log(index);
                     rl.close();
                 });
@@ -277,31 +277,31 @@ rl.question("Enter N: ", (N) => {
 
 
 //TASK 8
-function hasSubsetWithSum(array, S) {
-    const dp = [];
+function hasSubsetWithSum(array, sum) {
+    const isSubsetSumPossible = [];
 
     for (let i = 0; i <= array.length; i++) {
-        dp[i] = [];
-        dp[i][0] = true;
+        isSubsetSumPossible[i] = [];
+        isSubsetSumPossible[i][0] = true;
     }
 
     for (let i = 1; i <= array.length; i++) {
-        for (let j = 1; j <= S; j++) {
+        for (let j = 1; j <= sum; j++) {
             if (array[i - 1] <= j) {
-                dp[i][j] = dp[i - 1][j] || dp[i - 1][j - array[i - 1]];
+                isSubsetSumPossible[i][j] = isSubsetSumPossible[i - 1][j] || isSubsetSumPossible[i - 1][j - array[i - 1]];
             } else {
-                dp[i][j] = dp[i - 1][j];
+                isSubsetSumPossible[i][j] = isSubsetSumPossible[i - 1][j];
             }
         }
     }
 
-    return dp[array.length][S];
+    return isSubsetSumPossible[array.length][S];
 }
 
-const array8 = [2, 1, 2, 4, 3, 5, 2, 6];
+const arrayTask8 = [2, 1, 2, 4, 3, 5, 2, 6];
 const sumToFind = 14;
 
-const result = hasSubsetWithSum(array8, sumToFind);
+const result = hasSubsetWithSum(arrayTask8, sumToFind);
 
 if (result) {
     console.log('Yes');
@@ -355,14 +355,14 @@ function sumArray(array) {
 
     return sum;
 }
-let array10 = [];
+let arrayTask10 = [];
 
 rl.question("Enter N: ", (N) => {
     let count = 0;
 
     function askForElement() {
         rl.question(`Enter element ${count + 1}: `, (element) => {
-            array10.push(parseInt(element));
+            arrayTask10.push(parseInt(element));
             count++;
 
             if (count === parseInt(N)) {
