@@ -59,7 +59,7 @@ form {
   overflow: hidden;
   background-color: black;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
 }
 
 li {
@@ -188,7 +188,6 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 2%;
-  width: 90vw;
 }
 
 .bottom {
@@ -196,7 +195,7 @@ body {
   padding: 0;
   overflow: hidden;
   background-color: black;
-  width: 100vw;
+  width: 100%;
 }
 
 .hidden {
