@@ -29,7 +29,7 @@ function analyzeNumbers(numbers) {
     const formattedSum = sum.toFixed(2);
     const formattedAvg = avg.toFixed(2);
 
-    const output = "min=${formattedMin}\nmax=${formattedMax}\nsum=${formattedSum}\navg=${formattedAvg}';
+    const output = `min=${formattedMin}\nmax=${formattedMax}\nsum=${formattedSum}\navg=${formattedAvg}`;
 
     return output;
 }

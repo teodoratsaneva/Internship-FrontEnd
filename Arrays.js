@@ -51,7 +51,7 @@ function maxSequence(array) {
     let currLength = 1;
     let maxLength = 1;
 
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 1; i < array.length; i++) {
         if (array[i] === array[i - 1]) {
             currLength++;
         } else {
@@ -93,7 +93,7 @@ function maxIncreasingSeq(array) {
     let currLength = 1;
     let maxLength = 1;
 
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 1; i < array.length; i++) {
         if (array[i] > array[i - 1]) {
             currLength++;
         } else {
@@ -152,7 +152,7 @@ function selectionSort(array) {
 
 let arrayTask5 = [];
 
-rl.question("Enter N: ", (N) => {
+rl.question("Enter N: ", (n) => {
     let count = 0;
 
     function askForElement() {
@@ -160,7 +160,7 @@ rl.question("Enter N: ", (N) => {
             arrayTask5.push(parseInt(element));
             count++;
 
-            if (count === parseInt(N)) {
+            if (count === parseInt(n)) {
                 const sortedArray = selectionSort(arrayTask5);
                 sortedArray.forEach((num) => {
                     console.log(num);
@@ -207,7 +207,7 @@ function findMostFrequentNumber(array) {
 
 let arrayTask6 = [];
 
-rl.question("Enter N: ", (N) => {
+rl.question("Enter N: ", (n) => {
     let count = 0;
 
     function askForElement() {
@@ -215,7 +215,7 @@ rl.question("Enter N: ", (N) => {
             arrayTask6.push(parseInt(element));
             count++;
 
-            if (count === parseInt(N)) {
+            if (count === parseInt(n)) {
                 const { mostFrequentNumber, maxFrequency } = findMostFrequentNumber(arrayTask6);
                 console.log(`${mostFrequentNumber} (${maxFrequency} times)`);
                 rl.close();
@@ -251,7 +251,7 @@ function binarySearch(arr, target) {
 let arrayTask7 = [];
 let target;
 
-rl.question("Enter N: ", (N) => {
+rl.question("Enter N: ", (n) => {
     let count = 0;
 
     function askForElement() {
@@ -259,7 +259,7 @@ rl.question("Enter N: ", (N) => {
             arrayTask7.push(parseInt(element));
             count++;
 
-            if (count === parseInt(N)) {
+            if (count === parseInt(n)) {
                 rl.question("Enter X: ", (X) => {
                     target = parseInt(X);
                     const index = binarySearch(arrayTask7, target);
@@ -275,49 +275,34 @@ rl.question("Enter N: ", (N) => {
     askForElement();
 });
 
-
 //TASK 8
-function hasSubsetWithSum(array, sum) {
-    const isSubsetSumPossible = [];
-
-    for (let i = 0; i <= array.length; i++) {
-        isSubsetSumPossible[i] = [];
-        isSubsetSumPossible[i][0] = true;
-    }
-
-    for (let i = 1; i <= array.length; i++) {
-        for (let j = 1; j <= sum; j++) {
-            if (array[i - 1] <= j) {
-                isSubsetSumPossible[i][j] = isSubsetSumPossible[i - 1][j] || isSubsetSumPossible[i - 1][j - array[i - 1]];
-            } else {
-                isSubsetSumPossible[i][j] = isSubsetSumPossible[i - 1][j];
-            }
-        }
-    }
-
-    return isSubsetSumPossible[array.length][S];
-}
+function hasSubsetSum(array, size, sum) {
+    if (sum == 0)
+      return true;
+    if (size == 0)
+      return false;
+  
+    if (array[size - 1] > sum)
+      return hasSubsetSum(array, size - 1, sum);
+  
+    return hasSubsetSum(array, size - 1, sum) ||
+    hasSubsetSum(array, size - 1, sum - array[size - 1]);
+  }
 
 const arrayTask8 = [2, 1, 2, 4, 3, 5, 2, 6];
-const sumToFind = 14;
+const sum = 200;
 
-const result = hasSubsetWithSum(arrayTask8, sumToFind);
-
-if (result) {
-    console.log('Yes');
-} else {
-    console.log('No');
-}
+console.log(hasSubsetSum(arrayTask8,arrayTask8.length, sum) ? "Yes" : "No");
 
 //TAST 9
-function isPrimeNumber(N) {
-    const isPrime = new Array(N + 1);
+function isPrimeNumber(n) {
+    const isPrime = new Array(n + 1);
     isPrime.fill(true);
     isPrime[0] = isPrime[1] = false;
 
-    for (let i = 2; i <= Math.sqrt(N); i++) {
+    for (let i = 2; i <= Math.sqrt(n); i++) {
         if (isPrime[i]) {
-            for (let j = i * i; j <= N; j += i) {
+            for (let j = i * i; j <= n; j += i) {
                 isPrime[j] = false;
             }
         }
@@ -326,10 +311,10 @@ function isPrimeNumber(N) {
     return isPrime;
 }
 
-function findLargestPrime(N) {
-    const primes = isPrimeNumber(parseInt(N));
+function findLargestPrime(n) {
+    const primes = isPrimeNumber(parseInt(n));
 
-    for (let i = N; i >= 2; i--) {
+    for (let i = n; i >= 2; i--) {
         if (primes[i]) {
             return i;
         }
@@ -338,8 +323,8 @@ function findLargestPrime(N) {
     return -1;
 }
 
-rl.question("Enter N: ", (N) => {
-    const largestPrime = findLargestPrime(N);
+rl.question("Enter N: ", (n) => {
+    const largestPrime = findLargestPrime(n);
     console.log(largestPrime);
     rl.close();
 });
@@ -357,7 +342,7 @@ function sumArray(array) {
 }
 let arrayTask10 = [];
 
-rl.question("Enter N: ", (N) => {
+rl.question("Enter N: ", (n) => {
     let count = 0;
 
     function askForElement() {
@@ -365,7 +350,7 @@ rl.question("Enter N: ", (N) => {
             arrayTask10.push(parseInt(element));
             count++;
 
-            if (count === parseInt(N)) {
+            if (count === parseInt(n)) {
                 const sum = sumArray(array11);
                 console.log(sum);
                 rl.close();
