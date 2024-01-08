@@ -41,24 +41,12 @@ var b3 = parseFloat(inputArrayTask3[1]);
 var c3 = parseFloat(inputArrayTask3[2]);
 
 function findTheBiggestOfThree(a3, b3, c3) {
-    let biggestNumberTask3;
-
-    if (a3 >= b3) {
-        if (a3 >= c3) {
-            biggestNumberTask3 = a3;
-        } else {
-            biggestNumberTask3 = c3;
-        }
-    } else {
-        if (b3 >= c3) {
-            biggestNumberTask3 = b3;
-        } else {
-            biggestNumberTask3 = c3;
-        }
-    }
+    const biggestNumberTask3 = (a3 >= b3) ? ((a3 >= c3) ? a3 : c3) : ((b3 >= c3) ? b3 : c3);
 
     return biggestNumberTask3;
 }
+
+console.log(findTheBiggestOfThree(a3, b3, c3));
 
 //TASK 4
 const inputArrayTask4 = ['5', '2.3', '-1'];

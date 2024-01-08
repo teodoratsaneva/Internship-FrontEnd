@@ -110,9 +110,9 @@ var people = [
 
 
 function findYoungestPerson(people) {
-    for (let i = 1; i < people.length; i++) {
-        var youngestPerson = people[0];
+    var youngestPerson = people[0];
 
+    for (let i = 1; i < people.length; i++) {
         if (youngestPerson.age > people[i].age) {
             youngestPerson = people[i];
         }
@@ -125,17 +125,13 @@ console.log(findYoungestPerson(people));
 
 //TASK 6
 function group(people) {
-    const groupedByAge = {};
+    const groupedByAge = people.reduce((accumulator, person) =>
+    {
+        const {age} = person;
+        accumulator[age] = (accumulator[age] || []).concat(person);
 
-    for (let i = 0; i < people.length; i++) {
-        const age = people[i].age;
-
-        if (!hasProperty(groupedByAge, age)) {
-            groupedByAge[age] = [];
-        }
-
-        groupedByAge[age].push(people[i]);
-    }
+        return accumulator;
+    }, {});
 
     return groupedByAge;
 }
@@ -206,7 +202,7 @@ printUnderagedPersons(createdPeople);
 function findYoungestMale(people) {
     const youngestMale = people
         .filter(person => person.gender === 'male')
-        .reduce((prev, current) => (prev.age < current.age ? prev : current), {});
+        .sort((a, b) => a.age - b.age)[0];;
 
     return youngestMale ? `The youngest male is: ${youngestMale.firstname} ${youngestMale.lastname}` : 'No males found in the given array.';
 }

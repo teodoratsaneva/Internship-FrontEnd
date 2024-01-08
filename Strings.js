@@ -28,7 +28,10 @@ console.log(isCorrectBrackets("(hello)"));
 
 //TASK 3
 function countInstances(string, word) {
-    return string.split(word).length - 1;
+    const newString = string.toLowerCase();
+    const newWord = word.toLowerCase();
+
+    return newString.split(newWord).length - 1;
 }
 console.log(countInstances('We are living in an yellow submarine. We don\'t have anything else. inside the submarine is very tight. So we are drinking all the day. We will move out of it in 5 days.', 'in'));
 
