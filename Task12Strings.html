@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate List Example</title>
+</head>
+
+<body>
+
+    <div data-type="template" id="list-item">
+        <strong>-{name}-</strong> <span>-{age}-</span>
+    </div>
+
+    <script>
+        function generateList(data, template) {
+            var listItems = data.map(function(item) {
+                return template.replace(/-{(.*?)}-/g, function(match, key) {
+                    return item[key] || match;
+                });
+            });
+
+            return '<ul>' + listItems.map(function(item) {
+                return '<li>' + item + '</li>';
+            }).join('') + '</ul>';
+        }
+
+        var people = [{
+            name: 'Peter',
+            age: 14
+        }, ];
+
+        var peopleList = generateList(people, document.getElementById('list-item').innerHTML);
+        document.body.innerHTML += peopleList;
+    </script>
+
+</body>
+
+</html>
