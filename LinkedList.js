@@ -22,45 +22,132 @@ class LinkedList {
         return this.length;
     }
 
+    // append(...data) {
+    //     this.insertAt(this.length, ...data);
+
+    //     return this;
+    // }
+
+
+    // prepend(...data) {
+    //     this.insertAt(0, ...data);
+
+    //     return this;
+    // }
+
+    // insertAt(index, ...data) {
+    //     for (const el of data) {
+    //         const node = {
+    //             data: el,
+    //             next: null
+    //         };
+
+    //         if (!this.head) {
+    //             this.head = node;
+    //             this.length++;
+    //             index++;
+    //             continue;
+    //         }
+
+    //         let current = this.head;
+
+    //         while (current) {
+    //             if (index == 0) {
+    //                 node.next = current.next;
+    //                 current = node;
+    //             } else if (index == 1) {
+    //                 node.next = current.next;
+    //                 current.next = node;
+    //                 this.length++;
+    //                 index++;
+    //                 break;
+    //             } else {
+    //                 current = current.next;
+    //             }
+
+    //             index--;
+    //         }
+    //     }
+
+    //     return this;
+    // }
+
     append(...data) {
+        this.insertAt(this.length, ...data);
+        return this;
+    }
+
+    prepend(...data) {
+        this.insertAt(0, ...data);
+        return this;
+    }
+
+    insertAt(index, ...data) {
         for (const el of data) {
             const node = {
                 data: el,
                 next: null
             };
 
-            if (this.head === null) {
+            if (index === 0) {
+                node.next = this.head;
                 this.head = node;
             } else {
                 let current = this.head;
 
-                while (current && current.next) {
+                while (current && index > 1) {
                     current = current.next;
+                    index--;
                 }
 
-                current.next = node;
+                if (current) {
+                    node.next = current.next;
+                    current.next = node;
+                }
             }
 
             this.length++;
+            index++;
         }
 
         return this;
     }
 
-    prepend(...data) {
-        const newNodes = data.map(el => ({
-            data: el,
-            next: this.head
-        }));
 
-        if (newNodes.length > 0) {
-            this.head = newNodes[0];
-            this.length += newNodes.length;
+    at(index) {
+        let current = this.head;
 
-            if (this.tail === null) {
-                this.tail = newNodes[newNodes.length - 1];
+        while (current.next) {
+            if (index == 1) {
+                return current.data;
+            } else {
+                current = current.next;
+                index--;
             }
         }
+    }
+
+    removeAt(index) {
+        let removed;
+
+        if (index === 0) {
+            removed = this.head.data;
+            this.head = this.head.next;
+        } else {
+            let current = this.head;
+
+            while (current && index > 1) {
+                current = current.next;
+                index--;
+            }
+
+            if (current && current.next) {
+                removed = current.next.data;
+                current.next = current.next.next;
+            }
+        }
+
+        this.length--;
 
         return this;
     }
@@ -81,7 +168,7 @@ class LinkedList {
         let array = [];
         let i = 0;
 
-        for (const value of list) {
+        for (const value of this) {
             array[i] = value;
             i++;
         }
@@ -108,11 +195,18 @@ class LinkedList {
 }
 
 const list = new LinkedList();
-list.append(1, 2, 3).prepend(0);
+list.append(4, 5, 6).prepend(1, 2, 3);
 
-for (const value of list) {
+const list2 = new LinkedList();
+list2.append(1, 4, 5).insertAt(1, 8, 9);
+
+list2.removeAt(1);
+
+for (const value of list2) {
     console.log(value);
 }
+
+console.log(list2.at(3));
 
 console.log("First:", list.first);
 console.log("Last:", list.last);
