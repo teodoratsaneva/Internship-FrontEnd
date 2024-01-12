@@ -43,12 +43,14 @@ function solve() {
         while (currentElement) {
             if (currentElement.classList.contains("content")) {
                 let nextButton = currentElement.nextElementSibling;
+
                 if (nextButton && nextButton.classList.contains("button")) {
                     return currentElement;
                 } else {
                     return null;
                 }
             }
+
             currentElement = currentElement.previousElementSibling;
         }
 
