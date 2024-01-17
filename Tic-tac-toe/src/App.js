@@ -89,9 +89,7 @@ const Game = () => {
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
-        <ul>
-        <li>{moves}</li>
-        </ul>
+        <ul>{moves}</ul>
       </div>
     </div>
   );
