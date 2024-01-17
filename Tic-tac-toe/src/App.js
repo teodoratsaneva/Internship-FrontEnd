@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { calculateWinner, getStatus } from './Utils';
 
 const Square = ({ value, onSquareClick }) => {
   return (
@@ -9,34 +10,38 @@ const Square = ({ value, onSquareClick }) => {
 }
 
 const Board = ({ xIsNext, squares, onPlay }) => {
-  function handleClick(i) {
-    if (calculateWinner(squares) || squares[i]) {
+  function handleClick(squareIndex) {
+    if (calculateWinner(squares) || squares[squareIndex]) {
       return;
     }
 
     const nextSquares = squares.slice();
 
     if (xIsNext) {
-      nextSquares[i] = 'X';
+      nextSquares[squareIndex] = 'X';
     } else {
-      nextSquares[i] = 'O';
+      nextSquares[squareIndex] = 'O';
     }
 
     onPlay(nextSquares);
   }
 
   const winner = calculateWinner(squares);
-  let status = diplayStatus(squares, winner, xIsNext);
+  const status = getStatus(squares, winner, xIsNext);
 
   const boardRows = [];
   for (let row = 0; row < 3; row++) {
+
     const squaresInRow = [];
+
     for (let col = 0; col < 3; col++) {
       const squareIndex = row * 3 + col;
+
       squaresInRow.push(
         <Square key={squareIndex} value={squares[squareIndex]} onSquareClick={() => handleClick(squareIndex)} />
       );
     }
+
     boardRows.push(<div key={row} className="board-row">{squaresInRow}</div>);
   }
 
@@ -84,48 +89,12 @@ const Game = () => {
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
-        <ol>{moves}</ol>
+        <ul>
+        <li>{moves}</li>
+        </ul>
       </div>
     </div>
   );
 }
-
-const diplayStatus = (squares, winner, xIsNext) => {
-    let filledArray = squares.filter(value => value == null);
-
-  if(filledArray.length === 0)
-    {
-        return winner ? `Game over the winner is ${winner}!` : `Game over there is no winner!`;
-        
-    } else if (winner) {
-        return 'Winner: ' + winner;
-    } else {
-        return 'Next player: ' + (xIsNext ? 'X' : 'O');
-    }
-}
-
-const calculateWinner = (squares) => {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-
-  return null;
-}
-
 
 export default Game;
