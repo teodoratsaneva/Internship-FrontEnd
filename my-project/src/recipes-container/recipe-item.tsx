@@ -18,7 +18,6 @@ const IngredientItem = (props: {
       {subIcon ? subIcon : <Brightness1Icon className="Brightness1Icon" />}
       <span className="ingredient-text">{ingredient.text}</span>
       {ingredient.subIngredients && (
-        <div className="sub-ingredients">
           <ul>
           {ingredient.subIngredients.map((subIngredient, index) => (
             <li key={index}>
@@ -29,7 +28,6 @@ const IngredientItem = (props: {
             </li>
           ))}
           </ul>
-        </div>
       )}
     </div>
   );

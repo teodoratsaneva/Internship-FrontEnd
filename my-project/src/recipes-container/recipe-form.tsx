@@ -12,12 +12,16 @@ const RecipeComponent = (props: { recipe: Recipe }) => {
   const { recipe } = props;
 
   return (
-    <div className="recipe-components">
-      <h2 className="recipe-title">{recipe.title}</h2>
-      <IngredientsListComponent ingredients={recipe.ingredientList} />
-      <Link to="/cook">
-      <input type="cook-button" value="Cook" />
-      </Link>
+    <div className="recipe-card">
+      <h2 className="header-card">{recipe.title}</h2>
+      <div className="content-card">
+        <IngredientsListComponent ingredients={recipe.ingredientList} />
+      </div>
+      <div className="footer-card">
+        <Link to="/cook">
+          <input type="cook-button" value="Cook" />
+        </Link>
+      </div>
     </div>
   );
 };

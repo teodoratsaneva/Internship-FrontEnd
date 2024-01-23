@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import RecipeComponent, { Recipe } from "./recipes-container/recipe-form";
 import recipes from "./recipes-container/data-recipes";
-import HeaderComponent from "./header-component";
+import HeaderComponent from "./header-page-component";
 
 const CookbookPage: React.FC = () => {
   return (

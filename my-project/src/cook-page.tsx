@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import HeaderComponent from "./header-component";
+import HeaderComponent from "./header-page-component";
 
 const CookPage = () => {
     return (

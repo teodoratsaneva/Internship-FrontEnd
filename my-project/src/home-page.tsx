@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import HeaderComponent from "./header-component";
+import HeaderComponent from "./header-page-component";
 
 const HomePage = () => {
   return (
@@ -10,7 +10,7 @@ const HomePage = () => {
         <Link to="/cookbook">
           <input type="button" value="Go to Cookbook" />
         </Link>
-        <Link to="/tried-and-tested-page">
+        <Link to="/tried-and-tested">
           <input type="button" value="View Tried & Tested recipes" />
         </Link>
       </div>
