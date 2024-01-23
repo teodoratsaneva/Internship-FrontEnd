@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom'
+import HeaderComponent from './header-component';
 
 const TriedAndTestedRecipes = () => {
     return (
         <>
-        <div className="header">
-        <Link to="/">
-        <img className="darkLogo" src="darkLogo.JPG" alt="darkLogo" />
-        </Link>
-        </div>
+        <HeaderComponent />
         </>
     )
 }

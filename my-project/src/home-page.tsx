@@ -1,15 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import HeaderComponent from "./header-component";
 
 const HomePage = () => {
   return (
     <>
-      <div className="header">
-        <Link to="/">
-        <img className="darkLogo" src="darkLogo.JPG" alt="darkLogo" />
-        </Link>
-      </div>
+      <HeaderComponent />
       <div className="home-page-container">
-          <h1>Welcome to Ilvermorny School of Cookcraft & Gourmet Sorcery</h1>
+        <h1>Welcome to Ilvermorny School of Cookcraft & Gourmet Sorcery</h1>
         <Link to="/cookbook">
           <input type="button" value="Go to Cookbook" />
         </Link>
