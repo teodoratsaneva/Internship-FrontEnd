@@ -10,7 +10,7 @@ body {
   background-size: cover;
 }
 
-.header {
+header {
   background-color: #242633;
   display: flex;
   justify-content: space-around;
@@ -20,11 +20,12 @@ body {
   width: 50%;
 }
 
-h1 {
+.home-page-container h1, .cookbook-page-container h1 {
   color: white;
-  margin-top:5%;
-  margin-bottom: 10%;
-  margin-top: 10%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  font-size: 50px;
+  text-align: center;
 }
 
 .home-page-container {
@@ -39,15 +40,19 @@ a {
   justify-content: space-around;
 }
 
-input[type=button]{
+.home-page-container .home-page-button{
   border:none;
   background-color: #242633;
-  font-size: 25px;
+  font-size: 20px;
   color: white;
   text-align: center;
   text-decoration:double;
-  padding: 20px 40px;
-  margin-bottom: 30%;
+  padding: 25px 40px;
+  margin-bottom: 5%;
+}
+
+.home-page-container .home-page-button:hover{
+  background-color: #242633c2;
 }
 
 .cookbook-page-title {
@@ -62,34 +67,36 @@ input[type=button]{
   flex-direction: column;
 }
 
-.recipe-container {
-  background-color:#242633;
-  margin-bottom: 3%;
-  padding: 50px 30px 10px;
-  font-size: large;
-  width: 300px;
-  height: 400px;
-}
-
 .recipes-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  
+  .recipe-container {
+    background-color:#242633;
+    margin-bottom: 3%;
+    padding: 50px 30px 10px;
+    font-size: large;
+    width: 300px;
+    height: 400px;
+  }
 }
 
 .Brightness1Icon, .Brightness2Icon{
   color: white;
+  margin-right: 10px;
 }
 
 li {
   list-style: none;
 }
 
-.ingredient-text {
+.ingredient-title {
   color: white;
+  padding: 3px;
 }
 
-input[type=cook-button]{
+.cook-button{
   border:none;
   background-color: white;
   color: #242633;
@@ -109,6 +116,7 @@ input[type=cook-button]{
 .content-card {
   height: 300px;
   overflow: auto;
+  padding: 0 35px 0 40px;
 }
 
 .footer-card {
@@ -117,7 +125,7 @@ input[type=cook-button]{
 }
 
 .content-card::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 .content-card::-webkit-scrollbar-track {
@@ -126,4 +134,28 @@ input[type=cook-button]{
  
 .content-card::-webkit-scrollbar-thumb {
   background: #5c5e6d; 
+}
+
+::-webkit-scrollbar-button:single-button {
+  background-color: transparent;
+  display: block;
+  border-style: solid;
+  height: 15px;
+  width: 15px;
+}
+
+.content-card::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 4px 15px 4px;
+  border-color: transparent transparent #5c5e6d transparent;
+}
+
+.content-card::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: 15px 4px 0 4px;
+  border-color: #5c5e6d transparent transparent transparent;
+}
+
+
+.ingredient-container{
+  display: flex;
+  align-items: flex-start;
 }
