@@ -15,6 +15,7 @@ const IngredientItem = (props: {
             ) : (
                 <IconConponent type="brightness1" />
             )}
+            <span className="ingredient-title">{ingredient.quantity}</span>
             <span className="ingredient-title">{ingredient.title}</span>
             </div>
             {ingredient.subIngredients && (

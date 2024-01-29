@@ -8,7 +8,7 @@ import { Ingredient } from "../interfaces/ingredient-interface";
 import { Recipe } from "../interfaces/recipe-interface";
 import Button from "@mui/material/Button";
 import IngredientRecipeComponent from "./ingredient-recipe-component";
-import recipes from "../recipes-container/data-recipes";
+import {saveToLocalStorage} from "./local-storage-helper";
 
 const styleBox = {
 	position: "absolute",
@@ -40,10 +40,14 @@ const ModalFormComponent = ({ open, close }) => {
 		}
 	}, [open]);
 
-	const handleAddIngredient = (parentId: string | null) => {
+	const handleAddIngredient = (
+		parentId?: string | null,
+		selectedIngredientLabel?: string
+	) => {
 		const newIngredient: Ingredient = {
 			id: uuidv4(),
-			title: "",
+			title: selectedIngredientLabel || "",
+			quantity: "",
 			subIngredients: [],
 		};
 
@@ -84,7 +88,32 @@ const ModalFormComponent = ({ open, close }) => {
 					subIngredients: ingredient.subIngredients.map(
 						(subIngredient) => {
 							if (subIngredient.id === id) {
-								return { ...subIngredient, title: value };
+								return { ...ingredient, title: value };
+							}
+
+							return subIngredient;
+						}
+					),
+				};
+			}
+
+			return ingredient;
+		});
+
+		setRecipe({ ...recipe, ingredients: updatedIngredients });
+	};
+
+	const handleQuantityChange = (id: string, value: string) => {
+		const updatedIngredients = recipe.ingredients.map((ingredient) => {
+			if (ingredient.id === id) {
+				return { ...ingredient, quantity: value };
+			} else if (ingredient.subIngredients) {
+				return {
+					...ingredient,
+					subIngredients: ingredient.subIngredients.map(
+						(subIngredient) => {
+							if (subIngredient.id === id) {
+								return { ...ingredient, quantity: value };
 							}
 
 							return subIngredient;
@@ -100,7 +129,7 @@ const ModalFormComponent = ({ open, close }) => {
 	};
 
 	const handleSaveOnLocalStorage = () => {
-		localStorage.setItem("items", JSON.stringify(recipe));
+		saveToLocalStorage(recipe);
 
 		setRecipe({
 			id: uuidv4(),
@@ -120,7 +149,7 @@ const ModalFormComponent = ({ open, close }) => {
 							onChange={(value) =>
 								setRecipe({ ...recipe, title: value })
 							}
-							onAddIngredient={() => handleAddIngredient}
+							onAddIngredient={() => handleAddIngredient()}
 						/>
 					</div>
 					<div className="contend-form">
@@ -131,6 +160,9 @@ const ModalFormComponent = ({ open, close }) => {
 								parentId={null}
 								onChange={(value) =>
 									handleIngredientChange(ingredient.id, value)
+								}
+								onChange2={(value) =>
+									handleQuantityChange(ingredient.id, value)
 								}
 								onAddIngredient={() =>
 									handleAddIngredient(ingredient.id)
@@ -149,6 +181,9 @@ const ModalFormComponent = ({ open, close }) => {
 														value
 													)
 												}
+												onChange2={(value) =>
+													handleQuantityChange(ingredient.id, value)
+												}
 												onAddIngredient={() =>
 													handleAddIngredient(
 														subIngredient.id
@@ -165,7 +200,7 @@ const ModalFormComponent = ({ open, close }) => {
 							key={recipe.id}
 							className="create-recipe-button"
 							variant="text"
-							onClick={() => handleSaveOnLocalStorage()}
+							onClick={handleSaveOnLocalStorage}
 						>
 							Save Changes
 						</Button>

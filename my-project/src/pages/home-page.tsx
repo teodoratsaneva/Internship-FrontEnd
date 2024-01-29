@@ -23,7 +23,7 @@ const HomePage = () => {
 					variant="contained"
 					onClick={handleOpen}
 				>
-					Create a cooking spell
+					Create a potion recipe
 				</Button>
 				<ModalFormComponent open={open} close={handleClose} />
 				<Button
