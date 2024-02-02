@@ -149,6 +149,7 @@ const ModalFormComponent = ({ open, close }) => {
 							onChange={(value) =>
 								setRecipe({ ...recipe, title: value })
 							}
+
 							onAddIngredient={() => handleAddIngredient()}
 						/>
 					</div>
@@ -161,9 +162,11 @@ const ModalFormComponent = ({ open, close }) => {
 								onChange={(value) =>
 									handleIngredientChange(ingredient.id, value)
 								}
+
 								onChange2={(value) =>
 									handleQuantityChange(ingredient.id, value)
 								}
+
 								onAddIngredient={() =>
 									handleAddIngredient(ingredient.id)
 								}
@@ -181,9 +184,11 @@ const ModalFormComponent = ({ open, close }) => {
 														value
 													)
 												}
+
 												onChange2={(value) =>
 													handleQuantityChange(ingredient.id, value)
 												}
+												
 												onAddIngredient={() =>
 													handleAddIngredient(
 														subIngredient.id

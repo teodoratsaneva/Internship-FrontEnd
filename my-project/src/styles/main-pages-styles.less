@@ -20,41 +20,41 @@ html {
     width: 50%;
   }
   
-  .home-page-container h1, .cookbook-page-container h1 {
-    color: white;
-    margin-bottom: 5%;
-    margin-top: 5%;
-    font-size: 50px;
-    text-align: center;
-  }
-  
   .home-page-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 5%;
+
+    h1 {
+      color: white;
+      margin-bottom: 5%;
+      margin-top: 5%;
+      font-size: 50px;
+      text-align: center;
+    }
+
+    .home-page-button{
+      border:none;
+      background-color: #242633;
+      font-size: 20px;
+      color: white;
+      text-align: center;
+      text-decoration:double;
+      padding: 25px 40px;
+      margin-bottom: 5%;
+    }
+
+    .home-page-button:hover{
+      background-color: #242633c2;
+    }
   }
   
   a {
     display: flex;
     justify-content: space-around;
   }
-  
-  .home-page-container .home-page-button{
-    border:none;
-    background-color: #242633;
-    font-size: 20px;
-    color: white;
-    text-align: center;
-    text-decoration:double;
-    padding: 25px 40px;
-    margin-bottom: 5%;
-  }
-  
-  .home-page-container .home-page-button:hover{
-    background-color: #242633c2;
-  }
-  
+
   .cookbook-page-title {
     color: white;
     margin:3%;
@@ -65,4 +65,12 @@ html {
   .cookbook-page-container {
     display: flex;
     flex-direction: column;
+
+    h1 {
+      color: white;
+      margin-bottom: 5%;
+      margin-top: 5%;
+      font-size: 50px;
+      text-align: center;
+    }
   }

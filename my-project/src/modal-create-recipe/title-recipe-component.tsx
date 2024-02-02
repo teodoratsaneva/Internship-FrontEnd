@@ -1,7 +1,6 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import Heading from "../utils/heading-component";
-import { v4 as uuidv4 } from "uuid";
 import { TextButtonProps } from "../interfaces/text-button-props";
 
 const styleTextFeld = {
@@ -43,7 +42,6 @@ const TitleRecipeComponent: React.FC<TextButtonProps> = ({
         <Heading variant="h5">Title</Heading>
         <TextField
           sx={styleTextFeld}
-          id={uuidv4()}
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />

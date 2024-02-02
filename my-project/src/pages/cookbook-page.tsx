@@ -8,8 +8,6 @@ const CookbookPage: React.FC = () => {
   const storedRecipesRaw = localStorage.getItem('items');
   const storedRecipes = storedRecipesRaw ? JSON.parse(storedRecipesRaw) : [];
 
-  console.log(storedRecipes);
-
   return (
     <>
       <HeaderComponent />

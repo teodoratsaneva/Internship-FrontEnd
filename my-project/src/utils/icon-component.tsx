@@ -1,15 +1,14 @@
 import Brightness1Icon from "@mui/icons-material/Brightness1";
 import Brightness2Icon from "@mui/icons-material/Brightness2";
 
+const iconMap = {
+    brightness1: <Brightness1Icon className="Brightness1Icon" />,
+    brightness2: <Brightness2Icon className="Brightness2Icon" />,
+}
+
 const IconConponent = ({ type }) => {
-    switch (type) {
-        case "brightness1":
-            return <Brightness1Icon className="Brightness1Icon" />;
-        case "brightness2":
-            return <Brightness2Icon className="Brightness2Icon" />;
-        default:
-            return null;
-    }
+    return iconMap[type] || null;
   };
 
-  export default IconConponent;
+export default IconConponent;
+  

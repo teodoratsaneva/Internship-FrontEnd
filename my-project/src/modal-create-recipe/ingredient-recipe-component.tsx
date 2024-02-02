@@ -21,29 +21,29 @@ const styleAutocomplete = {
 
 const styleTextFeldQuantity = {
 	".MuiInputBase-input": {
-	  color: "white",
-	  width: "60px",
-	  height: "25px"
+		color: "white",
+		width: "60px",
+		height: "25px",
 	},
 	".MuiFormLabel-root": {
-	  color: "white",
+		color: "white",
 	},
 	".MuiFormControl-root": {
-	  borderColor: "white",
+		borderColor: "white",
 	},
 	"& .MuiOutlinedInput-root": {
-	  "& fieldset": {
-		borderColor: "white",
-		color: "white",
-	  },
-	  "&:hover fieldset": {
-		borderColor: "white",
-	  },
-	  "&.Mui-focused fieldset": {
-		borderColor: "white",
-	  },
+		"& fieldset": {
+			borderColor: "white",
+			color: "white",
+		},
+		"&:hover fieldset": {
+			borderColor: "white",
+		},
+		"&.Mui-focused fieldset": {
+			borderColor: "white",
+		},
 	},
-  };
+};
 
 const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 	onChange,

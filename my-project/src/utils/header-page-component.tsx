@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 const HeaderComponent = () => {
     return (
-        <>
             <header>
                 <Link to="/">
                     <img
@@ -12,7 +11,6 @@ const HeaderComponent = () => {
                     />
                 </Link>
             </header>
-        </>
     );
 };
 
