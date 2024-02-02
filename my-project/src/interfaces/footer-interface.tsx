@@ -1,6 +1,8 @@
 export interface Footer {
     className: string,
     buttonText: string,
-    onClick?: () => void,
-    linkTo?: string
+    onClickButtonSaveAndExit?: () => void,
+    onClickButtonSavaAndReset?: () => void,
+    linkTo?: string,
+    buttonText2: string
 }

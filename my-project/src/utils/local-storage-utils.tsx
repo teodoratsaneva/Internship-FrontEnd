@@ -1,4 +1,4 @@
-export const recipeToLocalStorage = (recipe) => {
+export const saveRecipeToLocalStorage = (recipe) => {
   const existingRecipes = localStorage.getItem("items");
   const storedRecipes = existingRecipes ? JSON.parse(existingRecipes) : [];
   const updatedRecipes = [...storedRecipes, recipe];

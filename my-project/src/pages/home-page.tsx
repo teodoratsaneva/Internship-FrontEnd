@@ -26,22 +26,18 @@ const HomePage = () => {
 					Create a potion recipe
 				</Button>
 				<ModalFormComponent open={open} close={handleClose} />
-				<Button
-					className="home-page-button"
-					variant="contained"
-					component={Link}
+				<Link
+					className="MuiLink-button home-page-button"
 					to="/cookbook"
 				>
 					Go to Cookbook
-				</Button>
-				<Button
-					className="home-page-button"
-					variant="contained"
-					component={Link}
+				</Link>
+				<Link
+					className="MuiLink-button home-page-button"
 					to="/tried-and-tested"
 				>
 					View Tried & Tested recipes
-				</Button>
+				</Link>
 			</div>
 		</>
 	);
