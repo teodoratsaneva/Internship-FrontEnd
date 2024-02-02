@@ -1,4 +1,4 @@
-import HeaderComponent from "../utils/header-page-component";
+import HeaderComponent from "../commonComponents/header-page-component";
 
 const CookPage = () => {
     return (

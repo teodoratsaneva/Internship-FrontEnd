@@ -1,10 +1,11 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import TextField from "@mui/material/TextField";
-import Heading from "../utils/heading-component";
+import Heading from "../commonComponents/heading-component";
 import { v4 as uuidv4 } from "uuid";
 import { TextButtonProps } from "../interfaces/text-button-props";
 import Autocomplete from "@mui/material/Autocomplete";
 import sampleIngredients from "../utils/list-ingredinets";
+import AddIngredient from "../commonComponents/add-ingredient";
 
 const styleAutocomplete = {
 	width: "300px",
@@ -46,13 +47,21 @@ const styleTextFeldQuantity = {
 };
 
 const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
-	onChange,
-	onChange2,
+	onChangeName,
+	onChangeQuantity,
 	onAddIngredient,
 	parentId,
 	children,
 }) => {
 	const autocompleteId = React.useRef(uuidv4());
+
+	const renderInput = (params) => (
+		<TextField
+			{...params}
+			label="Ingredients"
+			onChange={({ target }) => onChangeName(target.value)}
+		/>
+	);
 
 	return (
 		<div style={{ marginLeft: parentId ? "20px" : "0" }}>
@@ -65,37 +74,21 @@ const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 					options={sampleIngredients}
 					sx={styleAutocomplete}
 					getOptionLabel={(option) => option.label}
-					renderInput={(params) => (
-						<TextField
-							{...params}
-							label="Ingredients"
-							onChange={({ target }) => onChange(target.value)}
-						/>
-					)}
+					renderInput={renderInput}
 					onChange={(_, selectedOption) =>
-						onChange(selectedOption!.label)
+						onChangeName(selectedOption!.label)
 					}
 				/>
 				<TextField
 					type="number"
 					sx={styleTextFeldQuantity}
 					label="Quantity"
-					onChange={(e) => onChange2 && onChange2(e.target.value)}
+					onChange={(e) =>
+						onChangeQuantity && onChangeQuantity(e.target.value)
+					}
 				/>
 				{!parentId && (
-					<>
-						<button
-							className="plus-icon-button"
-							onClick={onAddIngredient}
-						>
-							<img
-								id="add-icon"
-								src="image 4.png"
-								alt="plusIcon"
-							/>
-						</button>
-						<Heading variant="h5">Add sub Ingredient</Heading>
-					</>
+					<AddIngredient onAddIngredient={() => onAddIngredient()} />
 				)}
 			</div>
 			{children}

@@ -1,7 +1,6 @@
 import IngredientsListComponent from "./recipe-list";
-import { Link } from "react-router-dom";
 import { Recipe } from "../interfaces/recipe-interface";
-import Button from "@mui/material/Button";
+import FooterComponent from "../commonComponents/footer";
 
 const RecipeComponent = (props: { recipe: Recipe }) => {
 	const { recipe } = props;
@@ -10,18 +9,12 @@ const RecipeComponent = (props: { recipe: Recipe }) => {
 		<div className="recipe-card">
 			<h2 className="header-card">{recipe.title}</h2>
 			<IngredientsListComponent ingredients={recipe.ingredients} />
-			<div className="footer-card">
-				<Button
-					key={recipe.id}
-					className="cook-button"
-					variant="contained"
-					component={Link}
-					to="/cook"
-				>
-					Cook
-				</Button>
+			<FooterComponent 
+				className="cook-button"
+				buttonText="Cook"
+				linkTo="/cook"
+				/>
 			</div>
-		</div>
 	);
 };
 

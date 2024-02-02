@@ -1,32 +1,32 @@
 import { Ingredient } from "../interfaces/ingredient-interface";
-import IconConponent  from "../utils/icon-component"
+import Icon  from "../commonComponents/icon-component"
 
 const IngredientItem = (props: {
     ingredient: Ingredient;
-    subIcon?: React.ReactNode;
+    icon?: React.ReactNode;
 }) => {
-    const { ingredient, subIcon } = props;
+    const { ingredient, icon } = props;
 
     return (
         <div key={ingredient.id}>
           <div className="ingredient-container">
-            {subIcon ? (
-                subIcon
+            {icon ? (
+                icon
             ) : (
-                <IconConponent type="brightness1" />
+                <Icon type="brightness1" />
             )}
             <span className="ingredient-title">{ingredient.quantity}</span>
             <span className="ingredient-title">{ingredient.title}</span>
             </div>
             {ingredient.subIngredients && (
                 <ul>
-                    {ingredient.subIngredients.map((subIngredient, index) => (
-                        <li key={index}>
+                    {ingredient.subIngredients.map((subIngredient) => (
+                        <li key={`list_item_${subIngredient.id}`}>
                           <div className="ingredient-container">
                             <IngredientItem
                                 ingredient={subIngredient}
-                                subIcon={
-                                    <IconConponent type="brightness2" />
+                                icon={
+                                    <Icon type="brightness2" />
                                 }
                             />
                             </div>

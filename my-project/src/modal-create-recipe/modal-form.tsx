@@ -1,14 +1,14 @@
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import Heading from "../utils/heading-component";
+import Heading from "../commonComponents/heading-component";
 import TitleRecipeComponent from "./title-recipe-component";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Ingredient } from "../interfaces/ingredient-interface";
 import { Recipe } from "../interfaces/recipe-interface";
-import Button from "@mui/material/Button";
 import IngredientRecipeComponent from "./ingredient-recipe-component";
-import {saveToLocalStorage} from "./local-storage-helper";
+import {saveToLocalStorage} from "../utils/local-storage-utils";
+import FooterComponent from "../commonComponents/footer";
 
 const styleBox = {
 	position: "absolute",
@@ -78,7 +78,7 @@ const ModalFormComponent = ({ open, close }) => {
 		}
 	};
 
-	const handleIngredientChange = (id: string, value: string) => {
+	const handleIngredientNameChange = (id: string, value: string) => {
 		const updatedIngredients = recipe.ingredients.map((ingredient) => {
 			if (ingredient.id === id) {
 				return { ...ingredient, title: value };
@@ -103,7 +103,7 @@ const ModalFormComponent = ({ open, close }) => {
 		setRecipe({ ...recipe, ingredients: updatedIngredients });
 	};
 
-	const handleQuantityChange = (id: string, value: string) => {
+	const handleIngredientQuantityChange = (id: string, value: string) => {
 		const updatedIngredients = recipe.ingredients.map((ingredient) => {
 			if (ingredient.id === id) {
 				return { ...ingredient, quantity: value };
@@ -146,7 +146,7 @@ const ModalFormComponent = ({ open, close }) => {
 						<Heading variant="h4">Create new potion recipe</Heading>
 						<TitleRecipeComponent
 							value={recipe.title}
-							onChange={(value) =>
+							onChangeName={(value) =>
 								setRecipe({ ...recipe, title: value })
 							}
 
@@ -159,12 +159,12 @@ const ModalFormComponent = ({ open, close }) => {
 								key={ingredient.id}
 								value={ingredient.title}
 								parentId={null}
-								onChange={(value) =>
-									handleIngredientChange(ingredient.id, value)
+								onChangeName={(value) =>
+									handleIngredientNameChange(ingredient.id, value)
 								}
 
-								onChange2={(value) =>
-									handleQuantityChange(ingredient.id, value)
+								onChangeQuantity={(value) =>
+									handleIngredientQuantityChange(ingredient.id, value)
 								}
 
 								onAddIngredient={() =>
@@ -178,15 +178,15 @@ const ModalFormComponent = ({ open, close }) => {
 												key={subIngredient.id}
 												value={subIngredient.title}
 												parentId={ingredient.id}
-												onChange={(value) =>
-													handleIngredientChange(
+												onChangeName={(value) =>
+													handleIngredientNameChange(
 														subIngredient.id,
 														value
 													)
 												}
 
-												onChange2={(value) =>
-													handleQuantityChange(ingredient.id, value)
+												onChangeQuantity={(value) =>
+													handleIngredientQuantityChange(ingredient.id, value)
 												}
 												
 												onAddIngredient={() =>
@@ -200,16 +200,11 @@ const ModalFormComponent = ({ open, close }) => {
 							</IngredientRecipeComponent>
 						))}
 					</div>
-					<div className="footer-form">
-						<Button
-							key={recipe.id}
+					<FooterComponent
 							className="create-recipe-button"
-							variant="text"
+							buttonText={"Save changes"}
 							onClick={handleSaveOnLocalStorage}
-						>
-							Save Changes
-						</Button>
-					</div>
+						/>
 				</Box>
 			</Modal>
 		</>

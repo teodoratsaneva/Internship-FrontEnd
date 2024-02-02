@@ -6,9 +6,9 @@ const iconMap = {
     brightness2: <Brightness2Icon className="Brightness2Icon" />,
 }
 
-const IconConponent = ({ type }) => {
+const Icon = ({ type }) => {
     return iconMap[type] || null;
   };
 
-export default IconConponent;
+export default Icon;
   

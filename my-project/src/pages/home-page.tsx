@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import HeaderComponent from "../utils/header-page-component";
+import HeaderComponent from "../commonComponents/header-page-component";
 import Button from "@mui/material/Button";
-import Heading from "../utils/heading-component";
+import Heading from "../commonComponents/heading-component";
 import ModalFormComponent from "../modal-create-recipe/modal-form";
 
 const HomePage = () => {

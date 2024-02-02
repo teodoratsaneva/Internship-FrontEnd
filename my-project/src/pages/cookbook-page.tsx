@@ -1,7 +1,7 @@
 import React from "react";
 import RecipeComponent from "../recipes-container/recipe-form";
-import HeaderComponent from "../utils/header-page-component";
-import Heading from "../utils/heading-component";
+import HeaderComponent from "../commonComponents/header-page-component";
+import Heading from "../commonComponents/heading-component";
 import { Recipe } from "../interfaces/recipe-interface";
 
 const CookbookPage: React.FC = () => {
