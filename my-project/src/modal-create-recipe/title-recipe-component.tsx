@@ -1,8 +1,8 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
-import Heading from "../commonComponents/heading-component";
+import Heading from "../common-components/heading-component";
 import { TextButtonProps } from "../interfaces/text-button-props";
-import AddIngredient from "../commonComponents/add-ingredient";
+import AddIngredient from "../common-components/add-ingredient";
 
 const styleTextFeld = {
 	".MuiInputBase-input": {

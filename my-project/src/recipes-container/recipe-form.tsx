@@ -1,6 +1,6 @@
 import IngredientsListComponent from "./recipe-list";
 import { Recipe } from "../interfaces/recipe-interface";
-import FooterComponent from "../commonComponents/footer";
+import FooterComponent from "../common-components/footer";
 
 const RecipeComponent = (props: { recipe: Recipe }) => {
 	const { recipe } = props;

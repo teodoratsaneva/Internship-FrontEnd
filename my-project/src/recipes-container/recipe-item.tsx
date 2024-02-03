@@ -1,5 +1,5 @@
 import { Ingredient } from "../interfaces/ingredient-interface";
-import Icon  from "../commonComponents/icon-component"
+import Icon  from "../common-components/icon-component"
 
 const IngredientItem = (props: {
     ingredient: Ingredient;

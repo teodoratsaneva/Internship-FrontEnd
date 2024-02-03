@@ -1,11 +1,11 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
-import Heading from "../commonComponents/heading-component";
+import Heading from "../common-components/heading-component";
 import { v4 as uuidv4 } from "uuid";
 import { TextButtonProps } from "../interfaces/text-button-props";
 import Autocomplete from "@mui/material/Autocomplete";
 import sampleIngredients from "../utils/list-ingredinets";
-import AddIngredient from "../commonComponents/add-ingredient";
+import AddIngredient from "../common-components/add-ingredient";
 
 const styleAutocomplete = {
 	width: "300px",

@@ -1,4 +1,4 @@
-import HeaderComponent from "../commonComponents/header-page-component";
+import HeaderComponent from "../common-components/header-page-component";
 
 const TriedAndTestedRecipes = () => {
     return (

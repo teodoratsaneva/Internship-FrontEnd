@@ -1,7 +1,7 @@
-import Heading from "../commonComponents/heading-component";
+import Heading from "../common-components/heading-component";
 import TitleRecipeComponent from "./title-recipe-component";
 import IngredientRecipeComponent from "./ingredient-recipe-component";
-import FooterComponent from "../commonComponents/footer";
+import FooterComponent from "../common-components/footer";
 import { FormControl} from "@mui/material";
 
 const styleForm = {
