@@ -1,21 +1,32 @@
+import React from "react";
 import IngredientsListComponent from "./recipe-list";
-import { Recipe } from "../interfaces/recipe-interface";
 import FooterComponent from "../common-components/footer";
+import { Recipe } from "../interfaces/recipe-interface";
 
-const RecipeComponent = (props: { recipe: Recipe }) => {
-	const { recipe } = props;
+interface RecipeComponentProps {
+  recipe: Recipe;
+  hasButton: boolean;
+}
 
-	return (
-		<div className="recipe-card">
-			<h2 className="header-card">{recipe.title}</h2>
-			<IngredientsListComponent ingredients={recipe.ingredients} />
-			<FooterComponent 
-				className="cook-button"
-				buttonText="Cook"
-				linkTo="/cook"
-				/>
-			</div>
-	);
+const RecipeComponent: React.FC<RecipeComponentProps> = ({ recipe, hasButton }) => {
+  const handleCookClick = () => {
+    localStorage.setItem('activeRecipe', JSON.stringify(recipe));
+  };
+
+  return (
+    <div className="recipe-card">
+      <h2 className="header-card">{recipe.title}</h2>
+      <IngredientsListComponent ingredients={recipe.ingredients} />
+      {hasButton && (
+        <FooterComponent
+          className="cook-button"
+          buttonText="Cook"
+          linkTo="/cook"
+          onClick={handleCookClick}
+        />
+      )}
+    </div>
+  );
 };
 
 export default RecipeComponent;

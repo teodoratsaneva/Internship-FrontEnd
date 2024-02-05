@@ -4,5 +4,6 @@ export interface Footer {
     onClickButtonSaveAndExit?: () => void,
     onClickButtonSavaAndReset?: () => void,
     linkTo?: string,
-    buttonText2: string
+    buttonText2?: string,
+    onClick?: () => void,
 }

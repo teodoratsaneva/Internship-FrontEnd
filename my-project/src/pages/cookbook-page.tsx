@@ -18,7 +18,7 @@ const CookbookPage: React.FC = () => {
         <div className="recipes-container">
           {storedRecipes.map((recipe: Recipe) => (
             <div key={recipe.id} className="recipe-container">
-              <RecipeComponent recipe={recipe} />
+              <RecipeComponent recipe={recipe} hasButton={true} />
             </div>
           ))}
         </div>

@@ -86,6 +86,41 @@ const ModalFormComponent = ({ open, close }) => {
 		setRecipe({ ...recipe, ingredients: updatedIngredients });
 	};
 
+	const handleRemoveIngredient = (id: string, parentId?: string | null) => {
+		let updatedIngredients;
+
+		if (parentId) {
+			updatedIngredients = recipe.ingredients.map((ingredient) => {
+				if (ingredient.id === parentId) {
+					return {
+						...ingredient,
+						subIngredients: ingredient.subIngredients!.filter(
+							(subIngredient) => subIngredient.id !== id
+						),
+					};
+				} else if (ingredient.subIngredients) {
+					return {
+						...ingredient,
+						subIngredients: ingredient.subIngredients.filter(
+							(subIngredient) => subIngredient.id !== id
+						),
+					};
+				}
+
+				return ingredient;
+			});
+		} else {
+			updatedIngredients = recipe.ingredients.filter(
+				(ingredient) => ingredient.id !== id
+			);
+		}
+
+		setRecipe({
+			...recipe,
+			ingredients: updatedIngredients,
+		});
+	};
+
 	const handleIngredientQuantityChange = (id: string, value: string) => {
 		const updatedIngredients = recipe.ingredients.map((ingredient) => {
 			if (ingredient.id === id) {
@@ -125,7 +160,7 @@ const ModalFormComponent = ({ open, close }) => {
 		saveRecipeToLocalStorage(recipe);
 
 		close();
-	}
+	};
 
 	return (
 		<>
@@ -140,6 +175,7 @@ const ModalFormComponent = ({ open, close }) => {
 					handleIngredientNameChange={handleIngredientNameChange}
 					handleSaveAndReset={handleSaveAndReset}
 					handleSaveAndExit={handleSaveAndExit}
+					handleRemoveIngredient={handleRemoveIngredient}
 				/>
 			</Modal>
 		</>
