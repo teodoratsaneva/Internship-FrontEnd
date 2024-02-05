@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import HeaderComponent from "../common-components/header-page-component";
 import Button from "@mui/material/Button";
@@ -8,8 +8,8 @@ import ModalFormComponent from "../modal-create-recipe/modal-form";
 const HomePage = () => {
 	const [open, setOpen] = useState(false);
 
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
+	const handleOpen = useCallback(() => {setOpen(true)}, []);
+	const handleClose = useCallback(() => {setOpen(false)}, []);
 
 	return (
 		<>

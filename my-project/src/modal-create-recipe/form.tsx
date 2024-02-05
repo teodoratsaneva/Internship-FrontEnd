@@ -3,6 +3,8 @@ import TitleRecipeComponent from "./title-recipe-component";
 import IngredientRecipeComponent from "./ingredient-recipe-component";
 import FooterComponent from "../common-components/footer";
 import { FormControl} from "@mui/material";
+import { Ingredient } from "../interfaces/ingredient-interface";
+import { useMemo } from "react";
 
 const styleForm = {
 	position: "absolute",
@@ -10,11 +12,39 @@ const styleForm = {
 	left: "50%",
 	transform: "translate(-50%, -50%)",
 	width: 900,
-	height: 750,
+	height: 650,
 	overflow: "auto",
 	bgcolor: "#242633",
 	p: "20px",
 	borderRadius: "10px",
+};
+
+const RecursiveIngredientComponent = ({
+  ingredients,
+  handleIngredientNameChange,
+  handleIngredientQuantityChange,
+  handleAddIngredient,
+}) => {
+  return useMemo(() => {
+    const renderIngredients = (ingredientList, parentId = null) => (
+      <>
+        {ingredientList.map((ingredient:Ingredient) => (
+          <IngredientRecipeComponent
+            key={ingredient.id}
+            value={ingredient.title}
+            parentId={parentId}
+            onChangeName={(value) => handleIngredientNameChange(ingredient.id, value)}
+            onChangeQuantity={(value) => handleIngredientQuantityChange(ingredient.id, value)}
+            onAddIngredient={() => handleAddIngredient(ingredient.id)}
+          >
+            {ingredient.subIngredients && renderIngredients(ingredient.subIngredients, ingredient.id)}
+          </IngredientRecipeComponent>
+        ))}
+      </>
+    );
+
+    return renderIngredients(ingredients);
+  }, [ingredients, handleIngredientNameChange, handleIngredientQuantityChange, handleAddIngredient]);
 };
 
 const FormComponent = ({
@@ -36,32 +66,14 @@ const FormComponent = ({
           onAddIngredient={() => handleAddIngredient()}
         />
       </div>
-
       <div className="contend-form">
-        {recipe.ingredients.map((ingredient) => (
-          <IngredientRecipeComponent
-            key={ingredient.id}
-            value={ingredient.title}
-            parentId={null}
-            onChangeName={(value) => handleIngredientNameChange(ingredient.id, value)}
-            onChangeQuantity={(value) => handleIngredientQuantityChange(ingredient.id, value)}
-            onAddIngredient={() => handleAddIngredient(ingredient.id)}
-          >
-            {ingredient.subIngredients &&
-              ingredient.subIngredients.map((subIngredient) => (
-                <IngredientRecipeComponent
-                  key={subIngredient.id}
-                  value={subIngredient.title}
-                  parentId={ingredient.id}
-                  onChangeName={(value) => handleIngredientNameChange(subIngredient.id, value)}
-                  onChangeQuantity={(value) => handleIngredientQuantityChange(subIngredient.id, value)}
-                  onAddIngredient={() => handleAddIngredient(subIngredient.id)}
-                />
-              ))}
-          </IngredientRecipeComponent>
-        ))}
+      <RecursiveIngredientComponent
+        ingredients={recipe.ingredients}
+        handleIngredientNameChange={handleIngredientNameChange}
+        handleIngredientQuantityChange={handleIngredientQuantityChange}
+        handleAddIngredient={handleAddIngredient}
+      />
       </div>
-
       <FooterComponent
         className="create-recipe-button"
         buttonText="Save and continue"

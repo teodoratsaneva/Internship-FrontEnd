@@ -71,7 +71,7 @@ const ModalFormComponent = ({ open, close }) => {
 					subIngredients: ingredient.subIngredients.map(
 						(subIngredient) => {
 							if (subIngredient.id === id) {
-								return { ...ingredient, title: value };
+								return { ...subIngredient, title: value };
 							}
 
 							return subIngredient;
@@ -96,7 +96,7 @@ const ModalFormComponent = ({ open, close }) => {
 					subIngredients: ingredient.subIngredients.map(
 						(subIngredient) => {
 							if (subIngredient.id === id) {
-								return { ...ingredient, quantity: value };
+								return { ...subIngredient, quantity: value };
 							}
 
 							return subIngredient;
