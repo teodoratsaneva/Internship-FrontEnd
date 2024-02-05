@@ -1,12 +1,7 @@
 import React from "react";
 import IngredientsListComponent from "./recipe-list";
 import FooterComponent from "../common-components/footer";
-import { Recipe } from "../interfaces/recipe-interface";
-
-interface RecipeComponentProps {
-  recipe: Recipe;
-  hasButton: boolean;
-}
+import { RecipeComponentProps } from "../interfaces/recipe-component-interface";
 
 const RecipeComponent: React.FC<RecipeComponentProps> = ({ recipe, hasButton }) => {
   const handleCookClick = () => {
@@ -21,8 +16,8 @@ const RecipeComponent: React.FC<RecipeComponentProps> = ({ recipe, hasButton }) 
         <FooterComponent
           className="cook-button"
           buttonText="Cook"
+          onClickButton1={handleCookClick}
           linkTo="/cook"
-          onClick={handleCookClick}
         />
       )}
     </div>

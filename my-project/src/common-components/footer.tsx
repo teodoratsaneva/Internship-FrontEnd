@@ -6,8 +6,8 @@ import { Footer } from '../interfaces/footer-interface';
 const FooterComponent: React.FC<Footer> = ({
   className,
   buttonText,
-  onClickButtonSaveAndExit,
-  onClickButtonSavaAndReset,
+  onClickButton1,
+  onClickButton2,
   linkTo,
   buttonText2,
 }) => {
@@ -18,18 +18,18 @@ const FooterComponent: React.FC<Footer> = ({
         variant={linkTo ? "contained" : "text"}
         component={linkTo ? Link : 'button'}
         to={linkTo}
-        onClick={onClickButtonSaveAndExit}
+        onClick={onClickButton1}
       >
         {buttonText}
       </Button>
 
-      {onClickButtonSavaAndReset && (
+      {onClickButton2 && (
         <Button
           className={className}
           variant={linkTo ? "contained" : "text"}
           component={linkTo ? Link : 'button'}
           to={linkTo}
-          onClick={onClickButtonSavaAndReset}
+          onClick={onClickButton2}
         >
           {buttonText2}
         </Button>

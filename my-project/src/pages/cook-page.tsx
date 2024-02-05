@@ -3,23 +3,16 @@ import HeaderComponent from "../common-components/header-page-component";
 import RecipeComponent from "../recipes-container/recipe-form";
 
 const CookPage = () => {
-  const [activeRecipe, setActiveRecipe] = useState(null);
+  const activeRecipeRaw = localStorage.getItem('activeRecipe');
+  const activeRecipe = activeRecipeRaw ? JSON.parse(activeRecipeRaw) : null;
 
-  useEffect(() => {
-    const activeRecipeRaw = localStorage.getItem('activeRecipe');
-    const parsedActiveRecipe = activeRecipeRaw ? JSON.parse(activeRecipeRaw) : null;
-    setActiveRecipe(parsedActiveRecipe);
-  }, []);
+  console.log(activeRecipe);
 
   return (
     <>
       <HeaderComponent />
       <div className="cook-page-container">
-        {activeRecipe ? (
           <RecipeComponent recipe={activeRecipe} hasButton={false} />
-        ) : (
-          <p>No active recipe found. Please go back and select a recipe.</p>
-        )}
       </div>
     </>
   );

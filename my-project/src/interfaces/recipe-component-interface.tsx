@@ -1,6 +1,6 @@
 import { Recipe } from "./recipe-interface"
 
-export interface RecipeComponent {
+export interface RecipeComponentProps {
     recipe: Recipe,
     hasButton: boolean
 }

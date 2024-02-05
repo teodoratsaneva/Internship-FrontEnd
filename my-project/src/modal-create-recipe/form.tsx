@@ -106,8 +106,8 @@ const FormComponent = ({
 			<FooterComponent
 				className="create-recipe-button"
 				buttonText="Save and continue"
-				onClickButtonSaveAndExit={handleSaveAndExit}
-				onClickButtonSavaAndReset={handleSaveAndReset}
+				onClickButton1={handleSaveAndExit}
+				onClickButton2={handleSaveAndReset}
 				buttonText2="Save and reset"
 			/>
 		</FormControl>
