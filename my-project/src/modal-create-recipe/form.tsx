@@ -19,7 +19,7 @@ const styleForm = {
 	borderRadius: "10px",
 };
 
-const RecursiveIngredientComponent = ({
+const IngredientsComponent = ({
 	ingredients,
 	handleIngredientNameChange,
 	handleIngredientQuantityChange,
@@ -46,9 +46,10 @@ const RecursiveIngredientComponent = ({
 						onAddIngredient={() =>
 							handleAddIngredient(ingredient.id)
 						}
-						onRemoveIngredient={() =>
-							handleRemoveIngredient(ingredient.id)
-						}
+						onRemoveIngredient={(e) => {
+							e.preventDefault()
+							handleRemoveIngredient(ingredient.id, parentId)
+						}}
 					>
 						{ingredient.subIngredients &&
 							renderIngredients(
@@ -66,7 +67,7 @@ const RecursiveIngredientComponent = ({
 		handleIngredientNameChange,
 		handleIngredientQuantityChange,
 		handleAddIngredient,
-    handleRemoveIngredient
+		handleRemoveIngredient,
 	]);
 };
 
@@ -93,7 +94,7 @@ const FormComponent = ({
 				/>
 			</div>
 			<div className="contend-form">
-				<RecursiveIngredientComponent
+				<IngredientsComponent
 					ingredients={recipe.ingredients}
 					handleIngredientNameChange={handleIngredientNameChange}
 					handleIngredientQuantityChange={

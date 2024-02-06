@@ -5,7 +5,7 @@ export interface TextButtonProps {
     onChangeName: (value: string) => void;
     onChangeQuantity?: (value: string) => void;
     onAddIngredient: () => void;
-    onRemoveIngredient?: () => void;
+    onRemoveIngredient?: (value:any) => void;
     parentId?: string | null;
     children?: ReactNode;
   }
