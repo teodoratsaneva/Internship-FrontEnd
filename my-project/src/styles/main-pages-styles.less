@@ -14,6 +14,7 @@ html {
     background-color: #242633;
     display: flex;
     justify-content: space-around;
+    height: 20%;
   }
   
   .darkLogo {
@@ -75,3 +76,49 @@ html {
       text-align: center;
     }
   }
+
+  html > body > div{
+    height: 100%;
+  }
+
+ .cook-page {
+  height: 100%;
+  background-image: url('/arena.jpg');
+
+  .cook-page-container {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: stretch;
+
+    .recipe-side {
+      padding-left: 80px;
+      border-left-style: solid;
+      border-left-width: thin;
+      border-left-color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .recipe-cook-page {
+        font-size: 40px;
+        background-color: #242633;
+        margin-right: 20px;
+        padding: 20px 20px 0px;
+        width: 450px;
+
+        .recipe-content-cook-page {
+          overflow: auto;
+          padding: 0 5px 0 15px;
+
+        }
+
+        .ingredient-container {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

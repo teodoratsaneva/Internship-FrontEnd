@@ -1,7 +1,7 @@
 import { Ingredient } from "../interfaces/ingredient-interface";
 import Icon  from "../common-components/icon-component"
 
-const IngredientItem = (props: {
+const IngredientComponent = (props: {
     ingredient: Ingredient;
     icon?: React.ReactNode;
 }) => {
@@ -23,7 +23,7 @@ const IngredientItem = (props: {
                     {ingredient.subIngredients.map((subIngredient) => (
                         <li key={`list_item_${subIngredient.id}`}>
                           <div className="ingredient-container">
-                            <IngredientItem
+                            <IngredientComponent
                                 ingredient={subIngredient}
                                 icon={
                                     <Icon type="brightness2" />
@@ -38,4 +38,4 @@ const IngredientItem = (props: {
     );
 };
 
-export default IngredientItem;
+export default IngredientComponent;

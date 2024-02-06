@@ -2,5 +2,7 @@ import { Recipe } from "./recipe-interface"
 
 export interface RecipeComponentProps {
     recipe: Recipe,
-    hasButton: boolean
+    hasButton: boolean,
+    classNameCard: string,
+    classNameIngContent: string
 }

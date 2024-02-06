@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react";
-import HeaderComponent from "../common-components/header-page-component";
 import RecipeComponent from "../recipes-container/recipe-form";
+import CookArena from "../cook-page-components/cook-arena";
 
 const CookPage = () => {
   const activeRecipeRaw = localStorage.getItem('activeRecipe');
   const activeRecipe = activeRecipeRaw ? JSON.parse(activeRecipeRaw) : null;
 
-  console.log(activeRecipe);
-
   return (
-    <>
-      <HeaderComponent />
-      <div className="cook-page-container">
-          <RecipeComponent recipe={activeRecipe} hasButton={false} />
+    <div className="cook-page">
+      <div className="cook-page-container" id="maimuna">
+        <CookArena/>
+        <div className="recipe-side">
+          <RecipeComponent recipe={activeRecipe} hasButton={false} classNameCard="recipe-cook-page" classNameIngContent="recipe-content-cook-page" />
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
