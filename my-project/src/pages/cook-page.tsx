@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import RecipeComponent from "../recipes-container/recipe-form";
+import CookArena from "../cook-page-components/cook-arena";
 
 const CookPage = () => {
 	const activeRecipeRaw = localStorage.getItem("activeRecipe");
@@ -8,7 +9,7 @@ const CookPage = () => {
 	return (
 		<div className="cook-page">
 			<div className="cook-page-container">
-        <div className="area"></div>
+        <CookArena />
 				<div className="recipe-side">
 					<RecipeComponent
 						recipe={activeRecipe}
