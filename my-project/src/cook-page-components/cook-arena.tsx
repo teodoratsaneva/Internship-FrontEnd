@@ -1,27 +1,6 @@
 import p5 from "p5";
 import { useEffect } from "react";
-
-interface Pot {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    image: p5.Image;
-}
-
-interface Ingredient {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    speedY: number;
-    isVisible: boolean;
-    image: p5.Image;
-    update(): void;
-    display(): void;
-    reset(): void;
-    collidesWith(otherObject: { x: number; y: number; width: number; height: number }): boolean;
-}
+import { Segment } from "../interfaces/segment-interface";
 
 const CookArena = () => {
     useEffect(() => {
@@ -30,7 +9,7 @@ const CookArena = () => {
             const ingredients: Ingredient[] = [];
             const segLength = 18;
 
-            class Pot implements Pot {
+            class Pot implements Segment {
                 x: number;
                 y: number;
                 width: number;
@@ -58,7 +37,7 @@ const CookArena = () => {
                 }
             }
 
-            class Ingredient implements Ingredient {
+            class Ingredient implements Segment {
                 x: number;
                 y: number;
                 width: number;
