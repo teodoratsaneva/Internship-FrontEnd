@@ -2,18 +2,16 @@ import p5 from "p5";
 import { useEffect } from "react";
 import { Pot } from "./pot-seg";
 import { IngredientSeg } from "./ingredient-seg";
+import { ingredientIconMap } from "../utils/ingredients-icons";
+import { Recipe } from "../interfaces/recipe-interface";
 
-const CookArena = () => {
+const CookArena = (props: {recipe: Recipe}) => {
+	const {recipe} = props;
+
 	useEffect(() => {
 		const cookArenaSketch = (p: p5) => {
 			let pot: Pot;
 			const ingredients: IngredientSeg[] = [];
-			const ingredientsImages = [
-				p.loadImage("./carrot.svg"),
-				p.loadImage("./cheese.svg"),
-				p.loadImage("./butter.svg"),
-				p.loadImage("./egg.svg"),
-			];
 
 			p.setup = () => {
 				p.createCanvas(1330, 1069);
@@ -22,6 +20,7 @@ const CookArena = () => {
 
 				const potImage = p.loadImage("./pot.png");
 				pot = new Pot(p.width / 2, potImage, p);
+				let valueOfIng = recipe.ingredients[0].title;
 
 				let ingredient: IngredientSeg = new IngredientSeg(
 					0,
@@ -30,7 +29,7 @@ const CookArena = () => {
 					90,
 					1330,
 					1069,
-					ingredientsImages[0],
+					p.loadImage(ingredientIconMap[valueOfIng]),
 					p
 				);
 
@@ -38,8 +37,10 @@ const CookArena = () => {
 
 				let countIngredients = 1;
 
-				const igradedintsInterval = setInterval(() => {
-					if (countIngredients !== 4) {
+				setInterval(() => {
+					valueOfIng = recipe.ingredients[countIngredients++].title;
+
+					if (countIngredients !== recipe.ingredients.length + 1) {
 						ingredient = new IngredientSeg(
 							0,
 							0,
@@ -47,7 +48,7 @@ const CookArena = () => {
 							90,
 							1330,
 							1069,
-							ingredientsImages[countIngredients++],
+							p.loadImage(ingredientIconMap[valueOfIng]),
 							p
 						);
 
