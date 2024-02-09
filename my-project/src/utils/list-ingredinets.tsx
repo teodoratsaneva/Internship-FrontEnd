@@ -4,7 +4,7 @@ const sampleIngredients = [
 	{ label: "Yogurt" },
 	{ label: "Oil" },
 	{ label: "Sheets filo pastry" },
-	{ label: "Sirene" },
+	{ label: "Cheese" },
     { label: "Onion"},
     { label: "Carrot"},
     { label: "Garlic"},
@@ -16,7 +16,7 @@ const sampleIngredients = [
     { label: "Olive oil"},
     { label: "Beef mince"},
     { label: "Spaghetti"},
-    { label: "Patato"},
+    { label: "Potato"},
     { label: "Aubergine"},
 ];
 
