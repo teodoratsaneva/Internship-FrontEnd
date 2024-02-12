@@ -10,7 +10,7 @@ const CookPage = () => {
 	return (
 		<div className="cook-page">
 			<div className="cook-page-container">
-        <CookArena recipe={activeRecipe}/>
+        <CookArena ingredients={activeRecipe.ingredients}/>
 				<div className="recipe-side">
 					<RecipeComponent
 						recipe={activeRecipe}

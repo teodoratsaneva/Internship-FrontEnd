@@ -3,15 +3,15 @@ import { useEffect } from "react";
 import { Pot } from "./pot-seg";
 import { IngredientSeg } from "./ingredient-seg";
 import { ingredientIconMap } from "../utils/ingredients-icons";
-import { Recipe } from "../interfaces/recipe-interface";
+import { Ingredient } from "../interfaces/ingredient-interface";
 
-const CookArena = (props: {recipe: Recipe}) => {
-	const {recipe} = props;
+const CookArena = (props: {ingredients: Ingredient[]}) => {
+	const {ingredients} = props;
 
 	useEffect(() => {
 		const cookArenaSketch = (p: p5) => {
 			let pot: Pot;
-			const ingredients: IngredientSeg[] = [];
+			const ingredientsSeg: IngredientSeg[] = [];
 	
 			p.setup = () => {
 				p.createCanvas(1330, 1035);
@@ -24,9 +24,9 @@ const CookArena = (props: {recipe: Recipe}) => {
 				let countIngredients = 0;
 	
 				const spawnIngredient = () => {
-					if (countIngredients < recipe.ingredients.length) {
-						const valueOfIng = recipe.ingredients[countIngredients].title;
-						const ingredientQuantity = parseInt(recipe.ingredients[countIngredients].quantity);
+					if (countIngredients < ingredients.length) {
+						const valueOfIng = ingredients[countIngredients].title;
+						const ingredientQuantity = parseInt(ingredients[countIngredients].quantity);
 	
 						let countQuantity = 0;
 	
@@ -44,12 +44,13 @@ const CookArena = (props: {recipe: Recipe}) => {
 								);
 	
 								ingredient.reset();
-								ingredients.push(ingredient);
+								ingredientsSeg.push(ingredient);
 								countQuantity++;
 	
-								setTimeout(spawnSingleIngredient, 1000);
+								setTimeout(spawnSingleIngredient, 2000);
 							} else {
 								countIngredients++;
+
 								setTimeout(spawnIngredient, 2000);
 							}
 						};
@@ -67,7 +68,7 @@ const CookArena = (props: {recipe: Recipe}) => {
 	
 				pot.dragSegment(p.mouseX);
 	
-				ingredients.forEach((ingredient) => {
+				ingredientsSeg.forEach((ingredient) => {
 					if (
 						!(ingredient.isVisible && ingredient.collidesWith(pot))
 					) {
