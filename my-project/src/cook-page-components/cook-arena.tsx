@@ -12,58 +12,61 @@ const CookArena = (props: {recipe: Recipe}) => {
 		const cookArenaSketch = (p: p5) => {
 			let pot: Pot;
 			const ingredients: IngredientSeg[] = [];
-
+	
 			p.setup = () => {
-				p.createCanvas(1330, 1069);
+				p.createCanvas(1330, 1035);
 				p.strokeWeight(9);
 				p.stroke(255, 100);
-
+	
 				const potImage = p.loadImage("./pot.png");
 				pot = new Pot(p.width / 2, potImage, p);
-				let valueOfIng = recipe.ingredients[0].title;
-
-				let ingredient: IngredientSeg = new IngredientSeg(
-					0,
-					0,
-					90,
-					90,
-					1330,
-					1069,
-					p.loadImage(ingredientIconMap[valueOfIng]),
-					p
-				);
-
-				ingredients.push(ingredient);
-
-				let countIngredients = 1;
-
-				setInterval(() => {
-					valueOfIng = recipe.ingredients[countIngredients++].title;
-
-					if (countIngredients !== recipe.ingredients.length + 1) {
-						ingredient = new IngredientSeg(
-							0,
-							0,
-							90,
-							90,
-							1330,
-							1069,
-							p.loadImage(ingredientIconMap[valueOfIng]),
-							p
-						);
-
-						ingredient.reset();
-						ingredients.push(ingredient);
+	
+				let countIngredients = 0;
+	
+				const spawnIngredient = () => {
+					if (countIngredients < recipe.ingredients.length) {
+						const valueOfIng = recipe.ingredients[countIngredients].title;
+						const ingredientQuantity = parseInt(recipe.ingredients[countIngredients].quantity);
+	
+						let countQuantity = 0;
+	
+						const spawnSingleIngredient = () => {
+							if (countQuantity < ingredientQuantity) {
+								const ingredient = new IngredientSeg(
+									0,
+									0,
+									90,
+									90,
+									1330,
+									1035,
+									p.loadImage(ingredientIconMap[valueOfIng]),
+									p
+								);
+	
+								ingredient.reset();
+								ingredients.push(ingredient);
+								countQuantity++;
+	
+								setTimeout(spawnSingleIngredient, 1000);
+							} else {
+								countIngredients++;
+								setTimeout(spawnIngredient, 2000);
+							}
+						};
+	
+						spawnSingleIngredient();
 					}
-				}, 3000);
+				};
+	
+				setTimeout(spawnIngredient, 2000);
 			};
-
+	
 			p.draw = () => {
 				p.clear();
 				p.background(255, 255, 255, 0);
-
+	
 				pot.dragSegment(p.mouseX);
-
+	
 				ingredients.forEach((ingredient) => {
 					if (
 						!(ingredient.isVisible && ingredient.collidesWith(pot))
