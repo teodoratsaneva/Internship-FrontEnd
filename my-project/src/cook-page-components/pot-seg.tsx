@@ -1,7 +1,6 @@
-import { Segment } from "../interfaces/segment-interface";
 import p5 from "p5";
 
-export class Pot implements Segment {
+export class Pot{
     x: number;
     y: number;
     width: number;
