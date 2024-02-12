@@ -147,7 +147,7 @@ const ModalFormComponent = ({ open, close }) => {
   };
 
   const handleSaveAndReset = () => {
-    saveRecipeToLocalStorage(recipe);
+    saveRecipeToLocalStorage(recipe, "items");
 
     setRecipe({
       id: uuidv4(),
@@ -157,7 +157,7 @@ const ModalFormComponent = ({ open, close }) => {
   };
 
   const handleSaveAndExit = () => {
-    saveRecipeToLocalStorage(recipe);
+    saveRecipeToLocalStorage(recipe, "items");
 
     close();
   };

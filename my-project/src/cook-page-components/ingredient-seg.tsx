@@ -1,5 +1,6 @@
 import { Segment } from "../interfaces/segment-interface";
 import p5 from "p5";
+import { Ingredient } from "../interfaces/ingredient-interface";
 
 export class IngredientSeg implements Segment {
     x: number;
@@ -12,8 +13,9 @@ export class IngredientSeg implements Segment {
     canvasWidth: number;
     canvasHeight: number;
     p: p5;
+    ingredient: Ingredient;
 
-    constructor(x: number, y: number, width: number, height: number, canvasWidth: number, canvasHeight: number, image: p5.Image, p: p5) {
+    constructor(x: number, y: number, width: number, height: number, canvasWidth: number, canvasHeight: number, image: p5.Image, p: p5, ingredient: Ingredient) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -24,6 +26,7 @@ export class IngredientSeg implements Segment {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
         this.p = p;
+        this.ingredient = ingredient;
     }
 
     update() {
@@ -75,6 +78,9 @@ export class IngredientSeg implements Segment {
                 otherObject.y + otherObject.height < this.y)
         ) {
             this.isVisible = false;
+            const currQuantity = parseInt(this.ingredient.quantity) - 1;
+            this.ingredient.quantity = currQuantity.toString();
+
             return true;
         } else {
             return false;
