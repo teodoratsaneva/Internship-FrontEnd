@@ -15,6 +15,7 @@ const CookPage = () => {
 			if (id === updatedRecipe.ingredients[i].id) {
 				updatedRecipe.ingredients[i].quantity -= 1;
 				setRecipe(updatedRecipe);
+
 				break;
 			}
 		}
@@ -22,17 +23,17 @@ const CookPage = () => {
 
 	useEffect(() => {
 
-	}, [activeRecipe]);
+	}, [recipe]);
 
 	return (
 		<div className="cook-page">
 			<div className="cook-page-container">
-				<CookArena ingredients={activeRecipe.ingredients}
+				<CookArena ingredients={recipe.ingredients}
 					onCatch={onCatch}
 				/>
 				<div className="recipe-side">
 					<RecipeComponent
-						recipe={activeRecipe}
+						recipe={recipe}
 						hasButton={false}
 						classNameCard="recipe-cook-page"
 						classNameIngContent="recipe-content-cook-page"

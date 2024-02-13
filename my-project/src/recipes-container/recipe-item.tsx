@@ -10,12 +10,15 @@ const IngredientComponent = (props: {
     return (
         <div key={ingredient.id}>
           <div className="ingredient-container">
-            {icon ? (
+            { parseInt(ingredient.quantity) === 0 ?
+                <Icon type="check" />
+             : icon ? (
                 icon
             ) : (
                 <Icon type="brightness1" />
             )}
-            <span className="ingredient-title">{ingredient.quantity}</span>
+            {parseInt(ingredient.quantity) !== 0 && 
+            <span className="ingredient-title">{ingredient.quantity}</span>}
             <span className="ingredient-title">{ingredient.title}</span>
             </div>
             {ingredient.subIngredients && (

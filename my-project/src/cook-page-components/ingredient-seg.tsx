@@ -13,8 +13,7 @@ export class IngredientSeg {
     canvasHeight: number;
     p: p5;
     ingredient: Ingredient;
-    onCatch: (id: string) => void;
-
+    
     constructor(
         x: number,
         y: number,
@@ -25,7 +24,7 @@ export class IngredientSeg {
         image: p5.Image,
         p: p5,
         ingredient: Ingredient,
-        onCatch: (id: string) => void
+        
     ) {
         this.x = x;
         this.y = y;
@@ -38,7 +37,10 @@ export class IngredientSeg {
         this.canvasHeight = canvasHeight;
         this.p = p;
         this.ingredient = ingredient;
-        this.onCatch = onCatch;
+    }
+
+    getTitle() {
+        return this.ingredient.title;
     }
 
     update() {
@@ -90,7 +92,6 @@ export class IngredientSeg {
                 otherObject.y + otherObject.height < this.y)
         ) {
             this.isVisible = false;
-            this.onCatch(this.ingredient.id);
 
             return true;
         } else {

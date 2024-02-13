@@ -26,7 +26,7 @@ const CookArena = (props: {
                 let countIngredients = 0;
 
                 const spawnIngredient = () => {
-                    if (countIngredients < ingredients.length) {
+                    if (countIngredients < ingredients.length + 1) {
                         const valueOfIng = ingredients[countIngredients].title;
                         const ingredientQuantity = parseInt(ingredients[countIngredients].quantity);
 
@@ -43,8 +43,7 @@ const CookArena = (props: {
                                     1035,
                                     p.loadImage(ingredientIconMap[valueOfIng]),
                                     p,
-                                    ingredients[countIngredients],
-                                    () => onCatch(ingredients[countIngredients].id)
+                                    ingredients[countIngredients]
                                 );
 
                                 ingredient.reset();
@@ -78,6 +77,10 @@ const CookArena = (props: {
                     ) {
                         ingredient.update();
                         ingredient.display();
+                    }
+                    else
+                    {
+                        onCatch(ingredient.ingredient.id);
                     }
                 });
             };
