@@ -1,8 +1,7 @@
-import { Segment } from "../interfaces/segment-interface";
-import p5 from "p5";
 import { Ingredient } from "../interfaces/ingredient-interface";
+import p5 from "p5";
 
-export class IngredientSeg implements Segment {
+export class IngredientSeg {
     x: number;
     y: number;
     width: number;
@@ -14,8 +13,20 @@ export class IngredientSeg implements Segment {
     canvasHeight: number;
     p: p5;
     ingredient: Ingredient;
+    onCatch: (id: string) => void;
 
-    constructor(x: number, y: number, width: number, height: number, canvasWidth: number, canvasHeight: number, image: p5.Image, p: p5, ingredient: Ingredient) {
+    constructor(
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        canvasWidth: number,
+        canvasHeight: number,
+        image: p5.Image,
+        p: p5,
+        ingredient: Ingredient,
+        onCatch: (id: string) => void
+    ) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -27,6 +38,7 @@ export class IngredientSeg implements Segment {
         this.canvasHeight = canvasHeight;
         this.p = p;
         this.ingredient = ingredient;
+        this.onCatch = onCatch;
     }
 
     update() {
@@ -78,8 +90,7 @@ export class IngredientSeg implements Segment {
                 otherObject.y + otherObject.height < this.y)
         ) {
             this.isVisible = false;
-            const currQuantity = parseInt(this.ingredient.quantity) - 1;
-            this.ingredient.quantity = currQuantity.toString();
+            this.onCatch(this.ingredient.id);
 
             return true;
         } else {
@@ -87,7 +98,7 @@ export class IngredientSeg implements Segment {
         }
     }
 
-    reset() {    
+    reset() {
         this.x = this.p.random(0, this.canvasWidth - this.width);
         this.y = 0;
     }
