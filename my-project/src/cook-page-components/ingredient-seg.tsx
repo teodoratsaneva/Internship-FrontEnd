@@ -12,7 +12,7 @@ export class IngredientSeg {
     canvasWidth: number;
     canvasHeight: number;
     p: p5;
-    ingredient: Ingredient;
+    ingredient?: Ingredient | null;
     
     constructor(
         x: number,
@@ -37,10 +37,6 @@ export class IngredientSeg {
         this.canvasHeight = canvasHeight;
         this.p = p;
         this.ingredient = ingredient;
-    }
-
-    getTitle() {
-        return this.ingredient.title;
     }
 
     update() {

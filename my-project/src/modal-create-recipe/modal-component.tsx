@@ -7,200 +7,234 @@ import { saveRecipeToLocalStorage } from "../utils/local-storage-utils";
 import FormComponent from "./form";
 import Heading from "../common-components/heading-component";
 import { Box } from "@mui/material";
+import { Link } from "@mui/material";
+import TextField from "@mui/material";
 
-const styleForm = {
+const styleModal = {
 	position: "absolute",
-	top: "60%",
+	top: "50%",
 	left: "50%",
 	transform: "translate(-50%, -50%)",
-	width: 900,
-	height: 650,
 	overflow: "auto",
 	bgcolor: "#242633",
 	p: "20px",
 	borderRadius: "10px",
 };
 
-const ModalComponent = ({ open, close, hasForm}) => {
-  const [recipe, setRecipe] = useState<Recipe>({
-    id: uuidv4(),
-    title: "",
-    ingredients: [],
-  });
+const styleTextFeld = {
+	".MuiInputBase-input": {
+		color: "white",
+		width: "450px",
+		height: "10px",
+	},
+	".MuiFormLabel-root": {
+		color: "white",
+	},
+	".MuiFormControl-root": {
+		borderColor: "white",
+	},
+	"& .MuiOutlinedInput-root": {
+		"& fieldset": {
+			borderColor: "white",
+			color: "white",
+		},
+		"&:hover fieldset": {
+			borderColor: "white",
+		},
+		"&.Mui-focused fieldset": {
+			borderColor: "white",
+		},
+	},
+};
 
-  useEffect(() => {
-    if (!open) {
-      setRecipe({
-        id: uuidv4(),
-        title: "",
-        ingredients: [],
-      });
-    }
-  }, [open]);
+const ModalComponent = ({ open, close, hasForm }) => {
+	const [recipe, setRecipe] = useState<Recipe>({
+		id: uuidv4(),
+		title: "",
+		ingredients: [],
+	});
 
-  const handleAddIngredient = (
-    parentId?: string | null,
-    selectedIngredientLabel?: string
-  ) => {
-    const newIngredient: Ingredient = {
-      id: uuidv4(),
-      title: selectedIngredientLabel || "",
-      quantity: "",
-      subIngredients: [],
-    };
+	useEffect(() => {
+		if (!open) {
+			setRecipe({
+				id: uuidv4(),
+				title: "",
+				ingredients: [],
+			});
+		}
+	}, [open]);
 
-    if (parentId) {
-      const updatedIngredients = recipe.ingredients.map((ingredient) => {
-        if (ingredient.id === parentId) {
-          return {
-            ...ingredient,
-            subIngredients: [
-              ...(ingredient.subIngredients || []),
-              newIngredient,
-            ],
-          };
-        }
+	const handleAddIngredient = (
+		parentId?: string | null,
+		selectedIngredientLabel?: string
+	) => {
+		const newIngredient: Ingredient = {
+			id: uuidv4(),
+			title: selectedIngredientLabel || "",
+			quantity: "",
+			subIngredients: [],
+		};
 
-        return ingredient;
-      });
+		if (parentId) {
+			const updatedIngredients = recipe.ingredients.map((ingredient) => {
+				if (ingredient.id === parentId) {
+					return {
+						...ingredient,
+						subIngredients: [
+							...(ingredient.subIngredients || []),
+							newIngredient,
+						],
+					};
+				}
 
-      setRecipe({
-        ...recipe,
-        ingredients: updatedIngredients,
-      });
-    } else {
-      setRecipe({
-        ...recipe,
-        ingredients: [...recipe.ingredients, newIngredient],
-      });
-    }
-  };
+				return ingredient;
+			});
 
-  const handleIngredientNameChange = (id: string, value: string) => {
-    const updatedIngredients = recipe.ingredients.map((ingredient) => {
-      if (ingredient.id === id) {
-        return { ...ingredient, title: value };
-      } else if (ingredient.subIngredients) {
-        return {
-          ...ingredient,
-          subIngredients: ingredient.subIngredients.map(
-            (subIngredient) => {
-              if (subIngredient.id === id) {
-                return { ...subIngredient, title: value };
-              }
+			setRecipe({
+				...recipe,
+				ingredients: updatedIngredients,
+			});
+		} else {
+			setRecipe({
+				...recipe,
+				ingredients: [...recipe.ingredients, newIngredient],
+			});
+		}
+	};
 
-              return subIngredient;
-            }
-          ),
-        };
-      }
+	const handleIngredientNameChange = (id: string, value: string) => {
+		const updatedIngredients = recipe.ingredients.map((ingredient) => {
+			if (ingredient.id === id) {
+				return { ...ingredient, title: value };
+			} else if (ingredient.subIngredients) {
+				return {
+					...ingredient,
+					subIngredients: ingredient.subIngredients.map(
+						(subIngredient) => {
+							if (subIngredient.id === id) {
+								return { ...subIngredient, title: value };
+							}
 
-      return ingredient;
-    });
+							return subIngredient;
+						}
+					),
+				};
+			}
 
-    setRecipe({ ...recipe, ingredients: updatedIngredients });
-  };
+			return ingredient;
+		});
 
-  const handleRemoveIngredient = (id: string, parentId?: string | null) => {
-    let updatedIngredients;
+		setRecipe({ ...recipe, ingredients: updatedIngredients });
+	};
 
-    if (parentId) {
-      updatedIngredients = recipe.ingredients.map((ingredient) => {
-        if (ingredient.id === parentId) {
-          return {
-            ...ingredient,
-            subIngredients: ingredient.subIngredients!.filter(
-              (subIngredient) => subIngredient.id !== id
-            ),
-          };
-        } else if (ingredient.subIngredients) {
-          return {
-            ...ingredient,
-            subIngredients: ingredient.subIngredients.filter(
-              (subIngredient) => subIngredient.id !== id
-            ),
-          };
-        }
+	const handleRemoveIngredient = (id: string, parentId?: string | null) => {
+		let updatedIngredients;
 
-        return ingredient;
-      });
-    } else {
-      updatedIngredients = recipe.ingredients.filter(
-        (ingredient) => ingredient.id !== id
-      );
-    }
+		if (parentId) {
+			updatedIngredients = recipe.ingredients.map((ingredient) => {
+				if (ingredient.id === parentId) {
+					return {
+						...ingredient,
+						subIngredients: ingredient.subIngredients!.filter(
+							(subIngredient) => subIngredient.id !== id
+						),
+					};
+				} else if (ingredient.subIngredients) {
+					return {
+						...ingredient,
+						subIngredients: ingredient.subIngredients.filter(
+							(subIngredient) => subIngredient.id !== id
+						),
+					};
+				}
 
-    setRecipe({
-      ...recipe,
-      ingredients: updatedIngredients,
-    });
-  };
+				return ingredient;
+			});
+		} else {
+			updatedIngredients = recipe.ingredients.filter(
+				(ingredient) => ingredient.id !== id
+			);
+		}
 
-  const handleIngredientQuantityChange = (id: string, value: string) => {
-    const updatedIngredients = recipe.ingredients.map((ingredient) => {
-      if (ingredient.id === id) {
-        return { ...ingredient, quantity: value };
-      } else if (ingredient.subIngredients) {
-        return {
-          ...ingredient,
-          subIngredients: ingredient.subIngredients.map(
-            (subIngredient) => {
-              if (subIngredient.id === id) {
-                return { ...subIngredient, quantity: value };
-              }
+		setRecipe({
+			...recipe,
+			ingredients: updatedIngredients,
+		});
+	};
 
-              return subIngredient;
-            }
-          ),
-        };
-      }
+	const handleIngredientQuantityChange = (id: string, value: string) => {
+		const updatedIngredients = recipe.ingredients.map((ingredient) => {
+			if (ingredient.id === id) {
+				return { ...ingredient, quantity: value };
+			} else if (ingredient.subIngredients) {
+				return {
+					...ingredient,
+					subIngredients: ingredient.subIngredients.map(
+						(subIngredient) => {
+							if (subIngredient.id === id) {
+								return { ...subIngredient, quantity: value };
+							}
 
-      return ingredient;
-    });
+							return subIngredient;
+						}
+					),
+				};
+			}
 
-    setRecipe({ ...recipe, ingredients: updatedIngredients });
-  };
+			return ingredient;
+		});
 
-  const handleSaveAndReset = () => {
-    saveRecipeToLocalStorage(recipe, "items");
+		setRecipe({ ...recipe, ingredients: updatedIngredients });
+	};
 
-    setRecipe({
-      id: uuidv4(),
-      title: "",
-      ingredients: [],
-    });
-  };
+	const handleSaveAndReset = () => {
+		saveRecipeToLocalStorage(recipe, "items");
 
-  const handleSaveAndExit = () => {
-    saveRecipeToLocalStorage(recipe, "items");
+		setRecipe({
+			id: uuidv4(),
+			title: "",
+			ingredients: [],
+		});
+	};
 
-    close();
-  };
+	const handleSaveAndExit = () => {
+		saveRecipeToLocalStorage(recipe, "items");
 
-  return (
-    <>
-      <Modal className="modal" open={open} onClose={close}>
-        <div>
-          {hasForm ?
-          <FormComponent
-            recipe={recipe}
-            setRecipe={setRecipe}
-            handleAddIngredient={handleAddIngredient}
-            handleIngredientQuantityChange={
-              handleIngredientQuantityChange
-            }
-            handleIngredientNameChange={handleIngredientNameChange}
-            handleSaveAndReset={handleSaveAndReset}
-            handleSaveAndExit={handleSaveAndExit}
-            handleRemoveIngredient={handleRemoveIngredient}
-          /> :
-          <Box >
-          <Heading variant={"h4"} children={"Congratulations! \nYou won!"} />
-          </Box>}
-        </div>
-      </Modal>
-    </>
-  );
+		close();
+	};
+
+	return (
+		<>
+			<Modal className="modal" open={open} onClose={close}>
+				<div>
+					{hasForm ? (
+						<FormComponent
+							recipe={recipe}
+							setRecipe={setRecipe}
+							handleAddIngredient={handleAddIngredient}
+							handleIngredientQuantityChange={
+								handleIngredientQuantityChange
+							}
+							handleIngredientNameChange={
+								handleIngredientNameChange
+							}
+							handleSaveAndReset={handleSaveAndReset}
+							handleSaveAndExit={handleSaveAndExit}
+							handleRemoveIngredient={handleRemoveIngredient}
+							style={styleModal}
+						/>
+					) : (
+						<Box sx={styleModal}>
+							<Heading
+								variant={"h4"}
+								children={"Congratulations! You won!"}
+							/>
+						</Box>
+					)}
+				</div>
+			</Modal>
+		</>
+	);
 };
 
 export default ModalComponent;

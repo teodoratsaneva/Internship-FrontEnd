@@ -3,18 +3,6 @@ import CookArena from "../cook-page-components/cook-arena";
 import { useEffect, useState, useCallback } from "react";
 import ModalComponent from "../modal-create-recipe/modal-component";
 
-const styleModal = {
-	position: "absolute",
-	top: "60%",
-	left: "50%",
-	transform: "translate(-50%, -50%)",
-	width: 400,
-	height: 250,
-	bgcolor: "#242633",
-	p: "20px",
-	borderRadius: "10px",
-};
-
 const CookPage = () => {
 	const activeRecipeRaw = localStorage.getItem("activeRecipe");
 	const activeRecipe = activeRecipeRaw ? JSON.parse(activeRecipeRaw) : null;
@@ -42,11 +30,11 @@ const CookPage = () => {
 			}
 		}
 
-		const allIngredientsZero = updatedRecipe.ingredients.every(
+		const allIngredientsCatched = updatedRecipe.ingredients.every(
 			(ingredient) => ingredient.quantity === 0
 		);
 
-		if (allIngredientsZero) {
+		if (allIngredientsCatched) {
 			handleOpen();
 		}
 	};
@@ -66,7 +54,7 @@ const CookPage = () => {
 					/>
 				</div>
 			</div>
-			<ModalComponent open={open} close={handleClose} hasForm={false} sx={styleModal}/>
+			<ModalComponent open={open} close={handleClose} hasForm={false}/>
 		</div>
 	);
 };

@@ -6,19 +6,6 @@ import { FormControl } from "@mui/material";
 import { Ingredient } from "../interfaces/ingredient-interface";
 import { useMemo } from "react";
 
-const styleForm = {
-	position: "absolute",
-	top: "60%",
-	left: "50%",
-	transform: "translate(-50%, -50%)",
-	width: 900,
-	height: 650,
-	overflow: "auto",
-	bgcolor: "#242633",
-	p: "20px",
-	borderRadius: "10px",
-};
-
 const IngredientsComponent = ({
 	ingredients,
 	handleIngredientNameChange,
@@ -80,9 +67,10 @@ const FormComponent = ({
 	handleSaveAndReset,
 	handleSaveAndExit,
 	handleRemoveIngredient,
+	style
 }) => {
 	return (
-		<FormControl className="recipe-form" sx={styleForm}>
+		<FormControl className="recipe-form" sx={style}>
 			<div className="header-form">
 				<Heading variant="h4">Create new potion recipe</Heading>
 				<TitleRecipeComponent
@@ -91,6 +79,7 @@ const FormComponent = ({
 						setRecipe({ ...recipe, title: value })
 					}
 					onAddIngredient={() => handleAddIngredient()}
+					style={style}
 				/>
 			</div>
 			<div className="contend-form">
