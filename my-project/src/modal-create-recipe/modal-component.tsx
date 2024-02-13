@@ -5,8 +5,23 @@ import { Ingredient } from "../interfaces/ingredient-interface";
 import { Recipe } from "../interfaces/recipe-interface";
 import { saveRecipeToLocalStorage } from "../utils/local-storage-utils";
 import FormComponent from "./form";
+import Heading from "../common-components/heading-component";
+import { Box } from "@mui/material";
 
-const ModalFormComponent = ({ open, close }) => {
+const styleForm = {
+	position: "absolute",
+	top: "60%",
+	left: "50%",
+	transform: "translate(-50%, -50%)",
+	width: 900,
+	height: 650,
+	overflow: "auto",
+	bgcolor: "#242633",
+	p: "20px",
+	borderRadius: "10px",
+};
+
+const ModalComponent = ({ open, close, hasForm}) => {
   const [recipe, setRecipe] = useState<Recipe>({
     id: uuidv4(),
     title: "",
@@ -164,8 +179,9 @@ const ModalFormComponent = ({ open, close }) => {
 
   return (
     <>
-      <Modal open={open} onClose={close}>
+      <Modal className="modal" open={open} onClose={close}>
         <div>
+          {hasForm ?
           <FormComponent
             recipe={recipe}
             setRecipe={setRecipe}
@@ -177,11 +193,14 @@ const ModalFormComponent = ({ open, close }) => {
             handleSaveAndReset={handleSaveAndReset}
             handleSaveAndExit={handleSaveAndExit}
             handleRemoveIngredient={handleRemoveIngredient}
-          />
+          /> :
+          <Box >
+          <Heading variant={"h4"} children={"Congratulations! \nYou won!"} />
+          </Box>}
         </div>
       </Modal>
     </>
   );
 };
 
-export default ModalFormComponent;
+export default ModalComponent;
