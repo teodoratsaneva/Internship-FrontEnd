@@ -5,26 +5,32 @@ import Heading from "../common-components/heading-component";
 import { Recipe } from "../interfaces/recipe-interface";
 
 const CookbookPage: React.FC = () => {
-  const storedRecipesRaw = localStorage.getItem('items');
-  const storedRecipes = storedRecipesRaw ? JSON.parse(storedRecipesRaw) : [];
+	const storedRecipesRaw = localStorage.getItem("items");
+	const storedRecipes = storedRecipesRaw ? JSON.parse(storedRecipesRaw) : [];
 
-  return (
-    <>
-      <HeaderComponent />
-      <div className="cookbook-page-container">
-        <Heading variant="h1">
-          Welcome to the Cookbook. Here is a list of your potion recipes
-        </Heading>
-        <div className="recipes-container">
-          {storedRecipes.map((recipe: Recipe) => (
-            <div key={recipe.id} className="recipe-container">
-              <RecipeComponent recipe={recipe} hasButton={true} classNameCard="recipe-card" classNameIngContent="content-card" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
-  );
+	return (
+		<>
+			<HeaderComponent />
+			<div className="cookbook-page-container">
+				<Heading variant="h1">
+					Welcome to the Cookbook. Here is a list of your potion
+					recipes
+				</Heading>
+				<div className="recipes-container">
+					{storedRecipes.map((recipe: Recipe) => (
+						<div key={recipe.id} className="recipe-container">
+							<RecipeComponent
+								recipe={recipe}
+								hasButton={true}
+								classNameCard="recipe-card"
+								classNameIngContent="content-card"
+							/>
+						</div>
+					))}
+				</div>
+			</div>
+		</>
+	);
 };
 
 export default CookbookPage;
