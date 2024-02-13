@@ -8,7 +8,7 @@ const CookPage = () => {
 
 	const [recipe, setRecipe] = useState(activeRecipe);
 
-	const onCatch = (id) => {
+	const onCatch = (id: string) => {
 		const updatedRecipe = { ...recipe };
 
 		for (let i = 0; i < updatedRecipe.ingredients.length; i++) {
