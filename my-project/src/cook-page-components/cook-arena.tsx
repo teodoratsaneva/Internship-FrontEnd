@@ -1,12 +1,12 @@
+import { useEffect, useRef } from "react";
 import p5 from "p5";
-import { useEffect } from "react";
 import { Pot } from "./pot-seg";
 import { IngredientSeg } from "./ingredient-seg";
 import { ingredientIconMap } from "../utils/ingredients-icons";
 import { Ingredient } from "../interfaces/ingredient-interface";
 
-const CookArena = (props: { ingredients: Ingredient[]; onCatch }) => {
-	const { ingredients, onCatch } = props;
+const CookArena = (props: { ingredients: Ingredient[]; onCatch; checkDiscoMode}) => {
+    const { ingredients, onCatch, checkDiscoMode } = props;
     const imgWidth = 90;
     const imgHeight = 90;
     const x = 0;
@@ -14,121 +14,135 @@ const CookArena = (props: { ingredients: Ingredient[]; onCatch }) => {
     const canvasHeight = 1035;
     const canvasWidth = 1330;
 
-	useEffect(() => {
-		const cookArenaSketch = (p: p5) => {
-			let pot: Pot;
-			const ingredientsSeg: IngredientSeg[] = [];
+    const discoColor = useRef(false);
 
-			p.setup = () => {
-				p.createCanvas(1330, 1035);
-				p.strokeWeight(9);
-				p.stroke(255, 100);
+    useEffect(() => {
+        const cookArenaSketch = (p: p5) => {
+            let pot: Pot;
+            const ingredientsSeg: IngredientSeg[] = [];
+            const invalidIngredient = {
+                id: "1",
+                quantity: "1",
+                title: "Cat",
+            };
 
-				const potImage = p.loadImage("./pot.png");
-				pot = new Pot(p.width / 2, potImage, p);
+            p.setup = () => {
+                p.createCanvas(1330, 1035);
+                p.strokeWeight(9);
+                p.stroke(255, 100);
+                p.background(255, 255, 255, 0);
 
-				let countIngredients = 0;
+                const potImage = p.loadImage("./pot.png");
+                pot = new Pot(p.width / 2, potImage, p);
 
-				const spawnIngredient = () => {
-					if (countIngredients < ingredients.length + 1) {
-						const valueOfIng = ingredients[countIngredients].title;
-						const ingredientQuantity = parseInt(
-							ingredients[countIngredients].quantity
-						);
+                let countIngredients = 0;
 
-						let countQuantity = 0;
+                const spawnIngredient = () => {
+                    if (countIngredients < ingredients.length + 1) {
+                        const valueOfIng = ingredients[countIngredients].title;
+                        const ingredientQuantity = parseInt(
+                            ingredients[countIngredients].quantity
+                        );
 
-						const spawnSingleIngredient = () => {
-							if (countQuantity < ingredientQuantity) {
-								const ingredient: Ingredient =
-									ingredients[countIngredients];
+                        let countQuantity = 0;
 
-								const ingredientSeg = new IngredientSeg(
-									x,
-									y,
-									imgWidth,
-									imgHeight,
-									canvasWidth,
-									canvasHeight,
-									p.loadImage(ingredientIconMap[valueOfIng]),
-									p,
-									ingredient
-								);
+                        const spawnSingleIngredient = () => {
+                            if (countQuantity < ingredientQuantity) {
+                                const ingredient: Ingredient =
+                                    ingredients[countIngredients];
 
-								ingredientSeg.reset();
-								ingredientsSeg.push(ingredientSeg);
-								countQuantity++;
+                                const ingredientSeg = new IngredientSeg(
+                                    x,
+                                    y,
+                                    imgWidth,
+                                    imgHeight,
+                                    canvasWidth,
+                                    canvasHeight,
+                                    p.loadImage(ingredientIconMap[valueOfIng]),
+                                    p,
+                                    ingredient
+                                );
 
-								setTimeout(spawnSingleIngredient, 2000);
-							} else {
-								countIngredients++;
-								setTimeout(spawnIngredient, 2000);
-							}
-						};
+                                ingredientSeg.reset();
+                                ingredientsSeg.push(ingredientSeg);
+                                countQuantity++;
 
-						spawnSingleIngredient();
-					}
-				};
+                                setTimeout(spawnSingleIngredient, 2000);
+                            } else {
+                                countIngredients++;
+                                setTimeout(spawnIngredient, 2000);
+                            }
+                        };
 
-				setTimeout(spawnIngredient, 2000);
+                        spawnSingleIngredient();
+                    }
+                };
 
-				const spawnInvalidIngredient = () => {
-                    const invalidIngredient = {
-                        id: "1",
-                        quantity: "1",
-                        title: "Cat",
-                    };
-                
-                    const catImage = p.round(p.random(1, 2)) === 1 ? "./cat.png" : "./cutecat.png";
-                    const invalImgHeight = catImage === "./cat.png" ? 130 : 90;
-                
+                setTimeout(spawnIngredient, 2000);
+
+                const spawnInvalidIngredient = () => {
+                    // const catImage =
+                    //     p.round(p.random(1, 2)) === 1
+                    //         ? "./cat.png"
+                    //         : "./cutecat.png";
+
+                            const catImage = "./cutecat.png";
+                    //const invalImgHeight = catImage === "./cat.png" ? 130 : 90;
+
                     const invalidSeg = new IngredientSeg(
                         x,
                         y,
                         imgWidth,
-                        invalImgHeight,
+                        90,
                         canvasWidth,
                         canvasHeight,
                         p.loadImage(catImage),
                         p,
                         invalidIngredient
                     );
-                
+
                     invalidSeg.reset();
                     ingredientsSeg.push(invalidSeg);
-                
+
                     setTimeout(spawnInvalidIngredient, p.random(5000, 6000));
                 };
-                
+
                 spawnInvalidIngredient();
-            };                       
+            };
 
-			p.draw = () => {
-				p.clear();
-				p.background(255, 255, 255, 0);
+            p.draw = () => {
+                p.clear();
+                checkDiscoMode(discoColor.current, p);
 
-				pot.dragSegment(p.mouseX);
+                pot.dragSegment(p.mouseX);
+                ingredientsSeg.forEach((ingredient) => {
+                    if (
+                        !(ingredient.isVisible && ingredient.collidesWith(pot))
+                    ) {
+                        ingredient.update();
+                        ingredient.display();
+                    } else if (
+                        ingredient.ingredient === invalidIngredient &&
+                        ingredient.collidesWith(pot)
+                    ) {
+                        discoColor.current = true;
+                        setTimeout(() => {
+                            discoColor.current = false;
+                        }, 4000);
+                    } else {
+                        onCatch(ingredient.ingredient.id);
+                    }
+                });
+            };
+        };
 
-				ingredientsSeg.forEach((ingredient) => {
-					if (
-						!(ingredient.isVisible && ingredient.collidesWith(pot))
-					) {
-						ingredient.update();
-						ingredient.display();
-					} else {
-						onCatch(ingredient.ingredient.id);
-					}
-				});
-			};
-		};
+        new p5(
+            cookArenaSketch,
+            document.querySelector(".arena") as HTMLElement
+        );
+    }, []); 
 
-		new p5(
-			cookArenaSketch,
-			document.querySelector(".arena") as HTMLElement
-		);
-	}, []);
-
-	return <div className="arena"></div>;
+    return <div className="arena"></div>;
 };
 
 export default CookArena;
