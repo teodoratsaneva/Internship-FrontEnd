@@ -5,10 +5,6 @@ import { Ingredient } from "../interfaces/ingredient-interface";
 import { Recipe } from "../interfaces/recipe-interface";
 import { saveRecipeToLocalStorage } from "../utils/local-storage-utils";
 import FormComponent from "./form";
-import Heading from "../common-components/heading-component";
-import { Box } from "@mui/material";
-import { Link } from "@mui/material";
-import TextField from "@mui/material";
 
 const styleModal = {
 	position: "absolute",
@@ -21,33 +17,7 @@ const styleModal = {
 	borderRadius: "10px",
 };
 
-const styleTextFeld = {
-	".MuiInputBase-input": {
-		color: "white",
-		width: "450px",
-		height: "10px",
-	},
-	".MuiFormLabel-root": {
-		color: "white",
-	},
-	".MuiFormControl-root": {
-		borderColor: "white",
-	},
-	"& .MuiOutlinedInput-root": {
-		"& fieldset": {
-			borderColor: "white",
-			color: "white",
-		},
-		"&:hover fieldset": {
-			borderColor: "white",
-		},
-		"&.Mui-focused fieldset": {
-			borderColor: "white",
-		},
-	},
-};
-
-const ModalComponent = ({ open, close, hasForm }) => {
+const ModalComponent = ({ open, close}) => {
 	const [recipe, setRecipe] = useState<Recipe>({
 		id: uuidv4(),
 		title: "",
@@ -132,19 +102,12 @@ const ModalComponent = ({ open, close, hasForm }) => {
 
 		if (parentId) {
 			updatedIngredients = recipe.ingredients.map((ingredient) => {
-				if (ingredient.id === parentId) {
+				if (ingredient.id === parentId || ingredient.subIngredients) {
 					return {
 						...ingredient,
-						subIngredients: ingredient.subIngredients!.filter(
-							(subIngredient) => subIngredient.id !== id
-						),
-					};
-				} else if (ingredient.subIngredients) {
-					return {
-						...ingredient,
-						subIngredients: ingredient.subIngredients.filter(
-							(subIngredient) => subIngredient.id !== id
-						),
+						subIngredients: (
+							ingredient.subIngredients || []
+						).filter((subIngredient) => subIngredient.id !== id),
 					};
 				}
 
@@ -163,16 +126,18 @@ const ModalComponent = ({ open, close, hasForm }) => {
 	};
 
 	const handleIngredientQuantityChange = (id: string, value: string) => {
+		const quantity = parseInt(value);
+
 		const updatedIngredients = recipe.ingredients.map((ingredient) => {
 			if (ingredient.id === id) {
-				return { ...ingredient, quantity: value };
+				return { ...ingredient, quantity: quantity };
 			} else if (ingredient.subIngredients) {
 				return {
 					...ingredient,
 					subIngredients: ingredient.subIngredients.map(
 						(subIngredient) => {
 							if (subIngredient.id === id) {
-								return { ...subIngredient, quantity: value };
+								return { ...subIngredient, quantity: quantity };
 							}
 
 							return subIngredient;
@@ -206,32 +171,19 @@ const ModalComponent = ({ open, close, hasForm }) => {
 	return (
 		<>
 			<Modal className="modal" open={open} onClose={close}>
-				<div>
-					{hasForm ? (
-						<FormComponent
-							recipe={recipe}
-							setRecipe={setRecipe}
-							handleAddIngredient={handleAddIngredient}
-							handleIngredientQuantityChange={
-								handleIngredientQuantityChange
-							}
-							handleIngredientNameChange={
-								handleIngredientNameChange
-							}
-							handleSaveAndReset={handleSaveAndReset}
-							handleSaveAndExit={handleSaveAndExit}
-							handleRemoveIngredient={handleRemoveIngredient}
-							style={styleModal}
-						/>
-					) : (
-						<Box sx={styleModal}>
-							<Heading
-								variant={"h4"}
-								children={"Congratulations! You won!"}
-							/>
-						</Box>
-					)}
-				</div>
+					<FormComponent
+						recipe={recipe}
+						setRecipe={setRecipe}
+						handleAddIngredient={handleAddIngredient}
+						handleIngredientQuantityChange={
+							handleIngredientQuantityChange
+						}
+						handleIngredientNameChange={handleIngredientNameChange}
+						handleSaveAndReset={handleSaveAndReset}
+						handleSaveAndExit={handleSaveAndExit}
+						handleRemoveIngredient={handleRemoveIngredient}
+						style={styleModal}
+					/>
 			</Modal>
 		</>
 	);

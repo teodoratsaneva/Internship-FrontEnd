@@ -1,49 +1,39 @@
 import { Ingredient } from "../interfaces/ingredient-interface";
 import p5 from "p5";
 
-export class IngredientSeg {
+const reduceHightWith = 100;
+const reduceWidthWith = 20;
+
+export class IngredientSegment {
     x: number;
     y: number;
-    width: number;
-    height: number;
-    speedY: number;
-    isVisible: boolean;
+    width: number = 100;
+    height: number = 100;
+    speedY: number = 4;
+    isVisible: boolean = true;
     image: p5.Image;
-    canvasWidth: number;
-    canvasHeight: number;
     p: p5;
     ingredient?: Ingredient | null;
     
     constructor(
         x: number,
         y: number,
-        width: number,
-        height: number,
-        canvasWidth: number,
-        canvasHeight: number,
         image: p5.Image,
         p: p5,
         ingredient: Ingredient,
-        
     ) {
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
-        this.speedY = 4;
-        this.isVisible = true;
         this.image = image;
-        this.canvasWidth = canvasWidth;
-        this.canvasHeight = canvasHeight;
         this.p = p;
         this.ingredient = ingredient;
     }
 
-    update() {
+    updateSegmentWhenIsNoCatched(canvasHeight: number, canvasWidth: number) {
         if (this.isVisible) {
             this.y += this.speedY;
-            if (this.y > this.canvasHeight) {
-                this.reset();
+            if (this.y > canvasHeight) {
+                this.reset(canvasWidth);
             }
         }
     }
@@ -66,8 +56,8 @@ export class IngredientSeg {
         width: number;
         height: number;
     }) {
-        const currObjHeight = this.height - 100;
-        const currObjWidth = this.width - 20;
+        const currObjHeight = this.height - reduceHightWith;
+        const currObjWidth = this.width - reduceWidthWith;
 
         if (
             (otherObject.x < this.x + currObjWidth &&
@@ -90,13 +80,13 @@ export class IngredientSeg {
             this.isVisible = false;
 
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
-    reset() {
-        this.x = this.p.random(0, this.canvasWidth - this.width);
+    reset(canvasWidth: number) {
+        this.x = this.p.random(0, canvasWidth - this.width);
         this.y = 0;
     }
 }

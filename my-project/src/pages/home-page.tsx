@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import HeaderComponent from "../common-components/header-page-component";
 import Button from "@mui/material/Button";
 import Heading from "../common-components/heading-component";
-import ModalFormComponent from "../modal-create-recipe/modal-component";
+import ModalFormComponent from "../modal-create-recipe/save-modal-component";
 
 const HomePage = () => {
 	const [open, setOpen] = useState(false);
@@ -25,7 +25,7 @@ const HomePage = () => {
 				>
 					Create a potion recipe
 				</Button>
-				<ModalFormComponent open={open} close={handleClose} hasForm={true}/>
+				<ModalFormComponent open={open} close={handleClose}/>
 				<Link
 					className="MuiLink-button home-page-button"
 					to="/cookbook"

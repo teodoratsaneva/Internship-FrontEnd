@@ -1,53 +1,53 @@
 import { useEffect, useRef } from "react";
 import p5 from "p5";
 import { Pot } from "./pot-seg";
-import { IngredientSeg } from "./ingredient-seg";
+import { IngredientSegment } from "./ingredient-seg";
 import { ingredientIconMap } from "../utils/ingredients-icons";
 import { Ingredient } from "../interfaces/ingredient-interface";
 
+const x = 0;
+const y = 0;
+const canvasHeight = 1035;
+const canvasWidth = 1330;
+const timeoutTimes = 2000;
+const customColor = 255;
+const opasity = 0;
+const invalidIngredientsImages = [
+    "./cute-cat.png",
+    "./cat.png"
+];
+const invalidIngredient = {
+	id: "1",
+	quantity: "1",
+	title: "Cat",
+};
+
 const CookArena = (props: {
-	ingredients: Ingredient[];
-	onCatch;
-	checkDiscoMode;
-	loseOneLive;
-	hearts;
+	ingredients: Ingredient[],
+	onCatch,
+	triggerDiscoMode,
+	onLifeLoss,
+	hearts,
+	ingredientsCount
 }) => {
-	const { ingredients, onCatch, checkDiscoMode, loseOneLive, hearts } = props;
-	const imgWidth = 100;
-	const imgHeight = 100;
-	const x = 0;
-	const y = 0;
-	const canvasHeight = 1035;
-	const canvasWidth = 1330;
+	const { ingredients, onCatch, triggerDiscoMode, onLifeLoss, hearts, ingredientsCount } = props;
 	const discoColor = useRef(false);
 	const pausedGame = useRef(false);
-	const allIngredientsCount = ingredients.reduce(
-		(total, ingredient) => total + parseInt(ingredient.quantity),
-		0
-	);
-	const ingredientsCount = useRef(allIngredientsCount);
 
 	useEffect(() => {
 		const cookArenaSketch = (p: p5) => {
 			const potImage = p.loadImage("./pot.png");
 			const pot = new Pot(p.width / 2, potImage, p);
-			const ingredientsSeg: IngredientSeg[] = [];
-			const invalidIngredient = {
-				id: "1",
-				quantity: "1",
-				title: "Cat",
-			};
+			const ingredientsSeg: IngredientSegment[] = [];
 
 			p.setup = () => {
-				p.createCanvas(1330, 1035);
-				p.strokeWeight(9);
-				p.stroke(255, 100);
-				p.background(255, 255, 255, 0);
+				p.createCanvas(canvasWidth, canvasHeight);
+				p.background(customColor, customColor, customColor, opasity);
 
 				let countIngredients = 0;
 
 				const spawnIngredient = () => {
-					if (countIngredients < ingredients.length + 1) {
+					if (countIngredients <= ingredients.length) {
 						const valueOfIng = ingredients[countIngredients].title;
 						const ingredientQuantity = parseInt(
 							ingredients[countIngredients].quantity
@@ -57,29 +57,23 @@ const CookArena = (props: {
 
 						const spawnSingleIngredient = () => {
 							if (countQuantity < ingredientQuantity) {
-								const ingredient: Ingredient =
-									ingredients[countIngredients];
+								const ingredient: Ingredient = ingredients[countIngredients];
 
-								const ingredientSeg = new IngredientSeg(
+								const ingredientSeg = new IngredientSegment(
 									x,
 									y,
-									imgWidth,
-									imgHeight,
-									canvasWidth,
-									canvasHeight,
 									p.loadImage(ingredientIconMap[valueOfIng]),
 									p,
 									ingredient
 								);
 
-								ingredientSeg.reset();
+								ingredientSeg.reset(canvasWidth);
 								ingredientsSeg.push(ingredientSeg);
 								countQuantity++;
-
-								setTimeout(spawnSingleIngredient, 2000);
+								setTimeout(spawnSingleIngredient, timeoutTimes);
 							} else {
 								countIngredients++;
-								setTimeout(spawnIngredient, 2000);
+								setTimeout(spawnIngredient, timeoutTimes);
 							}
 						};
 
@@ -87,77 +81,63 @@ const CookArena = (props: {
 					}
 				};
 
-				setTimeout(spawnIngredient, 2000);
+				setTimeout(spawnIngredient, timeoutTimes);
 
 				const spawnInvalidIngredient = () => {
-					const catImage =
-						p.round(p.random(1, 2)) === 1
-							? "./cat.png"
-							: "./cute-cat.png";
 
-					const invalidSeg = new IngredientSeg(
+					const invalidSeg = new IngredientSegment(
 						x,
 						y,
-						imgWidth,
-						imgHeight,
-						canvasWidth,
-						canvasHeight,
-						p.loadImage(catImage),
+						p.loadImage(invalidIngredientsImages[p.round(p.random(0, invalidIngredientsImages.length - 1))]),
 						p,
 						invalidIngredient
 					);
-
-					invalidSeg.reset();
+				
+					invalidSeg.reset(canvasWidth);
 					ingredientsSeg.push(invalidSeg);
-
-					setTimeout(spawnInvalidIngredient, p.random(5000, 6000));
+				
+					setTimeout(spawnInvalidIngredient, p.random(4000, 5000));
 				};
 
 				spawnInvalidIngredient();
 			};
 
 			p.draw = () => {
-				if (!pausedGame.current) {
+				if(!pausedGame.current){
 					p.clear();
-					checkDiscoMode(discoColor.current, p);
+					triggerDiscoMode(discoColor.current, p);
 
 					pot.dragSegment(p.mouseX);
 					ingredientsSeg.forEach((ingredient) => {
-						if (
-							!(
-								ingredient.isVisible &&
-								ingredient.collidesWith(pot)
-							)
-						) {
-							ingredient.update();
-							ingredient.display();
-						} else if (
-							ingredient.ingredient === invalidIngredient &&
-							ingredient.collidesWith(pot)
-						) {
-							discoColor.current = true;
-							setTimeout(() => {
-								discoColor.current = false;
-							}, 1000);
+						if (ingredient.isVisible && ingredient.collidesWith(pot)) {
+							if (ingredient.ingredient === invalidIngredient && ingredient.collidesWith(pot)) {
+								//discoColor.current = true;
+								//setTimeout(() => {discoColor.current = false;}, timeoutTimes);
 
-							if (hearts === 0) {
-								pausedGame.current = true;
+								onLifeLoss();
+
+								if (hearts.current === 0) {
+									pausedGame.current = true;
+								}
+							} else {
+								ingredientsCount.current -= 1;
+
+								onCatch(
+									ingredient.ingredient!.id,
+									ingredientsCount.current, 
+									p
+								);
+
+								if(ingredientsCount.current === 0)
+								{
+									pausedGame.current = true;
+								}
 							}
-
-                            loseOneLive();
 						} else {
-							ingredientsCount.current =
-								ingredientsCount.current - 1;
-
-                            if (ingredientsCount.current === 0) {
-                                pausedGame.current = true;
-                            }
-
-							onCatch(
-								ingredient.ingredient!.id,
-								ingredientsCount.current
-							);
+							ingredient.updateSegmentWhenIsNoCatched(canvasHeight, canvasWidth);
+							ingredient.display();
 						}
+						
 					});
 				}
 			};
