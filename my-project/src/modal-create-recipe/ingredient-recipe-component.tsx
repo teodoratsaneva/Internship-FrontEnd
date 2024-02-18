@@ -66,7 +66,7 @@ const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 
 	return (
 		<div style={{ marginLeft: parentId ? "20px" : "0" }}>
-			<div className="text-and-button-container">
+      <div className="text-and-button-container">
 				<button className="remove-icon-button" onClick={onRemoveIngredient}>
 					<img id="remove-icon" src="x-button.png" alt="removeIcon" />
 				</button>

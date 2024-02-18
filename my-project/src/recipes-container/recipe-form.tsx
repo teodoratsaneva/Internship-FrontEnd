@@ -15,11 +15,15 @@ const RecipeComponent: React.FC<RecipeComponentProps> = ({ recipe, hasButton, cl
       <IngredientsListComponent ingredients={recipe.ingredients} className={classNameIngContent} />
       {hasButton && (
         <FooterComponent
-          className="cook-button"
-          buttonText="Cook"
-          onClickButton1={handleCookClick}
-          linkTo="/cook"
-        />
+        buttons={[
+          {
+            className: "cook-button",
+            buttonText: "Cook",
+            onClick: handleCookClick,
+            linkTo: "/cook"
+          }
+        ]}
+      />
       )}
     </div>
   );

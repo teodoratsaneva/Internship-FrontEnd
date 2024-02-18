@@ -49,9 +49,7 @@ const CookArena = (props: {
 				const spawnIngredient = () => {
 					if (countIngredients <= ingredients.length) {
 						const valueOfIng = ingredients[countIngredients].title;
-						const ingredientQuantity = parseInt(
-							ingredients[countIngredients].quantity
-						);
+						const ingredientQuantity = ingredients[countIngredients].quantity;
 
 						let countQuantity = 0;
 

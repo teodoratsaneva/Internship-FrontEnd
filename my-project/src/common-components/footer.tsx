@@ -1,39 +1,21 @@
-import React from 'react';
-import Button from "@mui/material/Button";
+import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { Footer } from '../interfaces/footer-interface';
 
-const FooterComponent: React.FC<Footer> = ({
-  className,
-  buttonText,
-  onClickButton1,
-  onClickButton2,
-  linkTo,
-  buttonText2,
-}) => {
+const FooterComponent = ({ buttons }) => {
   return (
     <div className="footer">
-      <Button
-        className={className}
-        variant={linkTo ? "contained" : "text"}
-        component={linkTo ? Link : 'button'}
-        to={linkTo}
-        onClick={onClickButton1}
-      >
-        {buttonText}
-      </Button>
-
-      {onClickButton2 && (
+      {buttons.map((button, index) => (
         <Button
-          className={className}
-          variant={linkTo ? "contained" : "text"}
-          component={linkTo ? Link : 'button'}
-          to={linkTo}
-          onClick={onClickButton2}
+          key={index}
+          className={button.className}
+          variant={button.linkTo ? "contained" : "text"}
+          component={button.linkTo ? Link : 'button'}
+          to={button.linkTo}
+          onClick={button.onClick}
         >
-          {buttonText2}
+          {button.buttonText}
         </Button>
-      )}
+      ))}
     </div>
   );
 };

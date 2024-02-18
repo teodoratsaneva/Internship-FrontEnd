@@ -114,11 +114,18 @@ const FormComponent = ({
 				/>
 			</div>
 			<FooterComponent
-				className="create-recipe-button"
-				buttonText="Save and continue"
-				onClickButton1={handleSaveAndExit}
-				onClickButton2={handleSaveAndReset}
-				buttonText2="Save and reset"
+				buttons={[
+					{
+						className: "create-recipe-button",
+						buttonText: "Save and continue",
+						onClick: handleSaveAndExit
+					},
+					{
+						className: "create-recipe-button",
+						buttonText: "Save and reset",
+						onClick: handleSaveAndReset
+					}
+				]}
 			/>
 		</FormControl>
 	);
