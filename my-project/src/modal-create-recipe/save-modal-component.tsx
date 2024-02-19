@@ -13,8 +13,8 @@ const styleModal = {
 	transform: "translate(-50%, -50%)",
 	overflow: "auto",
 	bgcolor: "#242633",
-	p: "20px",
-	borderRadius: "10px",
+	p: "2vh",
+	borderRadius: "1vh",
 };
 
 const ModalComponent = ({ open, close}) => {

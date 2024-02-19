@@ -109,8 +109,8 @@ const CookArena = (props: {
 					ingredientsSeg.forEach((ingredient) => {
 						if (ingredient.isVisible && ingredient.collidesWith(pot)) {
 							if (ingredient.ingredient === invalidIngredient && ingredient.collidesWith(pot)) {
-								//discoColor.current = true;
-								//setTimeout(() => {discoColor.current = false;}, timeoutTimes);
+								discoColor.current = true;
+								setTimeout(() => {discoColor.current = false;}, timeoutTimes);
 
 								onLifeLoss();
 
