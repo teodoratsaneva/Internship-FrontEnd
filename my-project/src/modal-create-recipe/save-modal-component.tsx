@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Ingredient } from "../interfaces/ingredient-interface";
 import { Recipe } from "../interfaces/recipe-interface";
-import { saveRecipeToLocalStorage } from "../utils/local-storage-utils";
+import { saveRecipeToLocalStorage } from "../utils/local-storage-save";
 import FormComponent from "./form";
 
 const styleModal = {

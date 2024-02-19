@@ -90,10 +90,10 @@ const CookArena = (props: {
 						p,
 						invalidIngredient
 					);
-				
+
 					invalidSeg.reset(canvasWidth);
 					ingredientsSeg.push(invalidSeg);
-				
+
 					setTimeout(spawnInvalidIngredient, p.random(4000, 5000));
 				};
 
@@ -135,7 +135,7 @@ const CookArena = (props: {
 							ingredient.updateSegmentWhenIsNoCatched(canvasHeight, canvasWidth);
 							ingredient.display();
 						}
-						
+
 					});
 				}
 			};

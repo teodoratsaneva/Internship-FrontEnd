@@ -3,8 +3,11 @@ import RecipeComponent from "../recipes-container/recipe-form";
 import CookArena from "../cook-page-components/cook-arena";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import p5 from "p5";
-import _ from 'lodash';
+import _ from "lodash";
 import CompleteRecipeModal from "../cook-page-components/complete-recipe-modal";
+import { saveRecipeToLocalStorage } from "../utils/local-storage-save";
+import { Recipe } from "../interfaces/recipe-interface";
+import { v4 as uuidv4 } from "uuid";
 
 const maxHearts = 3;
 const customColor = 255;
@@ -18,10 +21,12 @@ const CookPage = () => {
 	const [open, setOpen] = useState(false);
 	const [hearts, setHearts] = useState(maxHearts);
 	const [recipe, setRecipe] = useState(activeRecipe);
-	const allIngredientsCount = activeRecipe.ingredients.reduce((total, ingredient) => total + parseInt(ingredient.quantity), 0);
+	const allIngredientsCount = activeRecipe.ingredients.reduce(
+		(total, ingredient) => total + parseInt(ingredient.quantity),
+		0
+	);
 	const ingredientsCount = useRef(allIngredientsCount);
 	const [isWonGame, setIsWonGame] = useState(true);
-	
 
 	const handleOpenModal = useCallback(() => {
 		setOpen(true);
@@ -31,47 +36,68 @@ const CookPage = () => {
 		setOpen(false);
 	}, []);
 
-	const setDefaultStyle = (p: p5) => {
-		p.background(customColor, customColor, customColor, opasity);
-			document
-				.querySelector(".recipe-cook-page")
-				?.setAttribute(
-					"style",
-					`background-color: #242633; color: 'white;`
-				);
-			document
-				.querySelector(".recipe-side")
-				?.setAttribute("style", `background-color: none;`);
+	const getDate = () => {
+		const today = new Date();
+		const year = today.getFullYear();
+		const month = today.getMonth() + 1;
+		const date = today.getDate();
+		return `${month}/${date}/${year}`;
 	}
 
+	const handleCompleteRecipe = () => {
+		const completedRecipe: Recipe = {
+			id: uuidv4(),
+			title: activeRecipe.title,
+			ingredients: activeRecipe.ingredients,
+			date: getDate()
+		}
+		saveRecipeToLocalStorage(completedRecipe, "completedRecipes");
+		localStorage.removeItem("activeRecipe");
+	};
+
+	const setDefaultStyle = (p: p5) => {
+		p.background(customColor, customColor, customColor, opasity);
+		document
+			.querySelector(".recipe-cook-page")
+			?.setAttribute(
+				"style",
+				`background-color: #242633; color: 'white;`
+			);
+		document
+			.querySelector(".recipe-side")
+			?.setAttribute("style", `background-color: none;`);
+	};
+
 	const onCatch = (id, ingredientsCount) => {
-		setRecipe(prevRecipe => {
+		setRecipe((prevRecipe) => {
 			const updatedRecipe = _.cloneDeep(prevRecipe);
 			let i = 0;
-	
+
 			while (i < updatedRecipe.ingredients.length) {
 				if (id === updatedRecipe.ingredients[i].id) {
 					updatedRecipe.ingredients[i].quantity -= 1;
 
 					break;
 				}
-	
+
 				i++;
 			}
 
 			if (ingredientsCount === 0) {
 				handleOpenModal();
 			}
-	
+
 			return updatedRecipe;
 		});
-
 	};
-	
+
 	const triggerDiscoMode = (discoColor, p: p5) => {
 		if (discoColor) {
 			const randomColor = () =>
-				"#" + Math.floor(Math.random() * numberForRandomColor).toString(hexadecimalSystem);
+				"#" +
+				Math.floor(Math.random() * numberForRandomColor).toString(
+					hexadecimalSystem
+				);
 			p.background(randomColor());
 			document
 				.querySelector(".recipe-cook-page")
@@ -98,19 +124,20 @@ const CookPage = () => {
 			handleOpenModal();
 			setIsWonGame(false);
 		}
+
 	}, [hearts]);
 
 	return (
 		<div className="cook-page">
 			<div className="cook-page-container">
-					<CookArena
-						ingredients={recipe.ingredients}
-						onCatch={onCatch}
-						triggerDiscoMode={triggerDiscoMode}
-						onLifeLoss={onLifeLoss}
-						hearts={hearts}
-						ingredientsCount={ingredientsCount}
-					/>
+				<CookArena
+					ingredients={recipe.ingredients}
+					onCatch={onCatch}
+					triggerDiscoMode={triggerDiscoMode}
+					onLifeLoss={onLifeLoss}
+					hearts={hearts}
+					ingredientsCount={ingredientsCount}
+				/>
 				<div className="recipe-side">
 					<RecipeComponent
 						recipe={recipe}
@@ -120,22 +147,32 @@ const CookPage = () => {
 					/>
 					<div className="heart-lives">
 						{[...Array(hearts)].map((_, index) => (
-								<FavoriteBorderRoundedIcon
-									key={index}
-									className="heart"
-								/>
-							))}
+							<FavoriteBorderRoundedIcon
+								key={index}
+								className="heart"
+							/>
+						))}
 					</div>
 				</div>
 			</div>
-			{
-				isWonGame ?
-				<CompleteRecipeModal open={open} close={handleCloseModal} 
-				text={"Congratulations you won!"} link={"/cookbook"} buttonText={"Back to cookbook"}/> :
-				<CompleteRecipeModal open={open} close={handleCloseModal} 
-				text={"Sorry! You lost!"} link={"/"} buttonText={"Back to home page"}/>
-			}
-
+			{isWonGame ? (
+				<CompleteRecipeModal
+					open={open}
+					close={handleCloseModal}
+					text={"Congratulations you won!"}
+					link={"/cookbook"}
+					buttonText={"Back to cookbook"}
+					handleCompleteRecipe={handleCompleteRecipe}
+				/>
+			) : (
+				<CompleteRecipeModal
+					open={open}
+					close={handleCloseModal}
+					text={"Sorry! You lost!"}
+					link={"/"}
+					buttonText={"Back to home page"}
+				/>
+			)}
 		</div>
 	);
 };

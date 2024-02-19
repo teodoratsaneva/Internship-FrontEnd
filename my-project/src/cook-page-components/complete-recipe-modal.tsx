@@ -26,7 +26,7 @@ const styleModal = {
 	borderRadius: "10px",
 };
 
-const CompleteRecipeModal = ({open, close, text, link, buttonText}) => {
+const CompleteRecipeModal = ({open, close, text, link, buttonText, handleCompleteRecipe}) => {
     return (
 		<Modal className="modal" open={open} onClose={close}>
 			<Box sx={styleModal}>
@@ -36,6 +36,7 @@ const CompleteRecipeModal = ({open, close, text, link, buttonText}) => {
 					className="MuiLink-button home-page-button"
 					to={link}
 					component={Link}
+					onClick={handleCompleteRecipe}
 				>
 					{buttonText}
 				</MuiLink>
