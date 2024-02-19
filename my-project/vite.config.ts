@@ -6,5 +6,6 @@ export default {
       log: true,
       backgroundPath: '/src/main.tsx'
     })
-  ]
+  ], 
+  port: 5173
 };

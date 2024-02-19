@@ -41,7 +41,7 @@ const ModalComponent = ({ open, close}) => {
 		const newIngredient: Ingredient = {
 			id: uuidv4(),
 			title: selectedIngredientLabel || "",
-			quantity: "",
+			quantity: 0,
 			subIngredients: [],
 		};
 

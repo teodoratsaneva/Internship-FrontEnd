@@ -8,5 +8,4 @@ export interface TextButtonProps {
     onRemoveIngredient?: (value: string) => void;
     parentId?: string | null;
     children?: ReactNode;
-    style: any
   }

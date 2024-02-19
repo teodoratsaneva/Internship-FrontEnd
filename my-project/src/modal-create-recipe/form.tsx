@@ -6,32 +6,6 @@ import { FormControl } from "@mui/material";
 import { Ingredient } from "../interfaces/ingredient-interface";
 import { useMemo } from "react";
 
-const styleTextFeld = {
-	".MuiInputBase-input": {
-		color: "white",
-		width: "450px",
-		height: "10px",
-	},
-	".MuiFormLabel-root": {
-		color: "white",
-	},
-	".MuiFormControl-root": {
-		borderColor: "white",
-	},
-	"& .MuiOutlinedInput-root": {
-		"& fieldset": {
-			borderColor: "white",
-			color: "white",
-		},
-		"&:hover fieldset": {
-			borderColor: "white",
-		},
-		"&.Mui-focused fieldset": {
-			borderColor: "white",
-		},
-	},
-};
-
 const IngredientsComponent = ({
 	ingredients,
 	handleIngredientNameChange,
@@ -99,7 +73,6 @@ const FormComponent = ({
 						setRecipe({ ...recipe, title: value })
 					}
 					onAddIngredient={() => handleAddIngredient()}
-					style={styleTextFeld}
 				/>
 			</div>
 			<div className="contend-form">
