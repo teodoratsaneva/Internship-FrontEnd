@@ -15,7 +15,7 @@ const RecipeComponent: React.FC<RecipeComponentProps> = ({ recipe, hasButton, cl
       {recipe.date &&
         <h4 className="header-card">{recipe.date}</h4>}
       <IngredientsListComponent ingredients={recipe.ingredients} className={classNameIngContent} />
-      {hasButton && (
+      {hasButton && !recipe.date && (
         <FooterComponent
         buttons={[
           {
