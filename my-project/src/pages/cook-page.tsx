@@ -2,18 +2,20 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import RecipeComponent from "../recipes-container/recipe-form";
 import CookArena from "../cook-page-components/cook-arena";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
-import p5 from "p5";
 import _ from "lodash";
 import CompleteRecipeModal from "../cook-page-components/complete-recipe-modal";
 import { saveRecipeToLocalStorage } from "../utils/local-storage-save";
 import { Recipe } from "../interfaces/recipe-interface";
 import { v4 as uuidv4 } from "uuid";
+import { P5Drawer } from "../cook-page-components/drawer";
+import withDiscoModeArena from "../cook-page-components/with-disco-mode-arena";
 
 const maxHearts = 3;
 const customColor = 255;
 const opasity = 0;
 const numberForRandomColor = 16777215;
 const hexadecimalSystem = 16;
+const EnhancedCookArena = withDiscoModeArena(CookArena);
 
 const CookPage = () => {
 	const activeRecipeRaw = localStorage.getItem("activeRecipe");
@@ -55,17 +57,10 @@ const CookPage = () => {
 		localStorage.removeItem("activeRecipe");
 	};
 
-	const setDefaultStyle = (p: p5) => {
-		p.background(customColor, customColor, customColor, opasity);
-		document
-			.querySelector(".recipe-cook-page")
-			?.setAttribute(
-				"style",
-				`background-color: #242633; color: 'white;`
-			);
-		document
-			.querySelector(".recipe-side")
-			?.setAttribute("style", `background-color: none;`);
+	const setDefaultStyle = (p: P5Drawer) => {
+		p.background(customColor, opasity);
+		document.querySelector(".recipe-cook-page")?.setAttribute("style", `background-color: #242633; color: 'white;`);
+		document.querySelector(".recipe-side")?.setAttribute("style", `background-color: none;`);
 	};
 
 	const onCatch = (id, ingredientsCount) => {
@@ -91,13 +86,11 @@ const CookPage = () => {
 		});
 	};
 
-	const triggerDiscoMode = (discoColor, p: p5) => {
+	const triggerDiscoMode = (discoColor, p: P5Drawer) => {
 		if (discoColor) {
 			const randomColor = () =>
-				"#" +
-				Math.floor(Math.random() * numberForRandomColor).toString(
-					hexadecimalSystem
-				);
+				"#" + Math.floor(Math.random() * numberForRandomColor).toString(hexadecimalSystem);
+
 			p.background(randomColor());
 			document
 				.querySelector(".recipe-cook-page")
@@ -130,14 +123,17 @@ const CookPage = () => {
 	return (
 		<div className="cook-page">
 			<div className="cook-page-container">
-				<CookArena
+				{/* <CookArena
 					ingredients={recipe.ingredients}
 					onCatch={onCatch}
 					triggerDiscoMode={triggerDiscoMode}
 					onLifeLoss={onLifeLoss}
 					hearts={hearts}
 					ingredientsCount={ingredientsCount}
-				/>
+				/> */}
+				<EnhancedCookArena
+					ingredients={recipe.ingredients}
+					triggerDiscoMode={triggerDiscoMode} />
 				<div className="recipe-side">
 					<RecipeComponent
 						recipe={recipe}

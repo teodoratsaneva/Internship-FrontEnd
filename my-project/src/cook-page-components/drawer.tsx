@@ -1,7 +1,7 @@
 import p5 from "p5";
 import { DrawingLibrary } from "../interfaces/drawing-library-interface";
-import { spawnIngredient } from "../utils/spawn-ingredient";
-import spawnInvalidIngredient from "./spawn-invalid-ingredient";
+import { Ingredient } from "../interfaces/ingredient-interface";
+import { IngredientSegment } from "./ingredient-seg";
 
 export class P5Drawer implements DrawingLibrary {
     p: p5;
@@ -14,7 +14,7 @@ export class P5Drawer implements DrawingLibrary {
         this.p.createCanvas(width, height);
     }
 
-    loadImage(path: string): Image {
+    loadImage(path: string): any {
         return this.p.loadImage(path);
     }
 
@@ -36,7 +36,7 @@ export class P5Drawer implements DrawingLibrary {
         return this.p.constrain(xin, yPos, this.p.width - width);
     };
 
-    background = (customColor: number, opacity: number) => {
+    background = (customColor: number | string, opacity?: number) => {
         this.p.background(customColor, customColor, customColor, opacity);
     };
 
@@ -48,47 +48,113 @@ export class P5Drawer implements DrawingLibrary {
         return this.p.round(number);
     };
 
-    width = () => {
-        this.p.width;
-    };
+    get width(): number {
+        return this.p.width;
+    }
 
-    setup(canvasWidth: number, canvasHeight: number, customColor: number, opacity: number, timeoutTimes: number) {
+    setup(
+        canvasWidth: number,
+        canvasHeight: number,
+        customColor: number,
+        opasity: number,
+        ingredients,
+        ingredientIconMap,
+        ingredientsSeg,
+        timeoutTimes,
+        invalidIngredientsImages,
+        x,
+        y,
+        invalidIngredient
+    ) {
         this.p.setup = () => {
-            this.createCanvas(canvasWidth, canvasHeight);
-            this.background(customColor, opacity);
+            this.p.createCanvas(canvasWidth, canvasHeight);
+            this.p.background(customColor, customColor, customColor, opasity);
+
+            let countIngredients = 0;
+
+            const spawnIngredient = () => {
+                if (countIngredients <= ingredients.length) {
+                    const valueOfIng = ingredients[countIngredients].title;
+                    const ingredientQuantity = ingredients[countIngredients].quantity;
+
+                    let countQuantity = 0;
+
+                    const spawnSingleIngredient = () => {
+                        if (countQuantity < ingredientQuantity) {
+                            const ingredient: Ingredient = ingredients[countIngredients];
+
+                            const ingredientSeg = new IngredientSegment(
+                                x,
+                                y,
+                                this.loadImage(ingredientIconMap[valueOfIng]),
+                                this,
+                                ingredient
+                            );
+
+                            ingredientSeg.reset(canvasWidth);
+                            ingredientsSeg.push(ingredientSeg);
+                            countQuantity++;
+                            setTimeout(spawnSingleIngredient, timeoutTimes);
+                        } else {
+                            countIngredients++;
+                            setTimeout(spawnIngredient, timeoutTimes);
+                        }
+                    };
+
+                    spawnSingleIngredient();
+                }
+            };
 
             setTimeout(spawnIngredient, timeoutTimes);
 
-            setTimeout(spawnInvalidIngredient, this.random(4000, 5000));
+            const spawnInvalidIngredient = () => {
+
+                const invalidSeg = new IngredientSegment(
+                    x,
+                    y,
+                    this.loadImage(invalidIngredientsImages[this.p.round(this.p.random(0, invalidIngredientsImages.length - 1))]),
+                    this,
+                    invalidIngredient
+                );
+
+                invalidSeg.reset(canvasWidth);
+                ingredientsSeg.push(invalidSeg);
+
+                setTimeout(spawnInvalidIngredient, this.p.random(4000, 5000));
+            };
+
+            spawnInvalidIngredient();
         };
     }
 
     draw = (
-        //pausedGame,
+        pausedGame,
         triggerDiscoMode,
         pot,
         ingredientsSeg,
-        invalidIngredient,
-        onLifeLoss,
         discoColor,
+        invalidIngredient,
+        timeoutTimes,
+        onLifeLoss,
         hearts,
-        onCatch,
         ingredientsCount,
+        onCatch,
         canvasHeight,
         canvasWidth
     ) => {
         this.p.draw = () => {
-            //if (!pausedGame.current) {
+            if (!pausedGame.current) {
                 this.clear();
-                triggerDiscoMode(discoColor.current, this.p);
+                triggerDiscoMode(discoColor.current, this);
 
                 pot.dragSegment(this.p.mouseX);
-                ingredientsSeg.forEach((ingredient) => {
-                    if (ingredient.isVisible && ingredient.collidesWith(pot)) {
-                        if (
-                            ingredient.ingredient === invalidIngredient &&
-                            ingredient.collidesWith(pot)
-                        ) {
+
+                ingredientsSeg.forEach((ingredientSeg) => {
+                    if (ingredientSeg.isVisible && ingredientSeg.collidesWith(pot)) {
+                        if (ingredientSeg.ingredient === invalidIngredient && ingredientSeg.collidesWith(pot)) {
+                            discoColor.current = true;
+                            setTimeout(() => { discoColor.current = false; }, timeoutTimes);
+
                             onLifeLoss();
 
                             if (hearts.current === 0) {
@@ -98,8 +164,9 @@ export class P5Drawer implements DrawingLibrary {
                             ingredientsCount.current -= 1;
 
                             onCatch(
-                                ingredient.ingredient!.id,
-                                ingredientsCount.current
+                                ingredientSeg.ingredient!.id,
+                                ingredientsCount.current,
+                                this
                             );
 
                             if (ingredientsCount.current === 0) {
@@ -107,14 +174,12 @@ export class P5Drawer implements DrawingLibrary {
                             }
                         }
                     } else {
-                        ingredient.updateSegmentWhenIsNoCatched(
-                            canvasHeight,
-                            canvasWidth
-                        );
-                        ingredient.display();
+                        ingredientSeg.updateSegmentWhenIsNoCatched(canvasHeight, canvasWidth);
+                        ingredientSeg.display();
                     }
+
                 });
-            //}
+            }
         };
     };
-}
+};

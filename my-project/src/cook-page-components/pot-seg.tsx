@@ -1,27 +1,28 @@
-import p5 from "p5";
+import { P5Drawer } from "./drawer";
 
 const yPos = 0;
-export class Pot{
+
+export class Pot {
     x: number;
     y: number = 850;
     width: number = 200;
     height: number = 200;
-    image: p5.Image;
-    p: p5;
+    image: any;
+    drawer: P5Drawer;
 
-    constructor(x: number, image: p5.Image, p: p5) {
+    constructor(x: number, image: any, drawer: P5Drawer) {
         this.x = x;
         this.image = image;
-        this.p = p;
+        this.drawer = drawer;
     }
 
     dragSegment = (xin: number) => {
-        xin = this.p.constrain(xin, yPos, this.p.width - this.width);
+        xin = this.drawer.constrain(xin, yPos, this.width);
         this.x = xin;
         this.display();
     };
 
     display() {
-        this.p.image(this.image, this.x, this.y, this.width, this.height);
+        this.drawer.image(this.image, this.x, this.y, this.width, this.height);
     }
 }

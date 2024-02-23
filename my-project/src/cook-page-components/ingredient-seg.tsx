@@ -1,5 +1,5 @@
 import { Ingredient } from "../interfaces/ingredient-interface";
-import p5 from "p5";
+import { P5Drawer } from "./drawer";
 
 const reduceHightWith = 100;
 const reduceWidthWith = 20;
@@ -11,15 +11,15 @@ export class IngredientSegment {
     height: number = 100;
     speedY: number = 4;
     isVisible: boolean = true;
-    image: p5.Image;
-    p: p5;
+    image: any;
+    p: P5Drawer;
     ingredient?: Ingredient | null;
     
     constructor(
         x: number,
         y: number,
-        image: p5.Image,
-        p: p5,
+        image: any,
+        p: P5Drawer,
         ingredient: Ingredient,
     ) {
         this.x = x;
