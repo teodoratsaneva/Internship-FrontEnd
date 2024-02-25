@@ -3,7 +3,7 @@ export interface DrawingLibrary {
     createCanvas(width: number, height: number): any;
     clear(): void;
     width: number;
-    background(r: number, g: number, b: number, a: number): void;
+    background(colorValue: string, opacity?: number): void;
     image(img: any, x: number, y: number, width: number, height: number): void;
     constrain(value: number, min: number, max: number): number;
     setup(canvasWidth: number,

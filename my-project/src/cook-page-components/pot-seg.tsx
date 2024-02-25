@@ -4,14 +4,15 @@ const yPos = 0;
 
 export class Pot {
     x: number;
-    y: number = 850;
+    y: number;
     width: number = 200;
     height: number = 200;
     image: any;
     drawer: P5Drawer;
 
-    constructor(x: number, image: any, drawer: P5Drawer) {
+    constructor(x: number, y: number, image: any, drawer: P5Drawer) {
         this.x = x;
+        this.y = y;
         this.image = image;
         this.drawer = drawer;
     }

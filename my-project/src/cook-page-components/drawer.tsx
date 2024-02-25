@@ -36,9 +36,14 @@ export class P5Drawer implements DrawingLibrary {
         return this.p.constrain(xin, yPos, this.p.width - width);
     };
 
-    background = (customColor: number | string, opacity?: number) => {
-        this.p.background(customColor, customColor, customColor, opacity);
+    background = (colorValue: string, opacity?: number) => {
+        if (opacity !== undefined) {
+            this.p.background(colorValue, opacity);
+        } else {
+            this.p.background(colorValue);
+        }
     };
+    
 
     clear = () => {
         this.p.clear();

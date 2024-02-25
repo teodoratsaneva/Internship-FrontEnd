@@ -8,11 +8,12 @@ import p5 from "p5";
 
 const x = 0;
 const y = 0;
-const canvasHeight = 1035;
-const canvasWidth = 1330;
 const timeoutTimes = 2000;
 const customColor = 255;
 const opasity = 0;
+const potXMultiplier = 2;
+const potYMultiplier = 1.4;
+
 const invalidIngredientsImages = [
 	"./cute-cat.png",
 	"./cat.png"
@@ -39,11 +40,16 @@ const CookArena = (props: {
 		const cookArenaSketch = (p: p5) => {
     		const p5Drawer = new P5Drawer(p);
 
+			const arenaElement = document.querySelector(".arena") as HTMLElement;
+        	const canvasWidth = arenaElement.offsetWidth;
+        	const canvasHeight = arenaElement.offsetHeight;
+
 			const potImage = p5Drawer.loadImage("./pot.png");
-			const pot = new Pot(p5Drawer.width / 2, potImage, p5Drawer);
+			const pot = new Pot(canvasWidth, canvasHeight / potYMultiplier, potImage, p5Drawer);
 			const ingredientsSeg: IngredientSegment[] = [];
 
-			p5Drawer.setup( canvasWidth,
+			p5Drawer.setup( 
+				canvasWidth,
 				canvasHeight,
 				customColor,
 				opasity,
@@ -54,7 +60,8 @@ const CookArena = (props: {
 				invalidIngredientsImages,
 				x,
 				y,
-				invalidIngredient);
+				invalidIngredient
+			);
 
 			p5Drawer.draw(
 				pausedGame,
