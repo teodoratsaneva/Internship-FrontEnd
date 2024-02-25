@@ -177,7 +177,6 @@ export class P5Drawer implements DrawingLibrary {
                         ingredientSeg.updateSegmentWhenIsNoCatched(canvasHeight, canvasWidth);
                         ingredientSeg.display();
                     }
-
                 });
             }
         };

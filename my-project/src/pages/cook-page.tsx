@@ -123,17 +123,13 @@ const CookPage = () => {
 	return (
 		<div className="cook-page">
 			<div className="cook-page-container">
-				{/* <CookArena
+				<EnhancedCookArena
 					ingredients={recipe.ingredients}
 					onCatch={onCatch}
 					triggerDiscoMode={triggerDiscoMode}
 					onLifeLoss={onLifeLoss}
 					hearts={hearts}
-					ingredientsCount={ingredientsCount}
-				/> */}
-				<EnhancedCookArena
-					ingredients={recipe.ingredients}
-					triggerDiscoMode={triggerDiscoMode} />
+					ingredientsCount={ingredientsCount} />
 				<div className="recipe-side">
 					<RecipeComponent
 						recipe={recipe}
