@@ -21,13 +21,13 @@ const CookPage = () => {
 	const activeRecipeRaw = localStorage.getItem("activeRecipe");
 	const activeRecipe = activeRecipeRaw ? JSON.parse(activeRecipeRaw) : null;
 	const [open, setOpen] = useState(false);
-	const [hearts, setHearts] = useState(maxHearts);
 	const [recipe, setRecipe] = useState(activeRecipe);
 	const allIngredientsCount = activeRecipe.ingredients.reduce(
 		(total, ingredient) => total + parseInt(ingredient.quantity),
 		0
 	);
 	const ingredientsCount = useRef(allIngredientsCount);
+	const hearts = useRef(maxHearts);
 	const [isWonGame, setIsWonGame] = useState(true);
 
 	const handleOpenModal = useCallback(() => {
@@ -106,19 +106,13 @@ const CookPage = () => {
 		}
 	};
 
-	const onLifeLoss = () => {
-		setHearts((oldHearts) => {
-			return oldHearts - 1;
-		});
-	};
-
 	useEffect(() => {
-		if (hearts === 0) {
+		if (hearts.current === 0) {
 			handleOpenModal();
 			setIsWonGame(false);
 		}
 
-	}, [hearts]);
+	}, [hearts.current]);
 
 	return (
 		<div className="cook-page">
@@ -127,7 +121,6 @@ const CookPage = () => {
 					ingredients={recipe.ingredients}
 					onCatch={onCatch}
 					triggerDiscoMode={triggerDiscoMode}
-					onLifeLoss={onLifeLoss}
 					hearts={hearts}
 					ingredientsCount={ingredientsCount} />
 				<div className="recipe-side">
@@ -138,7 +131,7 @@ const CookPage = () => {
 						classNameIngContent="recipe-content-cook-page"
 					/>
 					<div className="heart-lives">
-						{[...Array(hearts)].map((_, index) => (
+						{[...Array(hearts.current)].map((_, index) => (
 							<FavoriteBorderRoundedIcon
 								key={index}
 								className="heart"

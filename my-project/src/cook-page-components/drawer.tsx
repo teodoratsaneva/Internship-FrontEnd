@@ -140,7 +140,6 @@ export class P5Drawer implements DrawingLibrary {
         discoColor,
         invalidIngredient,
         timeoutTimes,
-        onLifeLoss,
         hearts,
         ingredientsCount,
         onCatch,
@@ -160,7 +159,7 @@ export class P5Drawer implements DrawingLibrary {
                             discoColor.current = true;
                             setTimeout(() => { discoColor.current = false; }, timeoutTimes);
 
-                            onLifeLoss();
+                            hearts.current -= 1;
 
                             if (hearts.current === 0) {
                                 pausedGame.current = true;

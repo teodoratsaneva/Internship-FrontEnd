@@ -11,7 +11,6 @@ const y = 0;
 const timeoutTimes = 2000;
 const customColor = 255;
 const opasity = 0;
-const potXMultiplier = 2;
 const potYMultiplier = 1.4;
 
 const invalidIngredientsImages = [
@@ -28,11 +27,10 @@ const CookArena = (props: {
 	ingredients: Ingredient[],
 	onCatch,
 	triggerDiscoMode,
-	onLifeLoss,
 	hearts,
 	ingredientsCount
 }) => {
-	const { ingredients, onCatch, triggerDiscoMode, onLifeLoss, hearts, ingredientsCount } = props;
+	const { ingredients, onCatch, triggerDiscoMode, hearts, ingredientsCount } = props;
 	const discoColor = useRef(false);
 	const pausedGame = useRef(false);
 
@@ -71,7 +69,6 @@ const CookArena = (props: {
 				discoColor,
 				invalidIngredient,
 				timeoutTimes,
-				onLifeLoss,
 				hearts,
 				ingredientsCount,
 				onCatch,
