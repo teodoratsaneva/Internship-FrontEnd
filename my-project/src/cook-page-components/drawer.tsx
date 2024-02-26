@@ -38,7 +38,7 @@ export class P5Drawer implements DrawingLibrary {
 
     background = (colorValue: string, opacity?: number) => {
         if (opacity !== undefined) {
-            this.p.background(colorValue, opacity);
+            this.p.background(colorValue, colorValue, colorValue, opacity);
         } else {
             this.p.background(colorValue);
         }
@@ -149,15 +149,15 @@ export class P5Drawer implements DrawingLibrary {
         this.p.draw = () => {
             if (!pausedGame.current) {
                 this.clear();
-                triggerDiscoMode(discoColor.current, this);
+                triggerDiscoMode(this, discoColor);
 
                 pot.dragSegment(this.p.mouseX);
 
                 ingredientsSeg.forEach((ingredientSeg) => {
                     if (ingredientSeg.isVisible && ingredientSeg.collidesWith(pot)) {
                         if (ingredientSeg.ingredient === invalidIngredient && ingredientSeg.collidesWith(pot)) {
-                            discoColor.current = true;
-                            setTimeout(() => { discoColor.current = false; }, timeoutTimes);
+                            discoColor = true;
+                            setTimeout(() => { discoColor = false; }, timeoutTimes);
 
                             hearts.current -= 1;
 

@@ -2,19 +2,15 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import RecipeComponent from "../recipes-container/recipe-form";
 import CookArena from "../cook-page-components/cook-arena";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
-import _ from "lodash";
+import _, { max } from "lodash";
 import CompleteRecipeModal from "../cook-page-components/complete-recipe-modal";
 import { saveRecipeToLocalStorage } from "../utils/local-storage-save";
 import { Recipe } from "../interfaces/recipe-interface";
 import { v4 as uuidv4 } from "uuid";
-import { P5Drawer } from "../cook-page-components/drawer";
 import withDiscoModeArena from "../cook-page-components/with-disco-mode-arena";
 
 const maxHearts = 3;
-const customColor = 255;
-const opasity = 0;
-const numberForRandomColor = 16777215;
-const hexadecimalSystem = 16;
+
 const EnhancedCookArena = withDiscoModeArena(CookArena);
 
 const CookPage = () => {
@@ -43,7 +39,7 @@ const CookPage = () => {
 		const year = today.getFullYear();
 		const month = today.getMonth() + 1;
 		const date = today.getDate();
-		return `${month}/${date}/${year}`;
+		return `${date}/${month}/${year}`;
 	}
 
 	const handleCompleteRecipe = () => {
@@ -55,12 +51,6 @@ const CookPage = () => {
 		}
 		saveRecipeToLocalStorage(completedRecipe, "completedRecipes");
 		localStorage.removeItem("activeRecipe");
-	};
-
-	const setDefaultStyle = (p: P5Drawer) => {
-		p.background(customColor, opasity);
-		document.querySelector(".recipe-cook-page")?.setAttribute("style", `background-color: #242633; color: 'white;`);
-		document.querySelector(".recipe-side")?.setAttribute("style", `background-color: none;`);
 	};
 
 	const onCatch = (id, ingredientsCount) => {
@@ -86,33 +76,13 @@ const CookPage = () => {
 		});
 	};
 
-	const triggerDiscoMode = (discoColor, p: P5Drawer) => {
-		if (discoColor) {
-			const randomColor = () =>
-				"#" + Math.floor(Math.random() * numberForRandomColor).toString(hexadecimalSystem);
-
-			p.background(randomColor());
-			document
-				.querySelector(".recipe-cook-page")
-				?.setAttribute(
-					"style",
-					`background-color: ${randomColor()}; color: ${randomColor()};`
-				);
-			document
-				.querySelector(".recipe-side")
-				?.setAttribute("style", `background-color: ${randomColor()};`);
-		} else {
-			setDefaultStyle(p);
-		}
-	};
-
 	useEffect(() => {
 		if (hearts.current === 0) {
 			handleOpenModal();
 			setIsWonGame(false);
 		}
-
-	}, [hearts.current]);
+	}, [hearts.current]); // Тук поставете hearts.current като зависимост
+	
 
 	return (
 		<div className="cook-page">
@@ -120,7 +90,6 @@ const CookPage = () => {
 				<EnhancedCookArena
 					ingredients={recipe.ingredients}
 					onCatch={onCatch}
-					triggerDiscoMode={triggerDiscoMode}
 					hearts={hearts}
 					ingredientsCount={ingredientsCount} />
 				<div className="recipe-side">

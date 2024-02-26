@@ -11,12 +11,9 @@ const y = 0;
 const timeoutTimes = 2000;
 const customColor = 255;
 const opasity = 0;
-const potYMultiplier = 1.4;
+const potYMultiplier = 1.25;
 
-const invalidIngredientsImages = [
-	"./cute-cat.png",
-	"./cat.png"
-];
+const invalidIngredientsImages = ["./cute-cat.png", "./cat.png"];
 const invalidIngredient = {
 	id: "1",
 	quantity: "1",
@@ -24,29 +21,34 @@ const invalidIngredient = {
 };
 
 const CookArena = (props: {
+	triggerDiscoMode,
 	ingredients: Ingredient[],
 	onCatch,
-	triggerDiscoMode,
 	hearts,
 	ingredientsCount
 }) => {
-	const { ingredients, onCatch, triggerDiscoMode, hearts, ingredientsCount } = props;
+	const { triggerDiscoMode, ingredients, onCatch, hearts, ingredientsCount } = props;
 	const discoColor = useRef(false);
 	const pausedGame = useRef(false);
 
 	useEffect(() => {
 		const cookArenaSketch = (p: p5) => {
-    		const p5Drawer = new P5Drawer(p);
+			const p5Drawer = new P5Drawer(p);
 
 			const arenaElement = document.querySelector(".arena") as HTMLElement;
-        	const canvasWidth = arenaElement.offsetWidth;
-        	const canvasHeight = arenaElement.offsetHeight;
+			const canvasWidth = arenaElement.offsetWidth;
+			const canvasHeight = arenaElement.offsetHeight;
 
 			const potImage = p5Drawer.loadImage("./pot.png");
-			const pot = new Pot(canvasWidth, canvasHeight / potYMultiplier, potImage, p5Drawer);
+			const pot = new Pot(
+				canvasWidth,
+				canvasHeight / potYMultiplier,
+				potImage,
+				p5Drawer
+			);
 			const ingredientsSeg: IngredientSegment[] = [];
 
-			p5Drawer.setup( 
+			p5Drawer.setup(
 				canvasWidth,
 				canvasHeight,
 				customColor,
@@ -66,7 +68,7 @@ const CookArena = (props: {
 				triggerDiscoMode,
 				pot,
 				ingredientsSeg,
-				discoColor,
+				discoColor.current,
 				invalidIngredient,
 				timeoutTimes,
 				hearts,
@@ -77,11 +79,14 @@ const CookArena = (props: {
 			);
 		};
 
-		const p5Instance = new p5(cookArenaSketch, document.querySelector(".arena") as HTMLElement);
+		const p5Instance = new p5(
+			cookArenaSketch,
+			document.querySelector(".arena") as HTMLElement
+		);
 
 		return () => {
 			p5Instance.remove();
-		  };
+		};
 	}, []);
 
 	return <div className="arena"></div>;
