@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import RecipeComponent from "../recipes-container/recipe-form";
 import CookArena from "../cook-page-components/cook-arena";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
-import _, { max } from "lodash";
+import _ from "lodash";
 import CompleteRecipeModal from "../cook-page-components/complete-recipe-modal";
 import { saveRecipeToLocalStorage } from "../utils/local-storage-save";
 import { Recipe } from "../interfaces/recipe-interface";
@@ -81,7 +81,7 @@ const CookPage = () => {
 			handleOpenModal();
 			setIsWonGame(false);
 		}
-	}, [hearts.current]); // Тук поставете hearts.current като зависимост
+	}, [hearts.current]);
 	
 
 	return (
