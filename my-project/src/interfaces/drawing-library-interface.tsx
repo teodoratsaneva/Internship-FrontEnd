@@ -1,3 +1,7 @@
+import { IngredientSegment } from "../cook-page-components/ingredient-seg";
+import { Pot } from "../cook-page-components/pot-seg";
+import { Ingredient } from "./ingredient-interface";
+
 export interface DrawingLibrary {
     loadImage(path: string): any;
     createCanvas(width: number, height: number): any;
@@ -10,25 +14,26 @@ export interface DrawingLibrary {
         canvasHeight: number,
         customColor: number,
         opasity: number,
-        ingredients,
-        ingredientIconMap,
-        ingredientsSeg,
-        timeoutTimes,
-        invalidIngredientsImages,
-        x,
-        y,
-        invalidIngredient): void;
-    draw(pausedGame,
-        triggerDiscoMode,
-        pot,
-        ingredientsSeg,
-        discoColor,
-        invalidIngredient,
-        timeoutTimes,
-        onLifeLoss,
-        hearts,
-        ingredientsCount,
-        onCatch,
-        canvasHeight,
-        canvasWidth): void;
+        ingredients: Ingredient[],
+        ingredientIconMap: any,
+        ingredientsSeg: IngredientSegment[],
+        timeoutTimes: number,
+        invalidIngredientsImages: any,
+        x: number,
+        y: number,
+        invalidIngredient: Ingredient
+        ): void;
+    draw(pausedGame: { current: boolean },
+        triggerDiscoMode: (p: DrawingLibrary, discoColor: boolean) =>  void,
+        pot: Pot,
+        ingredientsSeg: IngredientSegment[],
+        discoColor: boolean,
+        invalidIngredient: Ingredient,
+        timeoutTimes: number,
+        hearts: { current: number },
+        ingredientsCount: { current: number },
+        onCatch: (id: string, count: number, p: DrawingLibrary) => void,
+        canvasHeight: number,
+        canvasWidth: number
+        ): void;
 }

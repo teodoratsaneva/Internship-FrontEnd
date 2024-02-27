@@ -5,6 +5,7 @@ import { ingredientIconMap } from "../utils/ingredients-icons";
 import { Ingredient } from "../interfaces/ingredient-interface";
 import { P5Drawer } from "./drawer";
 import p5 from "p5";
+import { CookArenaProps } from "../interfaces/cook-arena-interface";
 
 const x = 0;
 const y = 0;
@@ -14,20 +15,19 @@ const opasity = 0;
 const potYMultiplier = 1.25;
 
 const invalidIngredientsImages = ["./cute-cat.png", "./cat.png"];
-const invalidIngredient = {
+const invalidIngredient: Ingredient = {
 	id: "1",
-	quantity: "1",
+	quantity: 1,
 	title: "Cat",
 };
 
-const CookArena = (props: {
+const CookArena: React.FC<CookArenaProps> = ({
 	triggerDiscoMode,
-	ingredients: Ingredient[],
+	ingredients,
 	onCatch,
 	hearts,
 	ingredientsCount
 }) => {
-	const { triggerDiscoMode, ingredients, onCatch, hearts, ingredientsCount } = props;
 	const discoColor = useRef(false);
 	const pausedGame = useRef(false);
 

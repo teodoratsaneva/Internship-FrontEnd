@@ -1,6 +1,7 @@
 import Typography from "@mui/material/Typography";
+import { HeadingProps } from "../interfaces/heading-interface";
 
-const Heading = ({ variant, children }) => {
+const Heading: React.FC<HeadingProps> = ({ variant, children }) => {
     return (
         <Typography variant={variant}>
             {children}

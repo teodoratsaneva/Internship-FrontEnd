@@ -2,6 +2,7 @@ import p5 from "p5";
 import { DrawingLibrary } from "../interfaces/drawing-library-interface";
 import { Ingredient } from "../interfaces/ingredient-interface";
 import { IngredientSegment } from "./ingredient-seg";
+import { Pot } from "./pot-seg";
 
 export class P5Drawer implements DrawingLibrary {
     p: p5;
@@ -38,7 +39,7 @@ export class P5Drawer implements DrawingLibrary {
 
     background = (colorValue: string, opacity?: number) => {
         if (opacity !== undefined) {
-            this.p.background(colorValue, colorValue, colorValue, opacity);
+            this.p.background(parseInt(colorValue), parseInt(colorValue), parseInt(colorValue), opacity);
         } else {
             this.p.background(colorValue);
         }
@@ -62,14 +63,14 @@ export class P5Drawer implements DrawingLibrary {
         canvasHeight: number,
         customColor: number,
         opasity: number,
-        ingredients,
-        ingredientIconMap,
-        ingredientsSeg,
-        timeoutTimes,
-        invalidIngredientsImages,
-        x,
-        y,
-        invalidIngredient
+        ingredients: Ingredient[],
+        ingredientIconMap: any,
+        ingredientsSeg: IngredientSegment[],
+        timeoutTimes: number,
+        invalidIngredientsImages: any,
+        x: number,
+        y: number,
+        invalidIngredient: Ingredient
     ) {
         this.p.setup = () => {
             this.p.createCanvas(canvasWidth, canvasHeight);
@@ -133,18 +134,18 @@ export class P5Drawer implements DrawingLibrary {
     }
 
     draw = (
-        pausedGame,
-        triggerDiscoMode,
-        pot,
-        ingredientsSeg,
-        discoColor,
-        invalidIngredient,
-        timeoutTimes,
-        hearts,
-        ingredientsCount,
-        onCatch,
-        canvasHeight,
-        canvasWidth
+        pausedGame: { current: boolean },
+        triggerDiscoMode: (p: P5Drawer, discoColor: boolean) =>  void,
+        pot: Pot,
+        ingredientsSeg: IngredientSegment[],
+        discoColor: boolean,
+        invalidIngredient: Ingredient,
+        timeoutTimes: number,
+        hearts: { current: number },
+        ingredientsCount: { current: number },
+        onCatch: (id: string, count: number, p: P5Drawer) => void,
+        canvasHeight: number,
+        canvasWidth: number
     ) => {
         this.p.draw = () => {
             if (!pausedGame.current) {
@@ -185,4 +186,4 @@ export class P5Drawer implements DrawingLibrary {
             }
         };
     };
-};
+}

@@ -1,3 +1,4 @@
+import { CookArenaProps } from "../interfaces/cook-arena-interface";
 import { P5Drawer } from "./drawer";
 
 const customColor = 255;
@@ -5,8 +6,8 @@ const opasity = 0;
 const numberForRandomColor = 16777215;
 const hexadecimalSystem = 16;
 
-const withDiscoModeArena = (CookArena) => {
-  const WithDiscoModeArena = (props) => {
+const withDiscoModeArena = (CookArena: React.FC<CookArenaProps>) => {
+  const WithDiscoModeArena = (props: any) => {
 
     const setDefaultStyle = (p5Drawer: P5Drawer) => {
     p5Drawer.background(customColor.toString(), opasity);
@@ -14,7 +15,7 @@ const withDiscoModeArena = (CookArena) => {
 		document.querySelector(".recipe-side")?.setAttribute("style", `background-color: none;`);
 	};
 
-    const triggerDiscoMode = (p5Drawer: P5Drawer, discoColor) => {
+    const triggerDiscoMode = (p5Drawer: P5Drawer, discoColor: boolean) => {
       if (discoColor) {
         const randomColor = () =>
           "#" + Math.floor(Math.random() * numberForRandomColor).toString(hexadecimalSystem);

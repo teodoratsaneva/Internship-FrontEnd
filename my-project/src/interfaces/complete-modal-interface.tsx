@@ -1,6 +1,6 @@
 export interface completeRecipeModal{
-    open: void;
-    close: void;
+    open: boolean;
+    onClose: () => void;
     text: string;
     link: string;
     buttonText: string;

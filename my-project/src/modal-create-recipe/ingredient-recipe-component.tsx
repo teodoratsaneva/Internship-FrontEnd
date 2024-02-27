@@ -1,8 +1,8 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import TextField from "@mui/material/TextField";
 import Heading from "../common-components/heading-component";
 import { v4 as uuidv4 } from "uuid";
-import { TextButtonProps } from "../interfaces/text-button-props";
+import { TextButtonProps } from "../interfaces/text-button-interface";
 import Autocomplete from "@mui/material/Autocomplete";
 import sampleIngredients from "../utils/list-ingredinets";
 import AddIngredient from "../common-components/add-ingredient";
@@ -56,7 +56,7 @@ const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 }) => {
 	const autocompleteId = React.useRef(uuidv4());
 
-	const renderInput = (params) => (
+	const renderInput = (params: any) => (
 		<TextField
 			{...params}
 			label="Ingredients"
@@ -64,10 +64,21 @@ const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 		/>
 	);
 
+	const handleRemoveIngredient: MouseEventHandler<HTMLButtonElement> = (
+		event: any
+	) => {
+		if (onRemoveIngredient) {
+			onRemoveIngredient(event);
+		}
+	};
+
 	return (
 		<div style={{ marginLeft: parentId ? "20px" : "0" }}>
-      <div className="text-and-button-container">
-				<button className="remove-icon-button" onClick={onRemoveIngredient}>
+			<div className="text-and-button-container">
+				<button
+					className="remove-icon-button"
+					onClick={handleRemoveIngredient}
+				>
 					<img id="remove-icon" src="x-button.png" alt="removeIcon" />
 				</button>
 				<Heading variant="h5">Name</Heading>

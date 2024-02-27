@@ -1,10 +1,9 @@
-import React from "react";
 import RecipeComponent from "../recipes-container/recipe-form";
 import HeaderComponent from "../common-components/header-page-component";
 import Heading from "../common-components/heading-component";
 import { Recipe } from "../interfaces/recipe-interface";
 
-const CookbookPage: React.FC = () => {
+const CookbookPage = () => {
 	const storedRecipesRaw = localStorage.getItem("items");
 	const storedRecipes = storedRecipesRaw ? JSON.parse(storedRecipesRaw) : [];
 

@@ -1,6 +1,7 @@
 import Heading from "./heading-component";
+import { AddIngredientProps } from "../interfaces/add-ingredient-interface";
 
-const AddIngredient = ({onAddIngredient}) => {
+const AddIngredient: React.FC<AddIngredientProps> = ({onAddIngredient}) => {
 	return (
 		<>
 			<button className="plus-icon-button" onClick={onAddIngredient}>

@@ -25,7 +25,7 @@ const HomePage = () => {
 				>
 					Create a potion recipe
 				</Button>
-				<ModalFormComponent open={open} close={handleClose}/>
+				<ModalFormComponent open={open} onClose={handleClose}/>
 				<Link
 					className="MuiLink-button home-page-button"
 					to="/cookbook"

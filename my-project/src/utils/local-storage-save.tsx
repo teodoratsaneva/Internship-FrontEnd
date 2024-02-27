@@ -1,4 +1,6 @@
-export const saveRecipeToLocalStorage = (recipe, string) => {
+import { Recipe } from "../interfaces/recipe-interface";
+
+export const saveRecipeToLocalStorage = (recipe: Recipe, string: string) => {
 	if (string === "activeRecipe") {
 		localStorage.setItem(string, JSON.stringify(recipe));
 	} else {

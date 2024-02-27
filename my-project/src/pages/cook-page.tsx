@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useState, useCallback, useRef } from "react";
 import RecipeComponent from "../recipes-container/recipe-form";
 import CookArena from "../cook-page-components/cook-arena";

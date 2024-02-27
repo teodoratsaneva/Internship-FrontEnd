@@ -3,6 +3,7 @@ import {Box} from "@mui/material";
 import Heading from "../common-components/heading-component";
 import '../styles/main-pages-styles.less';
 import { Link } from "react-router-dom";
+import { completeRecipeModal } from "../interfaces/complete-modal-interface";
 
 const styleButton = {
 	border:"none",
@@ -26,9 +27,9 @@ const styleModal = {
 	borderRadius: "10px",
 };
 
-const CompleteRecipeModal = ({open, close, text, link, buttonText, handleCompleteRecipe}) => {
+const CompleteRecipeModal: React.FC<completeRecipeModal> = ({open, onClose, text, link, buttonText, handleCompleteRecipe}) => {
     return (
-		<Modal className="modal" open={open} onClose={close}>
+		<Modal className="modal" open={open} onClose={onClose}>
 			<Box sx={styleModal}>
 				<Heading variant={"h4"} children={text} />
 				<MuiLink

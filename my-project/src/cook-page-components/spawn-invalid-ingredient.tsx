@@ -1,17 +1,23 @@
-import p5 from "p5";
 import { IngredientSegment } from "./ingredient-seg";
+import { P5Drawer } from "./drawer";
+import { Ingredient } from "../interfaces/ingredient-interface";
 
 const invalidIngredientsImages = [
     "./cute-cat.png",
     "./cat.png"
 ];
-const invalidIngredient = {
+const invalidIngredient: Ingredient = {
 	id: "1",
-	quantity: "1",
+	quantity: 1,
 	title: "Cat",
 };
 
-const spawnInvalidIngredient = (p: p5, x, y, canvasWidth, ingredientsSeg) => {
+const spawnInvalidIngredient = (
+    p: P5Drawer, 
+    x: number,
+    y: number,
+    canvasWidth: number,
+    ingredientsSeg: IngredientSegment[]) => {
 
     const invalidSeg = new IngredientSegment(
         x,

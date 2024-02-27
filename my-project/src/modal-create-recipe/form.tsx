@@ -4,9 +4,11 @@ import IngredientRecipeComponent from "./ingredient-recipe-component";
 import FooterComponent from "../common-components/footer";
 import { FormControl } from "@mui/material";
 import { Ingredient } from "../interfaces/ingredient-interface";
-import { useMemo } from "react";
+import React, { useMemo } from "react";
+import { IngredientsComponentProps } from "../interfaces/ingredient-component-interface";
+import { FormComponentProps } from "../interfaces/form-component-interface";
 
-const IngredientsComponent = ({
+const IngredientsComponent: React.FC<IngredientsComponentProps> = ({
 	ingredients,
 	handleIngredientNameChange,
 	handleIngredientQuantityChange,
@@ -15,7 +17,7 @@ const IngredientsComponent = ({
 }) => {
 	return useMemo(() => {
 		const renderIngredients = (
-			ingredientList,
+			ingredientList: Ingredient[],
 			parentId?: string | null
 		) => (
 			<>
@@ -34,8 +36,8 @@ const IngredientsComponent = ({
 							handleAddIngredient(ingredient.id)
 						}
 						onRemoveIngredient={(e) => {
-							e.preventDefault()
-							handleRemoveIngredient(ingredient.id, parentId)
+							e.preventDefault();
+							handleRemoveIngredient(ingredient.id, parentId!);
 						}}
 					>
 						{ingredient.subIngredients &&
@@ -52,7 +54,7 @@ const IngredientsComponent = ({
 	}, [ingredients]);
 };
 
-const FormComponent = ({
+const FormComponent: React.FC<FormComponentProps> = ({
 	recipe,
 	setRecipe,
 	handleAddIngredient,
@@ -79,9 +81,7 @@ const FormComponent = ({
 				<IngredientsComponent
 					ingredients={recipe.ingredients}
 					handleIngredientNameChange={handleIngredientNameChange}
-					handleIngredientQuantityChange={
-						handleIngredientQuantityChange
-					}
+					handleIngredientQuantityChange={handleIngredientQuantityChange}
 					handleAddIngredient={handleAddIngredient}
 					handleRemoveIngredient={handleRemoveIngredient}
 				/>

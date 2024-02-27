@@ -5,6 +5,7 @@ import { Ingredient } from "../interfaces/ingredient-interface";
 import { Recipe } from "../interfaces/recipe-interface";
 import { saveRecipeToLocalStorage } from "../utils/local-storage-save";
 import FormComponent from "./form";
+import { ModalComponentProps } from "../interfaces/modal-component-interface";
 
 const styleModal = {
 	position: "absolute",
@@ -17,7 +18,7 @@ const styleModal = {
 	borderRadius: "1vh",
 };
 
-const ModalComponent = ({ open, close}) => {
+const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 	const [recipe, setRecipe] = useState<Recipe>({
 		id: uuidv4(),
 		title: "",
@@ -165,19 +166,17 @@ const ModalComponent = ({ open, close}) => {
 	const handleSaveAndExit = () => {
 		saveRecipeToLocalStorage(recipe, "items");
 
-		close();
+		onClose();
 	};
 
 	return (
 		<>
-			<Modal className="modal" open={open} onClose={close}>
+			<Modal className="modal" open={open} onClose={onClose}>
 					<FormComponent
 						recipe={recipe}
 						setRecipe={setRecipe}
 						handleAddIngredient={handleAddIngredient}
-						handleIngredientQuantityChange={
-							handleIngredientQuantityChange
-						}
+						handleIngredientQuantityChange={handleIngredientQuantityChange}
 						handleIngredientNameChange={handleIngredientNameChange}
 						handleSaveAndReset={handleSaveAndReset}
 						handleSaveAndExit={handleSaveAndExit}
