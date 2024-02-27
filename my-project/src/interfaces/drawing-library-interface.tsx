@@ -22,9 +22,9 @@ export interface DrawingLibrary {
         x: number,
         y: number,
         invalidIngredient: Ingredient
-        ): void;
+    ): void;
     draw(pausedGame: { current: boolean },
-        triggerDiscoMode: (p: DrawingLibrary, discoColor: boolean) =>  void,
+        triggerDiscoMode: (p: DrawingLibrary, discoColor: boolean) => void,
         pot: Pot,
         ingredientsSeg: IngredientSegment[],
         discoColor: boolean,
@@ -35,5 +35,5 @@ export interface DrawingLibrary {
         onCatch: (id: string, count: number, p: DrawingLibrary) => void,
         canvasHeight: number,
         canvasWidth: number
-        ): void;
+    ): void;
 }

@@ -17,7 +17,7 @@ const potYMultiplier = 1.25;
 const invalidIngredientsImages = ["./cute-cat.png", "./cat.png"];
 const invalidIngredient: Ingredient = {
 	id: "1",
-	quantity: 1,
+	amount: 1,
 	title: "Cat",
 };
 

@@ -31,15 +31,23 @@ test('renders correct title text', () => {
 });
 
 test('Opens modal when "Create a potion recipe" button is clicked and open modal correctly', () => {
+    const handleClick = jest.fn();
+
     const { getByText, getByTestId } = render(
         <BrowserRouter>
-        <HomePage />
-        </BrowserRouter>);
+            <HomePage />
+        </BrowserRouter>
+    );
+
     const createButton = getByText('Create a potion recipe');
     fireEvent.click(createButton);
+
+    expect(handleClick).toHaveBeenCalled();
+
     const modal = getByTestId('sentinelEnd');
     expect(modal).toBeInTheDocument();
-  });
+});
+
 
   test('redirects to "Cookbook" page', () => {
     render(

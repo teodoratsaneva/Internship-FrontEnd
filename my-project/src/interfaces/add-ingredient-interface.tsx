@@ -1,3 +1,3 @@
-export interface AddIngredientProps{
+export interface AddIngredientProps {
 	onAddIngredient: () => void;
 }

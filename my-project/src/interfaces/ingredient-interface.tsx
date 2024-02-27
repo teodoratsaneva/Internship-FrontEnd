@@ -1,6 +1,6 @@
 export interface Ingredient {
     id: string;
-    quantity: number;
+    amount: number;
     title: string;
     subIngredients?: Ingredient[];
 }

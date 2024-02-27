@@ -42,7 +42,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 		const newIngredient: Ingredient = {
 			id: uuidv4(),
 			title: selectedIngredientLabel || "",
-			quantity: 0,
+			amount: 0,
 			subIngredients: [],
 		};
 
@@ -127,18 +127,18 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 	};
 
 	const handleIngredientQuantityChange = (id: string, value: string) => {
-		const quantity = parseInt(value);
+		const amount = parseInt(value);
 
 		const updatedIngredients = recipe.ingredients.map((ingredient) => {
 			if (ingredient.id === id) {
-				return { ...ingredient, quantity: quantity };
+				return { ...ingredient, amount: amount };
 			} else if (ingredient.subIngredients) {
 				return {
 					...ingredient,
 					subIngredients: ingredient.subIngredients.map(
 						(subIngredient) => {
 							if (subIngredient.id === id) {
-								return { ...subIngredient, quantity: quantity };
+								return { ...subIngredient, amount: amount };
 							}
 
 							return subIngredient;

@@ -19,7 +19,7 @@ export class P5Drawer implements DrawingLibrary {
         return this.p.loadImage(path);
     }
 
-    image(
+    setImage(
         image: p5.Image,
         x: number,
         y: number,
@@ -29,7 +29,7 @@ export class P5Drawer implements DrawingLibrary {
         this.p.image(image, x, y, width, height);
     }
 
-    random(min: number, max: number): number {
+    getRandomNumber(min: number, max: number): number {
         return this.p.random(min, max);
     }
 
@@ -37,7 +37,7 @@ export class P5Drawer implements DrawingLibrary {
         return this.p.constrain(xin, yPos, this.p.width - width);
     };
 
-    background = (colorValue: string, opacity?: number) => {
+    setBackground = (colorValue: string, opacity?: number) => {
         if (opacity !== undefined) {
             this.p.background(parseInt(colorValue), parseInt(colorValue), parseInt(colorValue), opacity);
         } else {
@@ -81,7 +81,7 @@ export class P5Drawer implements DrawingLibrary {
             const spawnIngredient = () => {
                 if (countIngredients <= ingredients.length) {
                     const valueOfIng = ingredients[countIngredients].title;
-                    const ingredientQuantity = ingredients[countIngredients].quantity;
+                    const ingredientQuantity = ingredients[countIngredients].amount;
 
                     let countQuantity = 0;
 
@@ -118,7 +118,7 @@ export class P5Drawer implements DrawingLibrary {
                 const invalidSeg = new IngredientSegment(
                     x,
                     y,
-                    this.loadImage(invalidIngredientsImages[this.p.round(this.p.random(0, invalidIngredientsImages.length - 1))]),
+                    this.loadImage(invalidIngredientsImages[this.round(this.getRandomNumber(0, invalidIngredientsImages.length - 1))]),
                     this,
                     invalidIngredient
                 );
@@ -126,7 +126,7 @@ export class P5Drawer implements DrawingLibrary {
                 invalidSeg.reset(canvasWidth);
                 ingredientsSeg.push(invalidSeg);
 
-                setTimeout(spawnInvalidIngredient, this.p.random(4000, 5000));
+                setTimeout(spawnInvalidIngredient, this.getRandomNumber(4000, 5000));
             };
 
             spawnInvalidIngredient();
@@ -179,7 +179,7 @@ export class P5Drawer implements DrawingLibrary {
                             }
                         }
                     } else {
-                        ingredientSeg.updateSegmentWhenIsNoCatched(canvasHeight, canvasWidth);
+                        ingredientSeg.updatePosition(canvasHeight, canvasWidth);
                         ingredientSeg.display();
                     }
                 });

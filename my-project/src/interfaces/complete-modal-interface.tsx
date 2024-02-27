@@ -1,4 +1,4 @@
-export interface completeRecipeModal{
+export interface completeRecipeModal {
     open: boolean;
     onClose: () => void;
     text: string;

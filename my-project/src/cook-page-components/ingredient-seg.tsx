@@ -12,24 +12,24 @@ export class IngredientSegment {
     speedY: number = 4;
     isVisible: boolean = true;
     image: any;
-    p: P5Drawer;
+    drawer: P5Drawer;
     ingredient?: Ingredient | null;
     
     constructor(
         x: number,
         y: number,
         image: any,
-        p: P5Drawer,
+        drawer: P5Drawer,
         ingredient: Ingredient,
     ) {
         this.x = x;
         this.y = y;
         this.image = image;
-        this.p = p;
+        this.drawer = drawer;
         this.ingredient = ingredient;
     }
 
-    updateSegmentWhenIsNoCatched(canvasHeight: number, canvasWidth: number) {
+    updatePosition(canvasHeight: number, canvasWidth: number) {
         if (this.isVisible) {
             this.y += this.speedY;
             if (this.y > canvasHeight) {
@@ -40,7 +40,7 @@ export class IngredientSegment {
 
     display() {
         if (this.isVisible) {
-            this.p.image(
+            this.drawer.setImage(
                 this.image,
                 this.x,
                 this.y,
@@ -86,7 +86,7 @@ export class IngredientSegment {
     }
 
     reset(canvasWidth: number) {
-        this.x = this.p.random(0, canvasWidth - this.width);
+        this.x = this.drawer.getRandomNumber(0, canvasWidth - this.width);
         this.y = 0;
     }
 }

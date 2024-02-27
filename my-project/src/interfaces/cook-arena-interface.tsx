@@ -4,6 +4,6 @@ export interface CookArenaProps {
     triggerDiscoMode: () => void;
     ingredients: Ingredient[];
     onCatch: () => void;
-    hearts: {current: number};
-    ingredientsCount: {current: number};
+    hearts: { current: number };
+    ingredientsCount: { current: number };
 }

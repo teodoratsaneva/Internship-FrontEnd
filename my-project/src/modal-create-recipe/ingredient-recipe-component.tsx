@@ -73,7 +73,7 @@ const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 	};
 
 	return (
-		<div style={{ marginLeft: parentId ? "20px" : "0" }}>
+		<div className={` ${parentId ? 'margin-left-20' : ''}`}>
 			<div className="text-and-button-container">
 				<button
 					className="remove-icon-button"

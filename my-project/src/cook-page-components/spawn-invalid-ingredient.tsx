@@ -8,7 +8,7 @@ const invalidIngredientsImages = [
 ];
 const invalidIngredient: Ingredient = {
 	id: "1",
-	quantity: 1,
+	amount: 1,
 	title: "Cat",
 };
 

@@ -24,6 +24,6 @@ export class Pot {
     };
 
     display() {
-        this.drawer.image(this.image, this.x, this.y, this.width, this.height);
+        this.drawer.setImage(this.image, this.x, this.y, this.width, this.height);
     }
 }

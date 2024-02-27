@@ -10,7 +10,7 @@ const withDiscoModeArena = (CookArena: React.FC<CookArenaProps>) => {
   const WithDiscoModeArena = (props: any) => {
 
     const setDefaultStyle = (p5Drawer: P5Drawer) => {
-    p5Drawer.background(customColor.toString(), opasity);
+    p5Drawer.setBackground(customColor.toString(), opasity);
 		document.querySelector(".recipe-cook-page")?.setAttribute("style", `background-color: #242633; color: 'white;`);
 		document.querySelector(".recipe-side")?.setAttribute("style", `background-color: none;`);
 	};
@@ -20,7 +20,7 @@ const withDiscoModeArena = (CookArena: React.FC<CookArenaProps>) => {
         const randomColor = () =>
           "#" + Math.floor(Math.random() * numberForRandomColor).toString(hexadecimalSystem);
 
-        p5Drawer.background(randomColor());
+        p5Drawer.setBackground(randomColor());
         document.querySelector(".recipe-cook-page")?.setAttribute(
           "style",
           `background-color: ${randomColor()}; color: ${randomColor()};`
