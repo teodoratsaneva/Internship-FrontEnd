@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders correctly main page 1`] = `
+exports[`Renders correctly cookbook page 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
@@ -17,35 +17,16 @@ exports[`Renders correctly main page 1`] = `
         </a>
       </header>
       <div
-        class="home-page-container"
+        class="cookbook-page-container"
       >
         <h1
           class="MuiTypography-root MuiTypography-h1 css-o2w69a-MuiTypography-root"
         >
-          Welcome to Ilvermorny School of Cookcraft & Gourmet Sorcery
+          Welcome to the Cookbook. Here is a list of your potion recipes
         </h1>
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium home-page-button css-sghohy-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Create a potion recipe
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </button>
-        <a
-          class="MuiLink-button home-page-button"
-          href="/cookbook"
-        >
-          Go to Cookbook
-        </a>
-        <a
-          class="MuiLink-button home-page-button"
-          href="/tried-and-tested"
-        >
-          View Tried & Tested recipes
-        </a>
+        <div
+          class="recipes-container"
+        />
       </div>
     </div>
   </body>,
@@ -62,35 +43,16 @@ exports[`Renders correctly main page 1`] = `
       </a>
     </header>
     <div
-      class="home-page-container"
+      class="cookbook-page-container"
     >
       <h1
         class="MuiTypography-root MuiTypography-h1 css-o2w69a-MuiTypography-root"
       >
-        Welcome to Ilvermorny School of Cookcraft & Gourmet Sorcery
+        Welcome to the Cookbook. Here is a list of your potion recipes
       </h1>
-      <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium home-page-button css-sghohy-MuiButtonBase-root-MuiButton-root"
-        tabindex="0"
-        type="button"
-      >
-        Create a potion recipe
-        <span
-          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-        />
-      </button>
-      <a
-        class="MuiLink-button home-page-button"
-        href="/cookbook"
-      >
-        Go to Cookbook
-      </a>
-      <a
-        class="MuiLink-button home-page-button"
-        href="/tried-and-tested"
-      >
-        View Tried & Tested recipes
-      </a>
+      <div
+        class="recipes-container"
+      />
     </div>
   </div>,
   "debug": [Function],
@@ -147,7 +109,7 @@ exports[`Renders correctly main page 1`] = `
 }
 `;
 
-exports[`Renders correctly main pahe 1`] = `
+exports[`renders correctly cookbook page 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
@@ -164,35 +126,16 @@ exports[`Renders correctly main pahe 1`] = `
         </a>
       </header>
       <div
-        class="home-page-container"
+        class="cookbook-page-container"
       >
         <h1
           class="MuiTypography-root MuiTypography-h1 css-o2w69a-MuiTypography-root"
         >
-          Welcome to Ilvermorny School of Cookcraft & Gourmet Sorcery
+          Welcome to the Cookbook. Here is a list of your potion recipes
         </h1>
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium home-page-button css-sghohy-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Create a potion recipe
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </button>
-        <a
-          class="MuiLink-button home-page-button"
-          href="/cookbook"
-        >
-          Go to Cookbook
-        </a>
-        <a
-          class="MuiLink-button home-page-button"
-          href="/tried-and-tested"
-        >
-          View Tried & Tested recipes
-        </a>
+        <div
+          class="recipes-container"
+        />
       </div>
     </div>
   </body>,
@@ -209,35 +152,16 @@ exports[`Renders correctly main pahe 1`] = `
       </a>
     </header>
     <div
-      class="home-page-container"
+      class="cookbook-page-container"
     >
       <h1
         class="MuiTypography-root MuiTypography-h1 css-o2w69a-MuiTypography-root"
       >
-        Welcome to Ilvermorny School of Cookcraft & Gourmet Sorcery
+        Welcome to the Cookbook. Here is a list of your potion recipes
       </h1>
-      <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium home-page-button css-sghohy-MuiButtonBase-root-MuiButton-root"
-        tabindex="0"
-        type="button"
-      >
-        Create a potion recipe
-        <span
-          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-        />
-      </button>
-      <a
-        class="MuiLink-button home-page-button"
-        href="/cookbook"
-      >
-        Go to Cookbook
-      </a>
-      <a
-        class="MuiLink-button home-page-button"
-        href="/tried-and-tested"
-      >
-        View Tried & Tested recipes
-      </a>
+      <div
+        class="recipes-container"
+      />
     </div>
   </div>,
   "debug": [Function],
