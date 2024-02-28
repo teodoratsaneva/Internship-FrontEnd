@@ -81,12 +81,12 @@ export class P5Drawer implements DrawingLibrary {
             const spawnIngredient = () => {
                 if (countIngredients <= ingredients.length) {
                     const valueOfIng = ingredients[countIngredients].title;
-                    const ingredientQuantity = ingredients[countIngredients].amount;
+                    const ingredientAmount = ingredients[countIngredients].amount;
 
-                    let countQuantity = 0;
+                    let countAmount = 0;
 
                     const spawnSingleIngredient = () => {
-                        if (countQuantity < ingredientQuantity) {
+                        if (countAmount < ingredientAmount) {
                             const ingredient: Ingredient = ingredients[countIngredients];
 
                             const ingredientSeg = new IngredientSegment(
@@ -99,7 +99,7 @@ export class P5Drawer implements DrawingLibrary {
 
                             ingredientSeg.reset(canvasWidth);
                             ingredientsSeg.push(ingredientSeg);
-                            countQuantity++;
+                            countAmount++;
                             setTimeout(spawnSingleIngredient, timeoutTimes);
                         } else {
                             countIngredients++;
@@ -135,7 +135,7 @@ export class P5Drawer implements DrawingLibrary {
 
     draw = (
         pausedGame: { current: boolean },
-        triggerDiscoMode: (p: P5Drawer, discoColor: boolean) =>  void,
+        triggerDiscoMode: (drawer: P5Drawer, discoColor: boolean) =>  void,
         pot: Pot,
         ingredientsSeg: IngredientSegment[],
         discoColor: boolean,
@@ -143,7 +143,7 @@ export class P5Drawer implements DrawingLibrary {
         timeoutTimes: number,
         hearts: { current: number },
         ingredientsCount: { current: number },
-        onCatch: (id: string, count: number, p: P5Drawer) => void,
+        onCatch: (id: string, count: number, drawer: P5Drawer) => void,
         canvasHeight: number,
         canvasWidth: number
     ) => {

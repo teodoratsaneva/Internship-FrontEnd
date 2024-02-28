@@ -11,7 +11,7 @@ import { FormComponentProps } from "../interfaces/form-component-interface";
 const IngredientsComponent: React.FC<IngredientsComponentProps> = ({
 	ingredients,
 	handleIngredientNameChange,
-	handleIngredientQuantityChange,
+	handleIngredientAmountChange,
 	handleAddIngredient,
 	handleRemoveIngredient,
 }) => {
@@ -29,8 +29,8 @@ const IngredientsComponent: React.FC<IngredientsComponentProps> = ({
 						onChangeName={(value) =>
 							handleIngredientNameChange(ingredient.id, value)
 						}
-						onChangeQuantity={(value) =>
-							handleIngredientQuantityChange(ingredient.id, value)
+						onChangeAmount={(value) =>
+							handleIngredientAmountChange(ingredient.id, value)
 						}
 						onAddIngredient={() =>
 							handleAddIngredient(ingredient.id)
@@ -59,7 +59,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 	setRecipe,
 	handleAddIngredient,
 	handleIngredientNameChange,
-	handleIngredientQuantityChange,
+	handleIngredientAmountChange,
 	handleSaveAndReset,
 	handleSaveAndExit,
 	handleRemoveIngredient,
@@ -81,7 +81,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 				<IngredientsComponent
 					ingredients={recipe.ingredients}
 					handleIngredientNameChange={handleIngredientNameChange}
-					handleIngredientQuantityChange={handleIngredientQuantityChange}
+					handleIngredientAmountChange={handleIngredientAmountChange}
 					handleAddIngredient={handleAddIngredient}
 					handleRemoveIngredient={handleRemoveIngredient}
 				/>

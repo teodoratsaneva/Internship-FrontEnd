@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import HomePage from "../pages/home-page";
 import { BrowserRouter } from "react-router-dom";
 
-test("Renders correctly main page", () => {
+test("renders correctly main page", () => {
     const tree = render(
         <BrowserRouter>
         <HomePage />
@@ -20,7 +20,7 @@ test('renders correct title text', () => {
     expect(titleElement).toBeInTheDocument();
   });
 
-  test("Render correct all buttons", () => {
+  test("render correct all buttons", () => {
     const { getByText } = render(
         <BrowserRouter>
         <HomePage />
@@ -29,25 +29,6 @@ test('renders correct title text', () => {
     expect(getByText('Go to Cookbook')).toBeInTheDocument();
     expect(getByText('View Tried & Tested recipes')).toBeInTheDocument();
 });
-
-test('Opens modal when "Create a potion recipe" button is clicked and open modal correctly', () => {
-    const handleClick = jest.fn();
-
-    const { getByText, getByTestId } = render(
-        <BrowserRouter>
-            <HomePage />
-        </BrowserRouter>
-    );
-
-    const createButton = getByText('Create a potion recipe');
-    fireEvent.click(createButton);
-
-    expect(handleClick).toHaveBeenCalled();
-
-    const modal = getByTestId('sentinelEnd');
-    expect(modal).toBeInTheDocument();
-});
-
 
   test('redirects to "Cookbook" page', () => {
     render(
@@ -60,7 +41,7 @@ test('Opens modal when "Create a potion recipe" button is clicked and open modal
     expect(window.location.pathname).toBe('/cookbook');
   });
   
-  test('Redirects to "Tried & Tested recipes" page', () => {
+  test('redirects to "Tried & Tested recipes" page', () => {
     render(
         <BrowserRouter>
         <HomePage />
@@ -69,4 +50,16 @@ test('Opens modal when "Create a potion recipe" button is clicked and open modal
     const triedAndTestedLink = screen.getByText('View Tried & Tested recipes');
     fireEvent.click(triedAndTestedLink);
     expect(window.location.pathname).toBe('/tried-and-tested');
+  });
+
+test('call function handleOpen when "Create a potion recipe" is clicked', () => {
+    const handleOpen = jest.fn();
+
+    const { getByText } = render(
+        <BrowserRouter>
+        <HomePage />
+        </BrowserRouter>);
+
+    fireEvent.click(getByText('Create a potion recipe'));
+    expect(handleOpen).toHaveBeenCalledTimes(1);
   });

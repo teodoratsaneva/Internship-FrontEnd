@@ -126,7 +126,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 		});
 	};
 
-	const handleIngredientQuantityChange = (id: string, value: string) => {
+	const handleIngredientAmountChange = (id: string, value: string) => {
 		const amount = parseInt(value);
 
 		const updatedIngredients = recipe.ingredients.map((ingredient) => {
@@ -176,7 +176,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 						recipe={recipe}
 						setRecipe={setRecipe}
 						handleAddIngredient={handleAddIngredient}
-						handleIngredientQuantityChange={handleIngredientQuantityChange}
+						handleIngredientAmountChange={handleIngredientAmountChange}
 						handleIngredientNameChange={handleIngredientNameChange}
 						handleSaveAndReset={handleSaveAndReset}
 						handleSaveAndExit={handleSaveAndExit}

@@ -20,7 +20,7 @@ const styleAutocomplete = {
 	},
 };
 
-const styleTextFeldQuantity = {
+const styleTextFeldAmount = {
 	".MuiInputBase-input": {
 		color: "white",
 		width: "60px",
@@ -48,7 +48,7 @@ const styleTextFeldQuantity = {
 
 const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 	onChangeName,
-	onChangeQuantity,
+	onChangeAmount,
 	onAddIngredient,
 	onRemoveIngredient,
 	parentId,
@@ -73,7 +73,7 @@ const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 	};
 
 	return (
-		<div className={` ${parentId ? 'margin-left-20' : ''}`}>
+		<div className={` ${parentId ? "margin-left-20" : ""}`}>
 			<div className="text-and-button-container">
 				<button
 					className="remove-icon-button"
@@ -83,6 +83,9 @@ const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 				</button>
 				<Heading variant="h5">Name</Heading>
 				<Autocomplete
+					ListboxProps={{
+						sx: { height: 200 },
+					}}
 					disablePortal
 					id={autocompleteId.current}
 					className="combo-box-demo"
@@ -96,14 +99,18 @@ const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 				/>
 				<TextField
 					type="number"
-					sx={styleTextFeldQuantity}
-					label="Quantity"
+					sx={styleTextFeldAmount}
+					label="Amount"
+					inputProps={{ min: 1, max: 10 }}
 					onChange={(e) =>
-						onChangeQuantity && onChangeQuantity(e.target.value)
+						onChangeAmount && onChangeAmount(Math.round(parseFloat(e.target.value)).toString())
 					}
 				/>
 				{!parentId && (
-					<AddIngredient onAddIngredient={() => onAddIngredient()} />
+					<AddIngredient
+						onAddIngredient={() => onAddIngredient()}
+						descriptionButton="Add Sub Ingredient"
+					/>
 				)}
 			</div>
 			{children}

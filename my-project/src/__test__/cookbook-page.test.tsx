@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import CookbookPage from '../pages/cookbook-page';
 import { BrowserRouter } from "react-router-dom";
 
-test('Renders correctly cookbook page', () => {
+test('renders correctly cookbook page', () => {
     const tree = render(
         <BrowserRouter>
         <CookbookPage />
@@ -11,7 +11,7 @@ test('Renders correctly cookbook page', () => {
     expect(tree).toMatchSnapshot();
 });
 
-test('Renders correct title', () => {
+test('renders correct title', () => {
     const { getByText } = render(
         <BrowserRouter>
         <CookbookPage />

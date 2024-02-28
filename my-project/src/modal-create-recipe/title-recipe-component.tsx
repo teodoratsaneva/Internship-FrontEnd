@@ -45,7 +45,7 @@ const TitleRecipeComponent: React.FC<TextButtonProps> = ({
 					value={value}
 					onChange={(e) => onChangeName(e.target.value)}
 				/>
-				<AddIngredient onAddIngredient={onAddIngredient} />
+				<AddIngredient onAddIngredient={onAddIngredient} descriptionButton="Add Ingredient"/>
 			</div>
 			{children}
 		</div>

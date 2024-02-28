@@ -6,7 +6,7 @@ export interface FormComponentProps {
     setRecipe: (recipe: { id: string; title: string; ingredients: Ingredient[] }) => void;
     handleAddIngredient: () => void;
     handleIngredientNameChange: (id: string, name: string) => void;
-    handleIngredientQuantityChange: (id: string, value: string) => void;
+    handleIngredientAmountChange: (id: string, value: string) => void;
     handleSaveAndReset: () => void;
     handleSaveAndExit: () => void;
     handleRemoveIngredient: (id: string, parentId?: string | null) => void;

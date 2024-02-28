@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useEffect, useState, useCallback, useRef } from "react";
 import RecipeComponent from "../recipes-container/recipe-form";
 import CookArena from "../cook-page-components/cook-arena";
@@ -9,6 +8,7 @@ import { saveRecipeToLocalStorage } from "../utils/local-storage-save";
 import { Recipe } from "../interfaces/recipe-interface";
 import { v4 as uuidv4 } from "uuid";
 import withDiscoModeArena from "../cook-page-components/with-disco-mode-arena";
+import { Ingredient } from "../interfaces/ingredient-interface";
 
 const maxHearts = 3;
 
@@ -19,10 +19,7 @@ const CookPage = () => {
 	const activeRecipe = activeRecipeRaw ? JSON.parse(activeRecipeRaw) : null;
 	const [open, setOpen] = useState(false);
 	const [recipe, setRecipe] = useState(activeRecipe);
-	const allIngredientsCount = activeRecipe.ingredients.reduce(
-		(total, ingredient) => total + parseInt(ingredient.quantity),
-		0
-	);
+	const allIngredientsCount = activeRecipe.ingredients.reduce((total: number, ingredient: Ingredient) => total + ingredient.amount,0);
 	const ingredientsCount = useRef(allIngredientsCount);
 	const hearts = useRef(maxHearts);
 	const [isWonGame, setIsWonGame] = useState(true);
@@ -49,19 +46,20 @@ const CookPage = () => {
 			title: activeRecipe.title,
 			ingredients: activeRecipe.ingredients,
 			date: getDate()
-		}
+		};
+
 		saveRecipeToLocalStorage(completedRecipe, "completedRecipes");
 		localStorage.removeItem("activeRecipe");
 	};
 
-	const onCatch = (id, ingredientsCount) => {
-		setRecipe((prevRecipe) => {
+	const onCatch = (id: string, ingredientsCount: number) => {
+		setRecipe((prevRecipe: Recipe) => {
 			const updatedRecipe = _.cloneDeep(prevRecipe);
 			let i = 0;
 
 			while (i < updatedRecipe.ingredients.length) {
 				if (id === updatedRecipe.ingredients[i].id) {
-					updatedRecipe.ingredients[i].quantity -= 1;
+					updatedRecipe.ingredients[i].amount -= 1;
 
 					break;
 				}
@@ -113,7 +111,7 @@ const CookPage = () => {
 			{isWonGame ? (
 				<CompleteRecipeModal
 					open={open}
-					close={handleCloseModal}
+					onClose={handleCloseModal}
 					text={"Congratulations you won!"}
 					link={"/cookbook"}
 					buttonText={"Back to cookbook"}
@@ -122,7 +120,7 @@ const CookPage = () => {
 			) : (
 				<CompleteRecipeModal
 					open={open}
-					close={handleCloseModal}
+					onClose={handleCloseModal}
 					text={"Sorry! You lost!"}
 					link={"/"}
 					buttonText={"Back to home page"}
