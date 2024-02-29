@@ -47,6 +47,8 @@ const styleTextFeldAmount = {
 };
 
 const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
+	defaultValueTitle,
+	defaultValueAmount,
 	onChangeName,
 	onChangeAmount,
 	onAddIngredient,
@@ -90,6 +92,7 @@ const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 					id={autocompleteId.current}
 					className="combo-box-demo"
 					options={sampleIngredients}
+					value={sampleIngredients.find(option => option.label === defaultValueTitle)}
 					sx={styleAutocomplete}
 					getOptionLabel={(option) => option.label}
 					renderInput={renderInput}
@@ -101,6 +104,7 @@ const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 					type="number"
 					sx={styleTextFeldAmount}
 					label="Amount"
+					defaultValue={defaultValueAmount}
 					inputProps={{ min: 1, max: 10 }}
 					onChange={(e) =>
 						onChangeAmount && onChangeAmount(Math.round(parseFloat(e.target.value)).toString())

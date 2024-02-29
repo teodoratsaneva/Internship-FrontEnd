@@ -32,6 +32,7 @@ const styleTextFeld = {
 
 const TitleRecipeComponent: React.FC<TextButtonProps> = ({
 	value,
+	defaultValue,
 	onChangeName,
 	onAddIngredient,
 	children,
@@ -43,6 +44,7 @@ const TitleRecipeComponent: React.FC<TextButtonProps> = ({
 				<TextField
 					sx={styleTextFeld}
 					value={value}
+					defaultValue={defaultValue}
 					onChange={(e) => onChangeName(e.target.value)}
 				/>
 				<AddIngredient onAddIngredient={onAddIngredient} descriptionButton="Add Ingredient"/>

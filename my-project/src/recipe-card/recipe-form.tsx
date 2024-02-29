@@ -4,7 +4,7 @@ import FooterComponent from "../common-components/footer";
 import { RecipeComponentProps } from "../interfaces/recipe-component-interface";
 import { saveRecipeToLocalStorage } from "../utils/local-storage-save";
 
-const RecipeComponent: React.FC<RecipeComponentProps> = ({ recipe, hasButton, classNameCard, classNameIngContent}) => {
+const RecipeComponent: React.FC<RecipeComponentProps> = ({ recipe, hasButton, classNameCard, classNameIngContent, handleRemoveRecipe, handleEditRecipe}) => {
   const handleCookClick = () => {
     saveRecipeToLocalStorage(recipe, "activeRecipe");
   };
@@ -20,9 +20,19 @@ const RecipeComponent: React.FC<RecipeComponentProps> = ({ recipe, hasButton, cl
         buttons={[
           {
             className: "cook-button",
+            buttonText: "Edit Recipe",
+            onClick: handleEditRecipe,
+          },
+          {
+            className: "cook-button",
             buttonText: "Cook",
             onClick: handleCookClick,
             linkTo: "/cook"
+          },
+          {
+            className: "cook-button",
+            buttonText: "Remove Recipe",
+            onClick: () => handleRemoveRecipe(recipe.id),
           }
         ]}
       />

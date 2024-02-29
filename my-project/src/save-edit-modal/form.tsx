@@ -25,6 +25,8 @@ const IngredientsComponent: React.FC<IngredientsComponentProps> = ({
 					<IngredientRecipeComponent
 						key={ingredient.id}
 						value={ingredient.title}
+						defaultValueTitle={ingredient.title}
+						defaultValueAmount={ingredient.amount}
 						parentId={parentId}
 						onChangeName={(value) =>
 							handleIngredientNameChange(ingredient.id, value)
@@ -62,8 +64,10 @@ const FormComponent: React.FC<FormComponentProps> = ({
 	handleIngredientAmountChange,
 	handleSaveAndReset,
 	handleSaveAndExit,
+	handleSaveEditedRecipe,
 	handleRemoveIngredient,
-	style
+	isRecipeForUpdate,
+	style,
 }) => {
 	return (
 		<FormControl className="recipe-form" sx={style}>
@@ -71,6 +75,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 				<Heading variant="h4">Create new potion recipe</Heading>
 				<TitleRecipeComponent
 					value={recipe.title}
+					defaultValueTitle={recipe.title}
 					onChangeName={(value) =>
 						setRecipe({ ...recipe, title: value })
 					}
@@ -87,21 +92,41 @@ const FormComponent: React.FC<FormComponentProps> = ({
 				/>
 			</div>
 			<FooterComponent
-				buttons={[
-					{
-						className: "create-recipe-button",
-						buttonText: "Save and continue",
-						onClick: handleSaveAndExit
-					},
-					{
-						className: "create-recipe-button",
-						buttonText: "Save and reset",
-						onClick: handleSaveAndReset
-					}
-				]}
+				buttons={
+					isRecipeForUpdate
+						? [
+								{
+									className: "button-recipe-form",
+									buttonText: "Save edited recipe",
+									onClick: handleSaveEditedRecipe
+										? () =>
+												handleSaveEditedRecipe(
+													recipe
+												)
+										: () => {},
+								},
+						]
+						: [
+								{
+									className: "button-recipe-form",
+									buttonText: "Save and continue",
+									onClick: handleSaveAndExit
+										? () => handleSaveAndExit()
+										: () => {},
+								},
+								{
+									className: "button-recipe-form",
+									buttonText: "Save and reset",
+									onClick: handleSaveAndReset
+										? () => handleSaveAndReset()
+										: () => {},
+								},
+						]
+				}
 			/>
 		</FormControl>
 	);
 };
+
 
 export default FormComponent;

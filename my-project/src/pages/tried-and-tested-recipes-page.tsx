@@ -1,7 +1,7 @@
 import HeaderComponent from "../common-components/header-page-component";
 import Heading from "../common-components/heading-component";
 import { Recipe } from "../interfaces/recipe-interface";
-import RecipeComponent from "../recipes-container/recipe-form";
+import RecipeComponent from "../recipe-card/recipe-form";
 
 const TriedAndTestedRecipes = () => {
 	const completedRecipesRaw = localStorage.getItem("completedRecipes");

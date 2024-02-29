@@ -18,8 +18,8 @@ const styleModal = {
 	borderRadius: "1vh",
 };
 
-const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
-	const [recipe, setRecipe] = useState<Recipe>({
+const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose, recipe, isRecipeForUpdate, handleSaveEditedRecipe}) => {
+	const [editedRecipe, setRecipe] = useState<Recipe>(recipe ? recipe : {
 		id: uuidv4(),
 		title: "",
 		ingredients: [],
@@ -27,13 +27,13 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 
 	useEffect(() => {
 		if (!open) {
-			setRecipe({
+			setRecipe(recipe ? recipe : {
 				id: uuidv4(),
 				title: "",
 				ingredients: [],
 			});
 		}
-	}, [open]);
+	}, [open, recipe]);
 
 	const handleAddIngredient = (
 		parentId?: string | null,
@@ -47,7 +47,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 		};
 
 		if (parentId) {
-			const updatedIngredients = recipe.ingredients.map((ingredient) => {
+			const updatedIngredients = editedRecipe.ingredients.map((ingredient) => {
 				if (ingredient.id === parentId) {
 					return {
 						...ingredient,
@@ -62,19 +62,19 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 			});
 
 			setRecipe({
-				...recipe,
+				...editedRecipe,
 				ingredients: updatedIngredients,
 			});
 		} else {
 			setRecipe({
-				...recipe,
-				ingredients: [...recipe.ingredients, newIngredient],
+				...editedRecipe,
+				ingredients: [...editedRecipe.ingredients, newIngredient],
 			});
 		}
 	};
 
 	const handleIngredientNameChange = (id: string, value: string) => {
-		const updatedIngredients = recipe.ingredients.map((ingredient) => {
+		const updatedIngredients = editedRecipe.ingredients.map((ingredient) => {
 			if (ingredient.id === id) {
 				return { ...ingredient, title: value };
 			} else if (ingredient.subIngredients) {
@@ -95,14 +95,14 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 			return ingredient;
 		});
 
-		setRecipe({ ...recipe, ingredients: updatedIngredients });
+		setRecipe({ ...editedRecipe, ingredients: updatedIngredients });
 	};
 
 	const handleRemoveIngredient = (id: string, parentId?: string | null) => {
 		let updatedIngredients;
 
 		if (parentId) {
-			updatedIngredients = recipe.ingredients.map((ingredient) => {
+			updatedIngredients = editedRecipe.ingredients.map((ingredient) => {
 				if (ingredient.id === parentId || ingredient.subIngredients) {
 					return {
 						...ingredient,
@@ -115,13 +115,13 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 				return ingredient;
 			});
 		} else {
-			updatedIngredients = recipe.ingredients.filter(
+			updatedIngredients = editedRecipe.ingredients.filter(
 				(ingredient) => ingredient.id !== id
 			);
 		}
 
 		setRecipe({
-			...recipe,
+			...editedRecipe,
 			ingredients: updatedIngredients,
 		});
 	};
@@ -129,7 +129,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 	const handleIngredientAmountChange = (id: string, value: string) => {
 		const amount = parseInt(value);
 
-		const updatedIngredients = recipe.ingredients.map((ingredient) => {
+		const updatedIngredients = editedRecipe.ingredients.map((ingredient) => {
 			if (ingredient.id === id) {
 				return { ...ingredient, amount: amount };
 			} else if (ingredient.subIngredients) {
@@ -150,11 +150,11 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 			return ingredient;
 		});
 
-		setRecipe({ ...recipe, ingredients: updatedIngredients });
+		setRecipe({ ...editedRecipe, ingredients: updatedIngredients });
 	};
 
 	const handleSaveAndReset = () => {
-		saveRecipeToLocalStorage(recipe, "items");
+		saveRecipeToLocalStorage(editedRecipe, "items");
 
 		setRecipe({
 			id: uuidv4(),
@@ -164,7 +164,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 	};
 
 	const handleSaveAndExit = () => {
-		saveRecipeToLocalStorage(recipe, "items");
+		saveRecipeToLocalStorage(editedRecipe, "items");
 
 		onClose();
 	};
@@ -173,14 +173,16 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose}) => {
 		<>
 			<Modal className="modal" open={open} onClose={onClose}>
 					<FormComponent
-						recipe={recipe}
+						recipe={editedRecipe}
 						setRecipe={setRecipe}
 						handleAddIngredient={handleAddIngredient}
 						handleIngredientAmountChange={handleIngredientAmountChange}
 						handleIngredientNameChange={handleIngredientNameChange}
 						handleSaveAndReset={handleSaveAndReset}
 						handleSaveAndExit={handleSaveAndExit}
+						handleSaveEditedRecipe={handleSaveEditedRecipe}
 						handleRemoveIngredient={handleRemoveIngredient}
+						isRecipeForUpdate={isRecipeForUpdate}
 						style={styleModal}
 					/>
 			</Modal>

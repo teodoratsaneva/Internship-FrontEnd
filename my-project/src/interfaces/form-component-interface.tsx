@@ -7,8 +7,10 @@ export interface FormComponentProps {
     handleAddIngredient: () => void;
     handleIngredientNameChange: (id: string, name: string) => void;
     handleIngredientAmountChange: (id: string, value: string) => void;
-    handleSaveAndReset: () => void;
-    handleSaveAndExit: () => void;
+    handleSaveAndReset?: () => void;
+    handleSaveAndExit?: () => void;
+    handleSaveEditedRecipe?: (recipe: Recipe) => void;
     handleRemoveIngredient: (id: string, parentId?: string | null) => void;
     style?: any;
+    isRecipeForUpdate: boolean;
   }

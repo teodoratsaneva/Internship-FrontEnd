@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
-import RecipeComponent from "../recipes-container/recipe-form";
+import RecipeComponent from "../recipe-card/recipe-form";
 import CookArena from "../cook-page-components/cook-arena";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import _ from "lodash";

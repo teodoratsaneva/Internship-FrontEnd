@@ -1,14 +1,18 @@
 import { Recipe } from "../interfaces/recipe-interface";
 
-export const saveRecipeToLocalStorage = (recipe: Recipe, string: string) => {
-	if (string === "activeRecipe") {
-		localStorage.setItem(string, JSON.stringify(recipe));
+export const saveRecipeToLocalStorage = (recipe: Recipe, key: string) => {
+	if (key === "activeRecipe") {
+		localStorage.setItem(key, JSON.stringify(recipe));
 	} else {
-		const existingRecipes = localStorage.getItem(string);
+		const existingRecipes = localStorage.getItem(key);
 		const storedRecipes = existingRecipes
 			? JSON.parse(existingRecipes)
 			: [];
 		const updatedRecipes = [...storedRecipes, recipe];
-		localStorage.setItem(string, JSON.stringify(updatedRecipes));
+		localStorage.setItem(key, JSON.stringify(updatedRecipes));
 	}
 };
+
+export const saveRecipesToLocalStorage = (recipes: Recipe[], key: string) => {
+	localStorage.setItem(key, JSON.stringify(recipes));
+}
