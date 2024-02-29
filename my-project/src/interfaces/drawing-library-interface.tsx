@@ -7,8 +7,10 @@ export interface DrawingLibrary {
     createCanvas(width: number, height: number): any;
     clear(): void;
     width: number;
-    background(colorValue: string, opacity?: number): void;
-    image(img: any, x: number, y: number, width: number, height: number): void;
+    round (number: number): void;
+    setBackground(colorValue: string, opacity?: number): void;
+    setImage(img: any, x: number, y: number, width: number, height: number): void;
+    getRandomNumber(min: number, max: number): number;
     constrain(value: number, min: number, max: number): number;
     setup(canvasWidth: number,
         canvasHeight: number,

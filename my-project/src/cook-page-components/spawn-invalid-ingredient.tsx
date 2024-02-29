@@ -1,36 +1,32 @@
 import { IngredientSegment } from "./ingredient-seg";
-import { P5Drawer } from "./drawer";
 import { Ingredient } from "../interfaces/ingredient-interface";
+import { DrawingLibrary } from "../interfaces/drawing-library-interface";
 
 const invalidIngredientsImages = [
     "./cute-cat.png",
     "./cat.png"
 ];
-const invalidIngredient: Ingredient = {
-	id: "1",
-	amount: 1,
-	title: "Cat",
-};
 
 const spawnInvalidIngredient = (
-    p: P5Drawer, 
+    drawer: DrawingLibrary, 
     x: number,
     y: number,
     canvasWidth: number,
-    ingredientsSeg: IngredientSegment[]) => {
+    ingredientsSeg: IngredientSegment[],
+    invalidIngredient: Ingredient) => {
 
     const invalidSeg = new IngredientSegment(
         x,
         y,
-        p.loadImage(invalidIngredientsImages[p.round(p.random(0, invalidIngredientsImages.length - 1))]),
-        p,
+        drawer.loadImage(invalidIngredientsImages[Math.round(drawer.getRandomNumber(0, invalidIngredientsImages.length - 1))]),
+        drawer,
         invalidIngredient
     );
 
     invalidSeg.reset(canvasWidth);
     ingredientsSeg.push(invalidSeg);
 
-    setTimeout(spawnInvalidIngredient, p.random(2000, 3000));
+    setTimeout(spawnInvalidIngredient, drawer.getRandomNumber(2000, 3000));
 };
 
 export default spawnInvalidIngredient;

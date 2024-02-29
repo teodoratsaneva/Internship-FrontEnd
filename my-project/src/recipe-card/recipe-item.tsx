@@ -10,15 +10,8 @@ const IngredientComponent = (props: {
     return (
         <div key={ingredient.id}>
           <div className="ingredient-container">
-            { ingredient.amount === 0 ?
-                <Icon type="check" />
-             : icon ? (
-                icon
-            ) : (
-                <Icon type="brightness1" />
-            )}
-            {ingredient.amount !== 0 && 
-            <span className="ingredient-title">{ingredient.amount}</span>}
+            { ingredient.amount === 0 ? <Icon type="check" /> : icon ? (icon) : (<Icon type="brightness1" />)}
+            {ingredient.amount !== 0 && <span className="ingredient-title">{ingredient.amount}</span>}
             <span className="ingredient-title">{ingredient.title}</span>
             </div>
             {ingredient.subIngredients && (
@@ -28,9 +21,7 @@ const IngredientComponent = (props: {
                           <div className="ingredient-container">
                             <IngredientComponent
                                 ingredient={subIngredient}
-                                icon={
-                                    <Icon type="brightness2" />
-                                }
+                                icon={<Icon type="brightness2" />}
                             />
                             </div>
                         </li>

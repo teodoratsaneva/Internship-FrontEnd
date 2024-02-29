@@ -15,8 +15,8 @@ const withDiscoModeArena = (CookArena: React.FC<CookArenaProps>) => {
 		document.querySelector(".recipe-side")?.setAttribute("style", `background-color: none;`);
 	};
 
-    const triggerDiscoMode = (p5Drawer: P5Drawer, discoColor: boolean) => {
-      if (discoColor) {
+    const triggerDiscoMode = (p5Drawer: P5Drawer, isDiscoColor: boolean) => {
+      if (isDiscoColor) {
         const randomColor = () =>
           "#" + Math.floor(Math.random() * numberForRandomColor).toString(hexadecimalSystem);
 

@@ -9,6 +9,7 @@ import { Recipe } from "../interfaces/recipe-interface";
 import { v4 as uuidv4 } from "uuid";
 import withDiscoModeArena from "../cook-page-components/with-disco-mode-arena";
 import { Ingredient } from "../interfaces/ingredient-interface";
+import { getRecipeSaveDate } from "../utils/get-recipe-save-date";
 
 const maxHearts = 3;
 
@@ -32,27 +33,19 @@ const CookPage = () => {
 		setOpen(false);
 	}, []);
 
-	const getDate = () => {
-		const today = new Date();
-		const year = today.getFullYear();
-		const month = today.getMonth() + 1;
-		const date = today.getDate();
-		return `${date}/${month}/${year}`;
-	}
-
 	const handleCompleteRecipe = () => {
 		const completedRecipe: Recipe = {
 			id: uuidv4(),
 			title: activeRecipe.title,
 			ingredients: activeRecipe.ingredients,
-			date: getDate()
+			date: getRecipeSaveDate()
 		};
 
 		saveRecipeToLocalStorage(completedRecipe, "completedRecipes");
 		localStorage.removeItem("activeRecipe");
 	};
 
-	const onCatch = (id: string, ingredientsCount: number) => {
+	const onCatch = (id: string, caughtIngredientsCount: number) => {
 		setRecipe((prevRecipe: Recipe) => {
 			const updatedRecipe = _.cloneDeep(prevRecipe);
 			let i = 0;
@@ -67,7 +60,7 @@ const CookPage = () => {
 				i++;
 			}
 
-			if (ingredientsCount === 0) {
+			if (caughtIngredientsCount === 0) {
 				handleOpenModal();
 			}
 

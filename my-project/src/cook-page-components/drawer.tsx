@@ -142,7 +142,7 @@ export class P5Drawer implements DrawingLibrary {
         invalidIngredient: Ingredient,
         timeoutTimes: number,
         hearts: { current: number },
-        ingredientsCount: { current: number },
+        caughtIngredientsCount: { current: number },
         onCatch: (id: string, count: number, drawer: P5Drawer) => void,
         canvasHeight: number,
         canvasWidth: number
@@ -166,15 +166,15 @@ export class P5Drawer implements DrawingLibrary {
                                 pausedGame.current = true;
                             }
                         } else {
-                            ingredientsCount.current -= 1;
+                            caughtIngredientsCount.current -= 1;
 
                             onCatch(
                                 ingredientSeg.ingredient!.id,
-                                ingredientsCount.current,
+                                caughtIngredientsCount.current,
                                 this
                             );
 
-                            if (ingredientsCount.current === 0) {
+                            if (caughtIngredientsCount.current === 0) {
                                 pausedGame.current = true;
                             }
                         }

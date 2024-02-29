@@ -1,25 +1,27 @@
-import { P5Drawer } from "./drawer";
+import { DrawingLibrary } from "../interfaces/drawing-library-interface";
 
 const yPos = 0;
+const width = 200;
+const height = 200;
 
 export class Pot {
     x: number;
     y: number;
-    width: number = 200;
-    height: number = 200;
+    width: number = width;
+    height: number = height;
     image: any;
-    drawer: P5Drawer;
+    drawer: DrawingLibrary;
 
-    constructor(x: number, y: number, image: any, drawer: P5Drawer) {
+    constructor(x: number, y: number, image: any, drawer: DrawingLibrary) {
         this.x = x;
         this.y = y;
         this.image = image;
         this.drawer = drawer;
     }
 
-    dragSegment = (xin: number) => {
-        xin = this.drawer.constrain(xin, yPos, this.width);
-        this.x = xin;
+    dragSegment = (xPos: number) => {
+        xPos = this.drawer.constrain(xPos, yPos, this.width);
+        this.x = xPos;
         this.display();
     };
 

@@ -5,6 +5,6 @@ export interface RecipeComponentProps {
     hasButton: boolean,
     classNameCard: string,
     classNameIngContent: string,
-    handleRemoveRecipe: (id: string) => void,
-    handleEditRecipe: () => void
+    handleRemoveRecipe?: (id: string) => void,
+    handleEditRecipe?: () => void
 }

@@ -1,25 +1,28 @@
+import { DrawingLibrary } from "../interfaces/drawing-library-interface";
 import { Ingredient } from "../interfaces/ingredient-interface";
-import { P5Drawer } from "./drawer";
 
 const reduceHightWith = 100;
 const reduceWidthWith = 20;
+const width = 100;
+const height = 100;
+const speedY = 4;
 
 export class IngredientSegment {
     x: number;
     y: number;
-    width: number = 100;
-    height: number = 100;
-    speedY: number = 4;
+    width: number = width;
+    height: number = height;
+    speedY: number = speedY;
     isVisible: boolean = true;
     image: any;
-    drawer: P5Drawer;
+    drawer: DrawingLibrary;
     ingredient?: Ingredient | null;
     
     constructor(
         x: number,
         y: number,
         image: any,
-        drawer: P5Drawer,
+        drawer: DrawingLibrary,
         ingredient: Ingredient,
     ) {
         this.x = x;
