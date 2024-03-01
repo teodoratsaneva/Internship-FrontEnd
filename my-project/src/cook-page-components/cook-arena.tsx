@@ -24,11 +24,11 @@ const CookArena: React.FC<CookArenaProps> = ({
 	triggerDiscoMode,
 	ingredients,
 	onCatch,
-	hearts,
 	caughtIngredientsCount,
-	onLifeLoss
+	onLifeLoss,
+	isWonGame
 }) => {
-	const discoColor = useRef(false);
+	const isDiscoColor = useRef(false);
 	const pausedGame = useRef(false);
 
 	useEffect(() => {
@@ -67,15 +67,15 @@ const CookArena: React.FC<CookArenaProps> = ({
 				triggerDiscoMode,
 				pot,
 				ingredientsSeg,
-				discoColor.current,
+				isDiscoColor.current,
 				invalidIngredient,
 				timeoutTimes,
-				hearts,
 				caughtIngredientsCount,
 				onCatch,
 				canvasHeight,
 				canvasWidth,
-				onLifeLoss
+				onLifeLoss,
+				isWonGame
 			);
 		};
 

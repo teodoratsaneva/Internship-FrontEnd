@@ -21,9 +21,10 @@ const CookPage = () => {
     const [open, setOpen] = useState(false);
     const [recipe, setRecipe] = useState(activeRecipe);
     const allIngredientsCount = activeRecipe.ingredients.reduce((total: number, ingredient: Ingredient) => total + ingredient.amount, 0);
-    const [caughtIngredientsCount, setIngredientsCount] = useState(allIngredientsCount);
+    const caughtIngredientsCount = useRef(allIngredientsCount);
     const [hearts, setHearts] = useState(maxHearts);
-    const [isWonGame, setIsWonGame] = useState(true);
+    //const [isWonGame, setIsWonGame] = useState(true);
+    const isWonGame = useRef(true);
 
     const handleModal = useCallback((open: boolean) => {
         setOpen(open);
@@ -41,7 +42,7 @@ const CookPage = () => {
         localStorage.removeItem("activeRecipe");
     };
 
-    const onCatch = (id: string, caughtIngredientsCount: number, hearts: number) => {
+    const onCatch = (id: string, caughtIngredientsCount: number) => {
         setRecipe((prevRecipe: Recipe) => {
             const updatedRecipe = _.cloneDeep(prevRecipe);
             let i = 0;
@@ -55,9 +56,6 @@ const CookPage = () => {
 
                 i++;
             }
-
-			setIngredientsCount(caughtIngredientsCount);
-			setHearts(hearts);
 
             if (caughtIngredientsCount === 0) {
                 handleModal(true);
@@ -74,7 +72,7 @@ const CookPage = () => {
 	useEffect(() => {
 		if (hearts === 0) {
 			handleModal(true);
-			setIsWonGame(false);
+			isWonGame.current = false;
 		}
 	}, [hearts]);
 
@@ -86,7 +84,9 @@ const CookPage = () => {
                     onCatch={onCatch}
                     hearts={hearts}
                     caughtIngredientsCount={caughtIngredientsCount} 
-					onLifeLoss={onLifeLoss}/>
+					onLifeLoss={onLifeLoss}
+                    isWonGame={isWonGame}
+                    />
                 <div className="recipe-side">
                     <RecipeComponent
                         recipe={recipe}
@@ -104,7 +104,7 @@ const CookPage = () => {
                     </div>
                 </div>
             </div>
-            {isWonGame ? (
+            {isWonGame.current ? (
                 <CompleteRecipeModal
                     open={open}
                     onClose={() => handleModal(false)}
