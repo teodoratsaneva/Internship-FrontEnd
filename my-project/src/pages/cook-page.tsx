@@ -23,7 +23,6 @@ const CookPage = () => {
     const allIngredientsCount = activeRecipe.ingredients.reduce((total: number, ingredient: Ingredient) => total + ingredient.amount, 0);
     const caughtIngredientsCount = useRef(allIngredientsCount);
     const [hearts, setHearts] = useState(maxHearts);
-    //const [isWonGame, setIsWonGame] = useState(true);
     const isWonGame = useRef(true);
 
     const handleModal = useCallback((open: boolean) => {

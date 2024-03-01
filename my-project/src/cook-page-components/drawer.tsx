@@ -5,8 +5,27 @@ import { IngredientSegment } from "./ingredient-seg";
 import { Pot } from "./pot-seg";
 import { ingredientIconMap } from "../utils/ingredients-icons";
 
+const potYMultiplier = 1.25;
+
 export class P5Drawer implements DrawingLibrary {
 	p: p5;
+	arenaElement = document.querySelector(".arena") as HTMLElement;
+	canvasWidth = this.arenaElement.offsetWidth;
+	canvasHeight = this.arenaElement.offsetHeight;
+
+	potImage = this.loadImage("./pot.png");
+	pot = new Pot(
+		this.canvasWidth,
+		this.canvasHeight / potYMultiplier,
+		this.potImage,
+		p5Drawer
+	);
+	ingredientsSeg: IngredientSegment[] = [];
+	invalidIngredient: Ingredient = {
+		id: "1",
+		amount: 1,
+		title: "Cat",
+	};
 
 	constructor(p: p5) {
 		this.p = p;
@@ -64,20 +83,16 @@ export class P5Drawer implements DrawingLibrary {
 	}
 
 	setup(
-		canvasWidth: number,
-		canvasHeight: number,
 		customColor: number,
 		opasity: number,
 		ingredients: Ingredient[],
-		ingredientsSeg: IngredientSegment[],
 		timeoutTimes: number,
 		invalidIngredientsImages: any,
 		x: number,
-		y: number,
-		invalidIngredient: Ingredient
+		y: number
 	) {
 		this.p.setup = () => {
-			this.p.createCanvas(canvasWidth, canvasHeight);
+			this.p.createCanvas(this.canvasWidth, this.canvasHeight);
 			this.p.background(customColor, customColor, customColor, opasity);
 
 			let countIngredients = 0;
@@ -102,8 +117,8 @@ export class P5Drawer implements DrawingLibrary {
 								ingredient
 							);
 
-							ingredientSeg.reset(canvasWidth);
-							ingredientsSeg.push(ingredientSeg);
+							ingredientSeg.reset(this.canvasWidth);
+							this.ingredientsSeg.push(ingredientSeg);
 							countAmount++;
 							setTimeout(spawnSingleIngredient, timeoutTimes);
 						} else {
@@ -133,11 +148,11 @@ export class P5Drawer implements DrawingLibrary {
 						]
 					),
 					this,
-					invalidIngredient
+					this.invalidIngredient
 				);
 
-				invalidSeg.reset(canvasWidth);
-				ingredientsSeg.push(invalidSeg);
+				invalidSeg.reset(this.canvasWidth);
+				this.ingredientsSeg.push(invalidSeg);
 
 				setTimeout(
 					spawnInvalidIngredient,
@@ -152,15 +167,10 @@ export class P5Drawer implements DrawingLibrary {
 	draw = (
 		pausedGame: { current: boolean },
 		triggerDiscoMode: (drawer: P5Drawer, isDiscoColor: boolean) => void,
-		pot: Pot,
-		ingredientsSeg: IngredientSegment[],
 		isDiscoColor: boolean,
-		invalidIngredient: Ingredient,
         timeoutTimes: number,
 		caughtIngredientsCount: { current: number },
 		onCatch: (id: string, count: number) => void,
-		canvasHeight: number,
-		canvasWidth: number,
 		onLifeLoss: () => void,
         isWonGame: { current: boolean}
 	) => {
@@ -173,16 +183,16 @@ export class P5Drawer implements DrawingLibrary {
 				this.clear();
 				triggerDiscoMode(this, isDiscoColor);
 
-				pot.dragSegment(this.p.mouseX);
+				this.pot.dragSegment(this.p.mouseX);
 
-				ingredientsSeg.forEach((ingredientSeg) => {
+				this.ingredientsSeg.forEach((ingredientSeg) => {
 					if (
 						ingredientSeg.isVisible &&
-						ingredientSeg.collidesWith(pot)
+						ingredientSeg.collidesWith(this.pot)
 					) {
 						if (
-							ingredientSeg.ingredient === invalidIngredient &&
-							ingredientSeg.collidesWith(pot)
+							ingredientSeg.ingredient === this.invalidIngredient &&
+							ingredientSeg.collidesWith(this.pot)
 						) {
 							isDiscoColor = true;
 							setTimeout(() => {
@@ -203,7 +213,7 @@ export class P5Drawer implements DrawingLibrary {
 							}
 						}
 					} else {
-						ingredientSeg.updatePosition(canvasHeight, canvasWidth);
+						ingredientSeg.updatePosition(this.canvasHeight, this.canvasWidth);
 						ingredientSeg.display();
 					}
 				});
