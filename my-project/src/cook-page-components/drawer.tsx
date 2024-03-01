@@ -3,6 +3,7 @@ import { DrawingLibrary } from "../interfaces/drawing-library-interface";
 import { Ingredient } from "../interfaces/ingredient-interface";
 import { IngredientSegment } from "./ingredient-seg";
 import { Pot } from "./pot-seg";
+import { ingredientIconMap } from "../utils/ingredients-icons";
 
 export class P5Drawer implements DrawingLibrary {
     p: p5;
@@ -64,7 +65,6 @@ export class P5Drawer implements DrawingLibrary {
         customColor: number,
         opasity: number,
         ingredients: Ingredient[],
-        ingredientIconMap: any,
         ingredientsSeg: IngredientSegment[],
         timeoutTimes: number,
         invalidIngredientsImages: any,
@@ -80,8 +80,7 @@ export class P5Drawer implements DrawingLibrary {
 
             const spawnIngredient = () => {
                 if (countIngredients <= ingredients.length) {
-                    const valueOfIng = ingredients[countIngredients].title;
-                    const ingredientAmount = ingredients[countIngredients].amount;
+                    const { title: valueOfIng, amount: ingredientAmount } = ingredients[countIngredients];
 
                     let countAmount = 0;
 
@@ -141,11 +140,12 @@ export class P5Drawer implements DrawingLibrary {
         discoColor: boolean,
         invalidIngredient: Ingredient,
         timeoutTimes: number,
-        hearts: { current: number },
+        hearts: number,
         caughtIngredientsCount: { current: number },
-        onCatch: (id: string, count: number, drawer: P5Drawer) => void,
+        onCatch: (id: string, count: number) => void,
         canvasHeight: number,
-        canvasWidth: number
+        canvasWidth: number,
+        onLifeLoss: () => void
     ) => {
         this.p.draw = () => {
             if (!pausedGame.current) {
@@ -160,9 +160,10 @@ export class P5Drawer implements DrawingLibrary {
                             discoColor = true;
                             setTimeout(() => { discoColor = false; }, timeoutTimes);
 
-                            hearts.current -= 1;
+                            hearts -= 1;
+                            onLifeLoss(hearts);
 
-                            if (hearts.current === 0) {
+                            if (hearts === 0) {
                                 pausedGame.current = true;
                             }
                         } else {
@@ -170,8 +171,7 @@ export class P5Drawer implements DrawingLibrary {
 
                             onCatch(
                                 ingredientSeg.ingredient!.id,
-                                caughtIngredientsCount.current,
-                                this
+                                caughtIngredientsCount.current
                             );
 
                             if (caughtIngredientsCount.current === 0) {

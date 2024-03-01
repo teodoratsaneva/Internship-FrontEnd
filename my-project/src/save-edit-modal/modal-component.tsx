@@ -85,18 +85,18 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose, recipe, 
 							if (subIngredient.id === id) {
 								return { ...subIngredient, title: value };
 							}
-
 							return subIngredient;
 						}
 					),
 				};
 			}
-
 			return ingredient;
 		});
-
-		setRecipe({ ...editedRecipe, ingredients: updatedIngredients });
-	};
+	
+		const updatedRecipe = { ...editedRecipe, ingredients: updatedIngredients };
+		setRecipe(updatedRecipe);
+		return updatedRecipe;
+	};	
 
 	const handleRemoveIngredient = (id: string, parentId?: string | null) => {
 		let updatedIngredients;
@@ -126,9 +126,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose, recipe, 
 		});
 	};
 
-	const handleIngredientAmountChange = (id: string, value: string) => {
-		const amount = parseInt(value);
-
+	const handleIngredientAmountChange = (id: string, amount: number) => {
 		const updatedIngredients = editedRecipe.ingredients.map((ingredient) => {
 			if (ingredient.id === id) {
 				return { ...ingredient, amount: amount };
@@ -140,18 +138,19 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose, recipe, 
 							if (subIngredient.id === id) {
 								return { ...subIngredient, amount: amount };
 							}
-
 							return subIngredient;
 						}
 					),
 				};
 			}
-
 			return ingredient;
 		});
-
-		setRecipe({ ...editedRecipe, ingredients: updatedIngredients });
+	
+		const updatedRecipe = { ...editedRecipe, ingredients: updatedIngredients };
+		setRecipe(updatedRecipe);
+		return updatedRecipe;
 	};
+	
 
 	const handleSaveAndReset = () => {
 		saveRecipeToLocalStorage(editedRecipe, "items");
@@ -172,6 +171,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose, recipe, 
 	return (
 		<>
 			<Modal className="modal" open={open} onClose={onClose}>
+				<>
 					<FormComponent
 						recipe={editedRecipe}
 						setRecipe={setRecipe}
@@ -185,6 +185,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose, recipe, 
 						isRecipeForUpdate={isRecipeForUpdate}
 						style={styleModal}
 					/>
+				</>
 			</Modal>
 		</>
 	);

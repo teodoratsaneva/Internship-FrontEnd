@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Pot } from "./pot-seg";
 import { IngredientSegment } from "./ingredient-seg";
-import { ingredientIconMap } from "../utils/ingredients-icons";
 import { Ingredient } from "../interfaces/ingredient-interface";
 import { P5Drawer } from "./drawer";
 import p5 from "p5";
@@ -26,7 +25,8 @@ const CookArena: React.FC<CookArenaProps> = ({
 	ingredients,
 	onCatch,
 	hearts,
-	ingredientsCount
+	caughtIngredientsCount,
+	onLifeLoss
 }) => {
 	const discoColor = useRef(false);
 	const pausedGame = useRef(false);
@@ -54,7 +54,6 @@ const CookArena: React.FC<CookArenaProps> = ({
 				customColor,
 				opasity,
 				ingredients,
-				ingredientIconMap,
 				ingredientsSeg,
 				timeoutTimes,
 				invalidIngredientsImages,
@@ -72,10 +71,11 @@ const CookArena: React.FC<CookArenaProps> = ({
 				invalidIngredient,
 				timeoutTimes,
 				hearts,
-				ingredientsCount,
+				caughtIngredientsCount,
 				onCatch,
 				canvasHeight,
-				canvasWidth
+				canvasWidth,
+				onLifeLoss
 			);
 		};
 

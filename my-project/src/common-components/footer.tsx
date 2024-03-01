@@ -1,5 +1,4 @@
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
 import { Footer } from '../interfaces/footer-interface';
 
 const FooterComponent: React.FC<Footer> = ({buttons}) => {
@@ -9,8 +8,8 @@ const FooterComponent: React.FC<Footer> = ({buttons}) => {
         <Button
           key={index}
           className={button.className}
-          variant={button.linkTo ? "contained" : "text"}
-          component={button.linkTo ? Link : 'button'}
+          variant={button.variant}
+          component={button.component}
           to={button.linkTo}
           onClick={button.onClick}
         >

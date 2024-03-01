@@ -9,14 +9,38 @@ import AddIngredient from "../common-components/add-ingredient";
 
 const styleAutocomplete = {
 	width: "300px",
-	".css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
+	"&.focused": {
 		color: "white",
 	},
-	".css-1d3z3hw-MuiOutlinedInput-notchedOutline": {
+	"&.focused-visible": {
+		color: "white",
+	},
+	"&:hover": {
 		borderColor: "white",
 	},
-	".css-i4bv87-MuiSvgIcon-root": {
+	".MuiSvgIcon-root": {
 		color: "white",
+	},
+	"& .MuiInputLabel-root": {
+		color: "white"
+	},
+	"& .MuiInputLabel-root.Mui-focused": {
+		color: "white"
+	},
+	"& .MuiOutlinedInput-root": {
+		"& fieldset": {
+			borderColor: "white",
+			color: "white",
+		},
+		"&:hover fieldset": {
+			borderColor: "white",
+		},
+		"& .Mui-focused fieldset": {
+			borderColor: "white",
+		},
+		"input": {
+			color: "white"
+		}
 	},
 };
 
@@ -32,6 +56,9 @@ const styleTextFeldAmount = {
 	".MuiFormControl-root": {
 		borderColor: "white",
 	},
+	"& .MuiInputLabel-root.Mui-focused": {
+		color: "white"
+	},
 	"& .MuiOutlinedInput-root": {
 		"& fieldset": {
 			borderColor: "white",
@@ -40,9 +67,15 @@ const styleTextFeldAmount = {
 		"&:hover fieldset": {
 			borderColor: "white",
 		},
-		"&.Mui-focused fieldset": {
+		"&:focus-visible fieldset": {
 			borderColor: "white",
 		},
+		"& .Mui-focused fieldset": {
+			borderColor: "white",
+		},
+		"input": {
+			color: "white"
+		}
 	},
 };
 

@@ -5,5 +5,7 @@ export interface Footer {
             linkTo?: string;
             onClick: () => void;
             buttonText: React.ReactNode;
+            variant: any;
+            component: any;
         }>
 }

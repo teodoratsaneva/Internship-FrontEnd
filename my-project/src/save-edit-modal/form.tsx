@@ -69,6 +69,40 @@ const FormComponent: React.FC<FormComponentProps> = ({
 	isRecipeForUpdate,
 	style,
 }) => {
+	const buttons = isRecipeForUpdate
+		? [
+				{
+					className: "button-recipe-form",
+					buttonText: "Save edited recipe",
+					onClick: handleSaveEditedRecipe
+						? () => handleSaveEditedRecipe(recipe)
+						: () => {},
+					variant: "text",
+					component: "button",
+				},
+		]
+		: [
+				{
+					className: "button-recipe-form",
+					buttonText: "Save and continue",
+					onClick: handleSaveAndExit
+						? () => handleSaveAndExit()
+						: () => {},
+					variant: "text",
+					component: "button",
+				},
+				{
+					className: "button-recipe-form",
+					buttonText: "Save and reset",
+					onClick: handleSaveAndReset
+						? () => handleSaveAndReset()
+						: () => {},
+					variant: "text",
+					component: "button",
+				},
+		];
+
+
 	return (
 		<FormControl className="recipe-form" sx={style}>
 			<div className="header-form">
@@ -92,37 +126,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 				/>
 			</div>
 			<FooterComponent
-				buttons={
-					isRecipeForUpdate
-						? [
-								{
-									className: "button-recipe-form",
-									buttonText: "Save edited recipe",
-									onClick: handleSaveEditedRecipe
-										? () =>
-												handleSaveEditedRecipe(
-													recipe
-												)
-										: () => {},
-								},
-						]
-						: [
-								{
-									className: "button-recipe-form",
-									buttonText: "Save and continue",
-									onClick: handleSaveAndExit
-										? () => handleSaveAndExit()
-										: () => {},
-								},
-								{
-									className: "button-recipe-form",
-									buttonText: "Save and reset",
-									onClick: handleSaveAndReset
-										? () => handleSaveAndReset()
-										: () => {},
-								},
-						]
-				}
+				buttons={buttons}
 			/>
 		</FormControl>
 	);

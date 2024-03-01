@@ -17,7 +17,6 @@ export interface DrawingLibrary {
         customColor: number,
         opasity: number,
         ingredients: Ingredient[],
-        ingredientIconMap: any,
         ingredientsSeg: IngredientSegment[],
         timeoutTimes: number,
         invalidIngredientsImages: any,
@@ -34,7 +33,7 @@ export interface DrawingLibrary {
         timeoutTimes: number,
         hearts: { current: number },
         ingredientsCount: { current: number },
-        onCatch: (id: string, count: number, drawer: DrawingLibrary) => void,
+        onCatch: (id: string, count: number) => void,
         canvasHeight: number,
         canvasWidth: number
     ): void;
