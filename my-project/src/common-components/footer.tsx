@@ -1,10 +1,11 @@
 import Button from '@mui/material/Button';
 import { Footer } from '../interfaces/footer-interface';
+import React from 'react';
 
-const FooterComponent: React.FC<Footer> = ({buttons}) => {
+const FooterComponent: React.FC<Footer> = ({buttons, isFormEmpty}) => {
   return (
     <div className="footer">
-      {buttons.map((button, index: number) => (
+      {!isFormEmpty && buttons.map((button, index: number) => (
         <Button
           key={index}
           className={button.className}
@@ -20,4 +21,4 @@ const FooterComponent: React.FC<Footer> = ({buttons}) => {
   );
 };
 
-export default FooterComponent;
+export default React.memo(FooterComponent);

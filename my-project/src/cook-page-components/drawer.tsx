@@ -13,22 +13,30 @@ export class P5Drawer implements DrawingLibrary {
 	canvasWidth = this.arenaElement.offsetWidth;
 	canvasHeight = this.arenaElement.offsetHeight;
 
-	potImage = this.loadImage("./pot.png");
-	pot = new Pot(
-		this.canvasWidth,
-		this.canvasHeight / potYMultiplier,
-		this.potImage,
-		p5Drawer
-	);
-	ingredientsSeg: IngredientSegment[] = [];
-	invalidIngredient: Ingredient = {
-		id: "1",
-		amount: 1,
-		title: "Cat",
-	};
+	potImage: any;
+	pot: Pot;
+	ingredientsSeg: IngredientSegment[];
+	invalidIngredient: Ingredient;
 
 	constructor(p: p5) {
 		this.p = p;
+		this.potImage = this.loadImage("./pot.png");
+		this.setImage = this.setImage.bind(this);
+		this.constrain = this.constrain.bind(this);
+		this.pot = new Pot(
+			this.canvasWidth,
+			this.canvasHeight / potYMultiplier,
+			this.potImage,
+			this.constrain,
+			this.setImage
+		);
+		this.ingredientsSeg= [];
+		this.invalidIngredient = {
+			id: "1",
+			amount: 1,
+			title: "Cat",
+		};
+
 	}
 
 	createCanvas(width: number, height: number): void {
@@ -40,7 +48,7 @@ export class P5Drawer implements DrawingLibrary {
 	}
 
 	setImage(
-		image: p5.Image,
+		image: any,
 		x: number,
 		y: number,
 		width: number,

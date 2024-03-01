@@ -1,5 +1,5 @@
 import Modal from "@mui/material/Modal";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Ingredient } from "../interfaces/ingredient-interface";
 import { Recipe } from "../interfaces/recipe-interface";
@@ -19,6 +19,7 @@ const styleModal = {
 };
 
 const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose, recipe, isRecipeForUpdate, handleSaveEditedRecipe}) => {
+	
 	const [editedRecipe, setRecipe] = useState<Recipe>(recipe ? recipe : {
 		id: uuidv4(),
 		title: "",

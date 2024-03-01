@@ -8,4 +8,5 @@ export interface Footer {
             variant: any;
             component: any;
         }>
+    isFormEmpty: boolean;
 }

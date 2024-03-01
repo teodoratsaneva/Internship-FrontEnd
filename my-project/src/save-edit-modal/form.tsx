@@ -4,7 +4,7 @@ import IngredientRecipeComponent from "./ingredient-recipe-component";
 import FooterComponent from "../common-components/footer";
 import { FormControl } from "@mui/material";
 import { Ingredient } from "../interfaces/ingredient-interface";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { IngredientsComponentProps } from "../interfaces/ingredient-component-interface";
 import { FormComponentProps } from "../interfaces/form-component-interface";
 
@@ -69,39 +69,57 @@ const FormComponent: React.FC<FormComponentProps> = ({
 	isRecipeForUpdate,
 	style,
 }) => {
-	const buttons = isRecipeForUpdate
-		? [
-				{
-					className: "button-recipe-form",
-					buttonText: "Save edited recipe",
-					onClick: handleSaveEditedRecipe
-						? () => handleSaveEditedRecipe(recipe)
-						: () => {},
-					variant: "text",
-					component: "button",
-				},
-		]
-		: [
-				{
-					className: "button-recipe-form",
-					buttonText: "Save and continue",
-					onClick: handleSaveAndExit
-						? () => handleSaveAndExit()
-						: () => {},
-					variant: "text",
-					component: "button",
-				},
-				{
-					className: "button-recipe-form",
-					buttonText: "Save and reset",
-					onClick: handleSaveAndReset
-						? () => handleSaveAndReset()
-						: () => {},
-					variant: "text",
-					component: "button",
-				},
-		];
+	const [isFormEmpty, setIsFormEmpty] = useState(true);
 
+	const buttons = useMemo(() => {
+		return isRecipeForUpdate
+			? [
+					{
+						className: "button-recipe-form",
+						buttonText: "Save edited recipe",
+						onClick: () =>
+							handleSaveEditedRecipe &&
+							handleSaveEditedRecipe(recipe),
+						variant: "text",
+						component: "button",
+					},
+			  ]
+			: [
+					{
+						className: "button-recipe-form",
+						buttonText: "Save and continue",
+						onClick: () => handleSaveAndExit && handleSaveAndExit(),
+						variant: "text",
+						component: "button",
+					},
+					{
+						className: "button-recipe-form",
+						buttonText: "Save and reset",
+						onClick: () =>
+							handleSaveAndReset && handleSaveAndReset(),
+						variant: "text",
+						component: "button",
+					},
+			];
+	}, [
+		isRecipeForUpdate,
+		handleSaveEditedRecipe,
+		handleSaveAndExit,
+		handleSaveAndReset,
+		recipe,
+	]);
+
+	useEffect(() => {
+		const isAtLeastOneIngredientCreated = recipe.ingredients.length > 0;
+		const allFieldsEmpty = !isAtLeastOneIngredientCreated ||
+			recipe.title.trim() === "" ||
+			recipe.ingredients.some(
+				(ingredient) =>
+					ingredient.title.trim() === "" || ingredient.amount === 0
+			);
+
+		setIsFormEmpty(allFieldsEmpty);
+	}, [recipe]);
 
 	return (
 		<FormControl className="recipe-form" sx={style}>
@@ -125,12 +143,9 @@ const FormComponent: React.FC<FormComponentProps> = ({
 					handleRemoveIngredient={handleRemoveIngredient}
 				/>
 			</div>
-			<FooterComponent
-				buttons={buttons}
-			/>
+			<FooterComponent buttons={buttons} isFormEmpty={isFormEmpty} />
 		</FormControl>
 	);
 };
 
-
-export default FormComponent;
+export default React.memo(FormComponent);

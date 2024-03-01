@@ -1,15 +1,18 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import HeaderComponent from "../common-components/header-page-component";
 import Button from "@mui/material/Button";
 import Heading from "../common-components/heading-component";
 import ModalFormComponent from "../save-edit-modal/modal-component";
 
+
+
 const HomePage = () => {
 	const [open, setOpen] = useState(false);
 
 	const handleOpen = useCallback(() => {setOpen(true)}, []);
 	const handleClose = useCallback(() => {setOpen(false)}, []);
+	const handleSaveEditedRecipe = useCallback(() => {}, []);
 
 	return (
 		<>
@@ -25,7 +28,7 @@ const HomePage = () => {
 				>
 					Create a potion recipe
 				</Button>
-				<ModalFormComponent open={open} onClose={handleClose} isRecipeForUpdate={false}/>
+				<ModalFormComponent open={open} onClose={handleClose} isRecipeForUpdate={false} handleSaveEditedRecipe={handleSaveEditedRecipe}/>
 				<Link
 					className="MuiLink-button home-page-button"
 					to="/cookbook"
