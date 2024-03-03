@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <title>TENKU</title>
+    <link rel="stylesheet" href="Style.css">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="icons">
+            <img src="./tik-tok.png" alt="tik-tok" class = "iconsImage">
+            <img src="./facebook-logo.png" alt="facebook-logo" class = "iconsImage">
+            <img src="social.png" alt="social" class = "iconsImage">
+            <img src="./youtube.png" alt="youtube" class = "iconsImage">
+        </div>
+        <h1 class="title">TENKU</h1>
+        <div class="search-container">
+            <form>
+              <input type="text" placeholder="Search.." name="search">
+              <button type="submit" style = "color: white; size:10px"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <ul class="navigation">
+        <li><a href="">Fashion</a></li>
+        <li><a href="">Food</a></li>
+        <li><a href="">Shopping</a></li>
+        <li><a href="">Travel</a></li>
+        <li><a href="">Event</a></li>
+        <li><button id="toggle-button">More info</button></li>
+        <li class="item hidden-item hidden"><a href="">Contact</a></li>
+        <li class="item hidden-item hidden"><a href="">Primary Policy</a></li>
+        <li class="item hidden-item hidden"><a href="">Terms & Conflicts</a></li>
+    </ul>
+
+<script>
+    const button = document.getElementById('toggle-button');
+    let isHidden = true;
+
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        button.textContent = isHidden
+        ? 'Show less'
+        : 'More info';
+        isHidden = !isHidden;
+
+        const hiddenItems = Array.from(document.getElementsByClassName('hidden-item'));
+        hiddenItems.forEach(item => item.classList.toggle('hidden'));
+        });
+</script>
+
+    <h3>LATEST</h3>
+    <div class="latestItemscontainer">
+        <div class="imageAndTextMain">
+            <img src="./image1.png" alt="img1" class="main-article-image">
+            <p>Event</p>
+            <p class="paragrafTitle">Lorem ipsum dolor sit amet
+                consectetur adipisicing
+                elit.</p>
+            <p>Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Incidunt eius fugit neque nesciunt voluptatem quasi aliquam debitis mollitia
+                eum? Sunt molestiae laudantium iste quam quos aut suscipit reiciendis rem qui. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Facilis voluptatem reprehenderit officia distinctio veritatis numquam vel eum
+                amet asperiores totam sint, inventore debitis neque nam minus corporis cum excepturi temporibus?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus optio expedita consequatur aperiam
+                non officia, eos, sapiente eaque numquam, ea fuga quia quisquam in perferendis odio recusandae neque
+                suscipit mollitia!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse beatae odio tempora dolorum! Eum ea ex itaque
+                modi a labore ut facilis placeat, beatae aut alias, deleniti culpa, voluptatibus veniam.</p>
+        </div>
+
+        <div class="container">
+            <ul>
+                <li>
+                    <div class="imageAndText">
+                        <img src="./image2.png" alt="img1">
+                        <p class="paragrafEvent">Event</p>
+                        <p class="paragrafTitle">Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit.</p>
+                        <p>Lorem
+                            ipsum dolor sit amet
+                            consectetur adipisicing elit. Incidunt eius fugit neque nesciunt voluptatem quasi aliquam debitis
+                            mollitia eum? Sunt molestiae laudantium iste quam quos aut suscipit reiciendis rem qui.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="imageAndText">
+                        <img src="./image3.png" alt="img1">
+                        <p class="paragrafEvent">Event</p>
+                        <p class="paragrafTitle">Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit.</p>
+                        <p>Lorem
+                            ipsum dolor sit amet
+                            consectetur adipisicing elit. Incidunt eius fugit neque nesciunt voluptatem quasi aliquam debitis
+                            mollitia eum? Sunt molestiae laudantium iste quam quos aut suscipit reiciendis rem qui.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="imageAndText">
+                        <img src="./image4.png" alt="img1">
+                        <p class="paragrafEvent">Event</p>
+                        <p class="paragrafTitle">Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit.</p>
+                        <p>Lorem
+                            ipsum dolor sit amet
+                            consectetur adipisicing elit. Incidunt eius fugit neque nesciunt voluptatem quasi aliquam debitis
+                            mollitia eum? Sunt molestiae laudantium iste quam quos aut suscipit reiciendis rem qui.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="imageAndText">
+                        <img src="./image5.png" alt="img1">
+                        <p class="paragrafEvent">Event</p>
+                        <p class="paragrafTitle">Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit.</p>
+                        <p>Lorem
+                            ipsum dolor sit amet
+                            consectetur adipisicing elit. Incidunt eius fugit neque nesciunt voluptatem quasi aliquam debitis
+                            mollitia eum? Sunt molestiae laudantium iste quam quos aut suscipit reiciendis rem qui.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <h3>TRENDING</h3>
+    <div class="TrendingItemtsContainer">
+        <div class="imageAndText2">
+            <img src="./image2.png" alt="img1" width="100%" height="50%">
+            <p class="paragrafEvent">Event</p>
+            <p class="paragrafTitle">Lorem ipsum dolor sit amet consectetur
+                adipisicing elit.</p>
+            <p>Lorem
+                ipsum dolor sit amet
+                consectetur adipisicing elit. Incidunt eius fugit neque nesciunt voluptatem quasi aliquam debitis
+                mollitia eum? Sunt molestiae laudantium iste quam quos aut suscipit reiciendis rem qui.</p>
+        </div>
+
+        <div class="imageAndText2">
+            <img src="./image3.png" alt="img1" width="100%" height="50%">
+            <p class="paragrafEvent">Event</p>
+            <p class="paragrafTitle">Lorem ipsum dolor sit amet consectetur
+                adipisicing elit.</p>
+            <p>Lorem
+                ipsum dolor sit amet
+                consectetur adipisicing elit. Incidunt eius fugit neque nesciunt voluptatem quasi aliquam debitis
+                mollitia eum? Sunt molestiae laudantium iste quam quos aut suscipit reiciendis rem qui.</p>
+        </div>
+
+        <div class="imageAndText2">
+            <img src="./image4.png" alt="img1" width="100%" height="50%">
+            <p class="paragrafEvent">Event</p>
+            <p class="paragrafTitle">Lorem ipsum dolor sit amet consectetur
+                adipisicing elit.</p>
+            <p>Lorem
+                ipsum dolor sit amet
+                consectetur adipisicing elit. Incidunt eius fugit neque nesciunt voluptatem quasi aliquam debitis
+                mollitia eum? Sunt molestiae laudantium iste quam quos aut suscipit reiciendis rem qui.</p>
+        </div>
+
+        <div class="imageAndText2">
+            <img src="./image5.png" alt="img1" width="100%" height="50%">
+            <p class="paragrafEvent"">Event</p>
+            <p class="paragrafTitle">Lorem ipsum dolor sit amet consectetur
+                adipisicing elit.</p>
+            <p>Lorem
+                ipsum dolor sit amet
+                consectetur adipisicing elit. Incidunt eius fugit neque nesciunt voluptatem quasi aliquam debitis
+                mollitia eum? Sunt molestiae laudantium iste quam quos aut suscipit reiciendis rem qui.</p>
+        </div>
+    </div>
+
+    <h3>ARCHIVES</h3>
+    <p style="  margin-right: 30px; margin-left: 30px; font-size: 70px; font-family: Serif, serif; margin-top: 0%;">
+        Health. Fashion. Food. Shopping. Events. Fiction. Travel. Japan. Education.</p>
+
+    <div class="bottom-container">
+        <p class = "paragraf">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus ratione ut dignissimos odit magnam illo corporis eum sequi repellendus 
+            laudantium quis pariatur cum atque vel, minima in maiores accusamus. At.  Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+        <p class="subscribe">Subscribe to out newsletters. We'll kepp you in the loop.</p>
+
+            <div class="email-container">
+                <form action="/action_page.php">
+                  <input type="text" placeholder="Enter your email" name="email">
+                  <button type="submit" style = "color: white; size:10px"><i class="fas fa-arrow-right"></i></button>
+                </form>
+              </div>
+
+        <div class="icons" style="display: flex; justify-content: center; ">
+            <img src="./tik-tok.png" alt="tik-tok" class = "bottomIcons">
+            <img src="./facebook-logo.png" alt="facebook-logo" class = "bottomIcons">
+            <img src="social.png" alt="social" class = "bottomIcons">
+            <img src="./youtube.png" alt="youtube" class = "bottomIcons">
+        </div>
+
+        <ul class="bottom-navigation">
+            <li><a href="">Contact</a></li>
+            <li><a href="">Primary Policy</a></li>
+            <li><a href="">Terms & Conflicts</a></li>
+        </ul>
+    </div>
+
+    <div class = "bottom" >
+        <p style = "font-size: 20px; color:white; margin-top: 2%; margin-left: 47%; margin-bottom: 2%;">Blog at Word.</p>
+    </div>
+</body>
+
+</html>
