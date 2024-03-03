@@ -8,8 +8,8 @@ import { saveRecipeToLocalStorage } from "../utils/local-storage-save";
 import { Recipe } from "../interfaces/recipe-interface";
 import { v4 as uuidv4 } from "uuid";
 import withDiscoModeArena from "../cook-page-components/with-disco-mode-arena";
-import { Ingredient } from "../interfaces/ingredient-interface";
 import { getRecipeSaveDate } from "../utils/get-recipe-save-date";
+import { calculateTotalIngredientsCount } from "../utils/calculate-total-count-ingredients";
 
 const maxHearts = 3;
 
@@ -20,7 +20,7 @@ const CookPage = () => {
     const activeRecipe = activeRecipeRaw ? JSON.parse(activeRecipeRaw) : null;
     const [open, setOpen] = useState(false);
     const [recipe, setRecipe] = useState(activeRecipe);
-    const allIngredientsCount = activeRecipe.ingredients.reduce((total: number, ingredient: Ingredient) => total + ingredient.amount, 0);
+    const allIngredientsCount = calculateTotalIngredientsCount(activeRecipe.ingredients);
     const caughtIngredientsCount = useRef(allIngredientsCount);
     const [hearts, setHearts] = useState(maxHearts);
     const isWonGame = useRef(true);
@@ -49,8 +49,23 @@ const CookPage = () => {
             while (i < updatedRecipe.ingredients.length) {
                 if (id === updatedRecipe.ingredients[i].id) {
                     updatedRecipe.ingredients[i].amount -= 1;
-
+                    
                     break;
+                }
+                
+                if(updatedRecipe.ingredients[i].subIngredients?.length! > 0){
+                    let j = 0;
+
+                    while(j < updatedRecipe.ingredients[i].subIngredients?.length!)
+                    {
+                        if (id === updatedRecipe.ingredients[i].subIngredients![j].id) {
+                            updatedRecipe.ingredients[i].subIngredients![j].amount -= 1;
+                            
+                            break;
+                        }
+
+                        j++;
+                    }
                 }
 
                 i++;

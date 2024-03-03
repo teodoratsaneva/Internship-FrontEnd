@@ -3,9 +3,17 @@ import { DrawingLibrary } from "../interfaces/drawing-library-interface";
 import { Ingredient } from "../interfaces/ingredient-interface";
 import { IngredientSegment } from "./ingredient-seg";
 import { Pot } from "./pot-seg";
-import { ingredientIconMap } from "../utils/ingredients-icons";
+import { spawnIngredient } from "../utils/spawn-ingredient";
 
 const potYMultiplier = 1.25;
+const timeoutIngredient = 2000;
+const minTimeoutInvalidIngredient = 3000;
+const maxTimeoutInvalidIngredient = 4000;
+const x = 0;
+const y = 0;
+const invalidIngredientsImages = ["./cute-cat.png", "./cat.png"];
+const customColor = 255;
+const opasity = 0;
 
 export class P5Drawer implements DrawingLibrary {
 	p: p5;
@@ -82,7 +90,7 @@ export class P5Drawer implements DrawingLibrary {
 		this.p.clear();
 	};
 
-	round = (number: number) => {
+	round = (number: number): number => {
 		return this.p.round(number);
 	};
 
@@ -90,82 +98,29 @@ export class P5Drawer implements DrawingLibrary {
 		return this.p.width;
 	}
 
-	setup(
-		customColor: number,
-		opasity: number,
-		ingredients: Ingredient[],
-		timeoutTimes: number,
-		invalidIngredientsImages: any,
-		x: number,
-		y: number
-	) {
+	setup(ingredients: Ingredient[]) {
 		this.p.setup = () => {
 			this.p.createCanvas(this.canvasWidth, this.canvasHeight);
 			this.p.background(customColor, customColor, customColor, opasity);
 
-			let countIngredients = 0;
-
-			const spawnIngredient = () => {
-				if (countIngredients <= ingredients.length) {
-					const { title: valueOfIng, amount: ingredientAmount } =
-						ingredients[countIngredients];
-
-					let countAmount = 0;
-
-					const spawnSingleIngredient = () => {
-						if (countAmount < ingredientAmount) {
-							const ingredient: Ingredient =
-								ingredients[countIngredients];
-
-							const ingredientSeg = new IngredientSegment(
-								x,
-								y,
-								this.loadImage(ingredientIconMap[valueOfIng]),
-								this,
-								ingredient
-							);
-
-							ingredientSeg.reset(this.canvasWidth);
-							this.ingredientsSeg.push(ingredientSeg);
-							countAmount++;
-							setTimeout(spawnSingleIngredient, timeoutTimes);
-						} else {
-							countIngredients++;
-							setTimeout(spawnIngredient, timeoutTimes);
-						}
-					};
-
-					spawnSingleIngredient();
-				}
-			};
-
-			setTimeout(spawnIngredient, timeoutTimes);
+			setTimeout(() => spawnIngredient(ingredients, this, timeoutIngredient, x, y, this.canvasWidth, this.ingredientsSeg), timeoutIngredient);
 
 			const spawnInvalidIngredient = () => {
+			
 				const invalidSeg = new IngredientSegment(
 					x,
 					y,
 					this.loadImage(
-						invalidIngredientsImages[
-							this.round(
-								this.getRandomNumber(
-									0,
-									invalidIngredientsImages.length - 1
-								)
-							)
-						]
+						invalidIngredientsImages[this.round(this.getRandomNumber(0, invalidIngredientsImages.length - 1))]
 					),
 					this,
 					this.invalidIngredient
 				);
-
+			
 				invalidSeg.reset(this.canvasWidth);
 				this.ingredientsSeg.push(invalidSeg);
 
-				setTimeout(
-					spawnInvalidIngredient,
-					this.getRandomNumber(4000, 5000)
-				);
+				setTimeout(spawnInvalidIngredient, this.getRandomNumber(minTimeoutInvalidIngredient, maxTimeoutInvalidIngredient));
 			};
 
 			spawnInvalidIngredient();
@@ -176,7 +131,6 @@ export class P5Drawer implements DrawingLibrary {
 		pausedGame: { current: boolean },
 		triggerDiscoMode: (drawer: P5Drawer, isDiscoColor: boolean) => void,
 		isDiscoColor: boolean,
-        timeoutTimes: number,
 		caughtIngredientsCount: { current: number },
 		onCatch: (id: string, count: number) => void,
 		onLifeLoss: () => void,
@@ -205,7 +159,7 @@ export class P5Drawer implements DrawingLibrary {
 							isDiscoColor = true;
 							setTimeout(() => {
 								isDiscoColor = false;
-							}, timeoutTimes);
+							}, timeoutIngredient);
 
 							onLifeLoss();
 						} else {

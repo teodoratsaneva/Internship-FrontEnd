@@ -115,7 +115,10 @@ const FormComponent: React.FC<FormComponentProps> = ({
 			recipe.title.trim() === "" ||
 			recipe.ingredients.some(
 				(ingredient) =>
-					ingredient.title.trim() === "" || ingredient.amount === 0
+					ingredient.title.trim() === "" || ingredient.amount === 0 ||
+					(ingredient.subIngredients && ingredient.subIngredients.some(
+						(subIngredient) => subIngredient.title.trim() === "" || subIngredient.amount === 0
+					))
 			);
 
 		setIsFormEmpty(allFieldsEmpty);

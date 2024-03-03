@@ -125,14 +125,13 @@ const IngredientRecipeComponent: React.FC<TextButtonProps> = ({
 					id={autocompleteId.current}
 					className="combo-box-demo"
 					options={sampleIngredients}
-					value={sampleIngredients.find(option => option.label === defaultValueTitle)}
+					value={sampleIngredients.find(option => option.label === defaultValueTitle) || null}
 					sx={styleAutocomplete}
 					getOptionLabel={(option) => option.label}
 					renderInput={renderInput}
-					onChange={(_, selectedOption) =>
-						onChangeName(selectedOption!.label)
-					}
+					onChange={(_, selectedOption) => onChangeName(selectedOption?.label || '')}
 				/>
+
 				<TextField
 					type="number"
 					sx={styleTextFeldAmount}

@@ -1,5 +1,3 @@
-import { DrawingLibrary } from "../interfaces/drawing-library-interface";
-
 const yPos = 0;
 const width = 200;
 const height = 200;
