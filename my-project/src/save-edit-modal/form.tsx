@@ -32,7 +32,7 @@ const IngredientsComponent: React.FC<IngredientsComponentProps> = ({
 							handleIngredientNameChange(ingredient.id, value)
 						}
 						onChangeAmount={(value) =>
-							handleIngredientAmountChange(ingredient.id, value)
+							handleIngredientAmountChange(ingredient.id, parseInt(value))
 						}
 						onAddIngredient={() =>
 							handleAddIngredient(ingredient.id)
@@ -83,7 +83,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 						variant: "text",
 						component: "button",
 					},
-			  ]
+			]
 			: [
 					{
 						className: "button-recipe-form",
