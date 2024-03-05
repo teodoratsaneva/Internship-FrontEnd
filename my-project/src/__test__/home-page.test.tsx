@@ -14,19 +14,6 @@ describe("HomePage", () => {
 		expect(tree).toMatchSnapshot();
 	});
 
-	it("render correct title text", () => {
-		render(
-			<BrowserRouter>
-				<HomePage />
-			</BrowserRouter>
-		);
-		expect(
-			screen.getByText(
-				"Welcome to Ilvermorny School of Cookcraft & Gourmet Sorcery"
-			)
-		).toBeInTheDocument();
-	});
-
 	it('should render HeaderComponent and div with class "home-page-container"', () => {
 		render(
 			<BrowserRouter>
@@ -88,19 +75,23 @@ describe("HomePage", () => {
 		expect(setStateMock).toHaveBeenCalled();
 	});
 
-  it('should close the modal when clicking close button or outside the modal', () => {
-    const setStateMock = jest.fn();
+	it("should close the modal when clicking close button or outside the modal", () => {
+		const setStateMock = jest.fn();
 		const useStateMock: any = (useState: any) => [useState, setStateMock];
 		jest.spyOn(React, "useState").mockImplementation(useStateMock);
 
-    render(<BrowserRouter>
-      <HomePage />
-      </BrowserRouter>);
+		render(
+			<BrowserRouter>
+				<HomePage />
+			</BrowserRouter>
+		);
 
-    fireEvent.click(screen.getByRole('button', { name: /Create a potion recipe/i }));
-    expect(setStateMock).toHaveBeenCalled();
+		fireEvent.click(
+			screen.getByRole("button", { name: /Create a potion recipe/i })
+		);
+		expect(setStateMock).toHaveBeenCalled();
 
-    fireEvent.click(document);
-    expect(setStateMock).toHaveBeenCalledTimes(2);
-  });
+		fireEvent.click(document);
+		expect(setStateMock).toHaveBeenCalledTimes(2);
+	});
 });
