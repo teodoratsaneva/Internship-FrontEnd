@@ -30,6 +30,7 @@ const CookbookPage = () => {
 	const [recipes, setRecipes] = useState(
 		storedRecipesRaw ? JSON.parse(storedRecipesRaw) : []
 	);
+	
 
 	const handleRemoveRecipe = (id: string) => {
 		const recipeToRemove = recipes.find(
@@ -88,9 +89,10 @@ const CookbookPage = () => {
 					Welcome to the Cookbook. Here is a list of your potion
 					recipes
 				</Heading>
-				<div className="recipes-container">
+				<div id="recipes-container">
 					{recipes.map((recipe: Recipe) => (
-						<div key={recipe.id} className="recipe-container">
+						<div key={recipe.id} id="recipe-container" 
+							data-testid={`recipe-container-${recipe.id}`}>
 							<RecipeComponent
 								recipe={recipe}
 								hasButton={true}

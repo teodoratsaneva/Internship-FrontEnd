@@ -75,7 +75,7 @@ describe("HomePage", () => {
 		expect(setStateMock).toHaveBeenCalled();
 	});
 
-	it("should close the modal when clicking close button or outside the modal", () => {
+	it("should close the modal when clicking outside the modal", () => {
 		const setStateMock = jest.fn();
 		const useStateMock: any = (useState: any) => [useState, setStateMock];
 		jest.spyOn(React, "useState").mockImplementation(useStateMock);

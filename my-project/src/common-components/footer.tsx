@@ -9,6 +9,7 @@ const FooterComponent: React.FC<Footer> = ({buttons, isFormEmpty}) => {
         <Button
           key={index}
           className={button.className}
+          data-testid={button.datatestid}
           variant={button.variant}
           component={button.component}
           to={button.linkTo}

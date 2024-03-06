@@ -76,6 +76,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 			? [
 					{
 						className: "button-recipe-form",
+						datatestid: 'save-edited-button',
 						buttonText: "Save edited recipe",
 						onClick: () =>
 							handleSaveEditedRecipe &&
@@ -87,6 +88,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 			: [
 					{
 						className: "button-recipe-form",
+						datatestid: 'save-and-continue-button',
 						buttonText: "Save and continue",
 						onClick: () => handleSaveAndExit && handleSaveAndExit(),
 						variant: "text",
@@ -94,6 +96,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 					},
 					{
 						className: "button-recipe-form",
+						datatestid: 'save-and-reset-button',
 						buttonText: "Save and reset",
 						onClick: () =>
 							handleSaveAndReset && handleSaveAndReset(),
@@ -115,9 +118,9 @@ const FormComponent: React.FC<FormComponentProps> = ({
 			recipe.title.trim() === "" ||
 			recipe.ingredients.some(
 				(ingredient) =>
-					ingredient.title.trim() === "" || ingredient.amount === 0 ||
+					ingredient.title.trim() === "" || ingredient.amount < 1 || Number.isNaN(ingredient.amount) ||
 					(ingredient.subIngredients && ingredient.subIngredients.some(
-						(subIngredient) => subIngredient.title.trim() === "" || subIngredient.amount === 0
+						(subIngredient) => subIngredient.title.trim() === "" || subIngredient.amount < 1 || Number.isNaN(subIngredient.amount)
 					))
 			);
 
@@ -126,7 +129,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 
 	return (
 		<FormControl className="recipe-form" sx={style}>
-			<div className="header-form">
+			<div className="header-form" data-testid="header-form">
 				<Heading variant="h4">Create new potion recipe</Heading>
 				<TitleRecipeComponent
 					value={recipe.title}

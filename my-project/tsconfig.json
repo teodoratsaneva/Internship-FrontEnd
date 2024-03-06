@@ -7,7 +7,7 @@
     "skipLibCheck": true,
     "checkJs": false,
     "esModuleInterop": true,
-    "types": ["jest"],
+    "types": ["node", "jest"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
