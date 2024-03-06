@@ -31,6 +31,7 @@ const RecipeComponent: React.FC<RecipeComponentProps> = ({
 		{
 			className: "cook-button",
 			buttonText: "Cook",
+			datatestid: `cook-button-${recipe.id}`,
 			onClick: handleCookClick,
 			linkTo: "/cook",
 			variant: "contained",

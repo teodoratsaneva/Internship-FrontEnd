@@ -1,19 +1,17 @@
-export const mockLocalStorage = () => {
-    const setItemMock = jest.fn();
-    const getItemMock = () => (JSON.stringify([
-      { id: '1', title: 'Recipe 1', ingredients: [] },
-      { id: '2', title: 'Recipe 2', ingredients: [] },
-      { id: '3', title: 'Recipe 3', ingredients: [] },
-    ]));
+import { Recipe } from "../../interfaces/recipe-interface";
+
+export const mockLocalStorage = (itemsToReturn: Recipe[]) => {
+  const setItemMock = jest.fn();
+  const getItemMock = () => JSON.stringify(itemsToReturn);
   
-    beforeEach(() => {
-      Storage.prototype.setItem = setItemMock;
-      Storage.prototype.getItem = getItemMock;
-    });
+  beforeEach(() => {
+    Storage.prototype.setItem = setItemMock;
+    Storage.prototype.getItem = getItemMock;
+  });
   
-    afterEach(() => {
-      setItemMock.mockRestore();
-    });
+  afterEach(() => {
+    setItemMock.mockRestore();
+  });
   
-    return { setItemMock, getItemMock };
-  };
+  return { setItemMock, getItemMock };
+};

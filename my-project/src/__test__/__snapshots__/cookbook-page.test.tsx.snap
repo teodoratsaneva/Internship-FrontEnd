@@ -58,6 +58,7 @@ exports[`CookbookPage renders correctly Cookbook page 1`] = `
                 </button>
                 <a
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium cook-button css-sghohy-MuiButtonBase-root-MuiButton-root"
+                  data-testid="cook-button-1"
                   href="/cook"
                   tabindex="0"
                 >
@@ -111,6 +112,7 @@ exports[`CookbookPage renders correctly Cookbook page 1`] = `
                 </button>
                 <a
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium cook-button css-sghohy-MuiButtonBase-root-MuiButton-root"
+                  data-testid="cook-button-2"
                   href="/cook"
                   tabindex="0"
                 >
@@ -164,6 +166,7 @@ exports[`CookbookPage renders correctly Cookbook page 1`] = `
                 </button>
                 <a
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium cook-button css-sghohy-MuiButtonBase-root-MuiButton-root"
+                  data-testid="cook-button-3"
                   href="/cook"
                   tabindex="0"
                 >
@@ -244,6 +247,7 @@ exports[`CookbookPage renders correctly Cookbook page 1`] = `
               </button>
               <a
                 class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium cook-button css-sghohy-MuiButtonBase-root-MuiButton-root"
+                data-testid="cook-button-1"
                 href="/cook"
                 tabindex="0"
               >
@@ -297,6 +301,7 @@ exports[`CookbookPage renders correctly Cookbook page 1`] = `
               </button>
               <a
                 class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium cook-button css-sghohy-MuiButtonBase-root-MuiButton-root"
+                data-testid="cook-button-2"
                 href="/cook"
                 tabindex="0"
               >
@@ -350,6 +355,7 @@ exports[`CookbookPage renders correctly Cookbook page 1`] = `
               </button>
               <a
                 class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium cook-button css-sghohy-MuiButtonBase-root-MuiButton-root"
+                data-testid="cook-button-3"
                 href="/cook"
                 tabindex="0"
               >
