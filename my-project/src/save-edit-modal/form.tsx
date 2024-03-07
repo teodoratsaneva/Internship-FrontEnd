@@ -128,7 +128,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 	}, [recipe]);
 
 	return (
-		<FormControl className="recipe-form" data-testid={`recipe-form-${recipe.id}`} sx={style}>
+		<FormControl className="recipe-form" data-testId={`recipe-form-${recipe.id}`} sx={style}>
 			<div className="header-form">
 				<Heading variant="h4">Create new potion recipe</Heading>
 				<TitleRecipeComponent
