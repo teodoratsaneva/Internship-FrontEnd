@@ -1,10 +1,7 @@
 import { P5Drawer } from "../cook-page-components/drawer";
 import { IngredientSegment } from "../cook-page-components/ingredient-seg";
-import { DrawingLibrary } from "../interfaces/drawing-library-interface";
 import { Ingredient } from "../interfaces/ingredient-interface";
 import { ingredientIconMap } from "./ingredients-icons";
-
-const invalidIngredientsImages = ["./cute-cat.png", "./cat.png"];
 
 export const spawnIngredient = (ingredients: Ingredient[],
     drawer: P5Drawer,
@@ -24,6 +21,7 @@ export const spawnIngredient = (ingredients: Ingredient[],
                 const ingredientSeg = new IngredientSegment(
                     x,
                     y,
+                    // @ts-ignore
                     drawer.loadImage(ingredientIconMap[valueOfIng]),
                     drawer,
                     ingredient
@@ -32,7 +30,7 @@ export const spawnIngredient = (ingredients: Ingredient[],
                 ingredientSeg.reset(canvasWidth);
                 ingredientsSeg.push(ingredientSeg);
 
-                if (ingredient.subIngredients?.length! && countAmount === ingredientAmount - 1) {
+                if (ingredient.subIngredients!.length && countAmount === ingredientAmount - 1) {
                     spawnIngredient(ingredient.subIngredients!, drawer, timeoutTimes, x, y, canvasWidth, ingredientsSeg);
                 }
 

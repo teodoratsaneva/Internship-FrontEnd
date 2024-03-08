@@ -14,9 +14,9 @@ const TriedAndTestedRecipes = () => {
 				<Heading variant="h1">
 					Here are all the tried and tested recipes
 				</Heading>
-				<div className="recipes-container">
+				<div id="recipes-container">
 					{completedRecipes.map((recipe: Recipe) => (
-						<div key={recipe.id} className="recipe-container">
+						<div key={recipe.id} id="recipe-container">
 							<RecipeComponent
 								recipe={recipe}
 								hasButton={true}

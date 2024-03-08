@@ -32,7 +32,7 @@ const IngredientsComponent: React.FC<IngredientsComponentProps> = ({
 							handleIngredientNameChange(ingredient.id, value)
 						}
 						onChangeAmount={(value) =>
-							handleIngredientAmountChange(ingredient.id, value)
+							handleIngredientAmountChange(ingredient.id, parseInt(value))
 						}
 						onAddIngredient={() =>
 							handleAddIngredient(ingredient.id)
@@ -76,6 +76,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 			? [
 					{
 						className: "button-recipe-form",
+						datatestid: 'save-edited-button',
 						buttonText: "Save edited recipe",
 						onClick: () =>
 							handleSaveEditedRecipe &&
@@ -83,10 +84,11 @@ const FormComponent: React.FC<FormComponentProps> = ({
 						variant: "text",
 						component: "button",
 					},
-			  ]
+			]
 			: [
 					{
 						className: "button-recipe-form",
+						datatestid: 'save-and-continue-button',
 						buttonText: "Save and continue",
 						onClick: () => handleSaveAndExit && handleSaveAndExit(),
 						variant: "text",
@@ -94,6 +96,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 					},
 					{
 						className: "button-recipe-form",
+						datatestid: 'save-and-reset-button',
 						buttonText: "Save and reset",
 						onClick: () =>
 							handleSaveAndReset && handleSaveAndReset(),
@@ -115,9 +118,9 @@ const FormComponent: React.FC<FormComponentProps> = ({
 			recipe.title.trim() === "" ||
 			recipe.ingredients.some(
 				(ingredient) =>
-					ingredient.title.trim() === "" || ingredient.amount === 0 ||
+					ingredient.title.trim() === "" || ingredient.amount < 1 || Number.isNaN(ingredient.amount) ||
 					(ingredient.subIngredients && ingredient.subIngredients.some(
-						(subIngredient) => subIngredient.title.trim() === "" || subIngredient.amount === 0
+						(subIngredient) => subIngredient.title.trim() === "" || subIngredient.amount < 1 || Number.isNaN(subIngredient.amount)
 					))
 			);
 
@@ -125,7 +128,7 @@ const FormComponent: React.FC<FormComponentProps> = ({
 	}, [recipe]);
 
 	return (
-		<FormControl className="recipe-form" sx={style}>
+		<FormControl className="recipe-form" data-testId={`recipe-form-${recipe.id}`} sx={style}>
 			<div className="header-form">
 				<Heading variant="h4">Create new potion recipe</Heading>
 				<TitleRecipeComponent

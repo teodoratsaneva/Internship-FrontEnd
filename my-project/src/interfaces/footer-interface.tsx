@@ -2,6 +2,7 @@ export interface Footer {
     buttons: Array<
         {
             className: string;
+            datatestid?: string;
             linkTo?: string;
             onClick: () => void;
             buttonText: React.ReactNode;

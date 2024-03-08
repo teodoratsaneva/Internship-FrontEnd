@@ -171,7 +171,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ open, onClose, recipe, 
 
 	return (
 		<>
-			<Modal className="modal" open={open} onClose={onClose}>
+			<Modal className="modal" data-testId={`modal-recipe-${recipe?.id}`} open={open} onClose={onClose}>
 				<>
 					<FormComponent
 						recipe={editedRecipe}

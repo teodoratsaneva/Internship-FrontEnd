@@ -53,10 +53,10 @@ const CookPage = () => {
                     break;
                 }
                 
-                if(updatedRecipe.ingredients[i].subIngredients?.length! > 0){
+                if(updatedRecipe.ingredients[i].subIngredients!.length > 0){
                     let j = 0;
 
-                    while(j < updatedRecipe.ingredients[i].subIngredients?.length!)
+                    while(j < updatedRecipe.ingredients[i].subIngredients!.length)
                     {
                         if (id === updatedRecipe.ingredients[i].subIngredients![j].id) {
                             updatedRecipe.ingredients[i].subIngredients![j].amount -= 1;

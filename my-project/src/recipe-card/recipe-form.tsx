@@ -21,6 +21,7 @@ const RecipeComponent: React.FC<RecipeComponentProps> = ({
 		{
 			className: "cook-button",
 			buttonText: "Edit Recipe",
+			datatestid: `edit-button-${recipe.id}`,
 			onClick: handleEditRecipe
 				? () => handleEditRecipe()
 				: () => {},
@@ -30,6 +31,7 @@ const RecipeComponent: React.FC<RecipeComponentProps> = ({
 		{
 			className: "cook-button",
 			buttonText: "Cook",
+			datatestid: `cook-button-${recipe.id}`,
 			onClick: handleCookClick,
 			linkTo: "/cook",
 			variant: "contained",
@@ -37,6 +39,7 @@ const RecipeComponent: React.FC<RecipeComponentProps> = ({
 		},
 		{
 			className: "cook-button",
+			datatestid: `remove-button-${recipe.id}`,
 			buttonText: "Remove Recipe",
 			onClick: handleRemoveRecipe
 				? () => handleRemoveRecipe(recipe.id)

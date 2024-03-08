@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders correctly cookbook page 1`] = `
+exports[`CookbookPage renders correctly Cookbook page 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
@@ -25,8 +25,171 @@ exports[`Renders correctly cookbook page 1`] = `
           Welcome to the Cookbook. Here is a list of your potion recipes
         </h1>
         <div
-          class="recipes-container"
-        />
+          id="recipes-container"
+        >
+          <div
+            data-testid="recipe-container-1"
+            id="recipe-container"
+          >
+            <div
+              class="recipe-card"
+            >
+              <h2
+                class="header-card"
+              >
+                Recipe 1
+              </h2>
+              <ul
+                class="content-card"
+              />
+              <div
+                class="footer"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium cook-button css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                  data-testid="edit-button-1"
+                  tabindex="0"
+                  type="button"
+                >
+                  Edit Recipe
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+                <a
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium cook-button css-sghohy-MuiButtonBase-root-MuiButton-root"
+                  data-testid="cook-button-1"
+                  href="/cook"
+                  tabindex="0"
+                >
+                  Cook
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </a>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium cook-button css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                  data-testid="remove-button-1"
+                  tabindex="0"
+                  type="button"
+                >
+                  Remove Recipe
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            data-testid="recipe-container-2"
+            id="recipe-container"
+          >
+            <div
+              class="recipe-card"
+            >
+              <h2
+                class="header-card"
+              >
+                Recipe 2
+              </h2>
+              <ul
+                class="content-card"
+              />
+              <div
+                class="footer"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium cook-button css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                  data-testid="edit-button-2"
+                  tabindex="0"
+                  type="button"
+                >
+                  Edit Recipe
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+                <a
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium cook-button css-sghohy-MuiButtonBase-root-MuiButton-root"
+                  data-testid="cook-button-2"
+                  href="/cook"
+                  tabindex="0"
+                >
+                  Cook
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </a>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium cook-button css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                  data-testid="remove-button-2"
+                  tabindex="0"
+                  type="button"
+                >
+                  Remove Recipe
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            data-testid="recipe-container-3"
+            id="recipe-container"
+          >
+            <div
+              class="recipe-card"
+            >
+              <h2
+                class="header-card"
+              >
+                Recipe 3
+              </h2>
+              <ul
+                class="content-card"
+              />
+              <div
+                class="footer"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium cook-button css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                  data-testid="edit-button-3"
+                  tabindex="0"
+                  type="button"
+                >
+                  Edit Recipe
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+                <a
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium cook-button css-sghohy-MuiButtonBase-root-MuiButton-root"
+                  data-testid="cook-button-3"
+                  href="/cook"
+                  tabindex="0"
+                >
+                  Cook
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </a>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium cook-button css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                  data-testid="remove-button-3"
+                  tabindex="0"
+                  type="button"
+                >
+                  Remove Recipe
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>,
@@ -51,117 +214,171 @@ exports[`Renders correctly cookbook page 1`] = `
         Welcome to the Cookbook. Here is a list of your potion recipes
       </h1>
       <div
-        class="recipes-container"
-      />
-    </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`renders correctly cookbook page 1`] = `
-{
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <header>
-        <a
-          href="/"
-        >
-          <img
-            alt="darkLogo"
-            class="darkLogo"
-            src="darkLogo.JPG"
-          />
-        </a>
-      </header>
-      <div
-        class="cookbook-page-container"
+        id="recipes-container"
       >
-        <h1
-          class="MuiTypography-root MuiTypography-h1 css-o2w69a-MuiTypography-root"
-        >
-          Welcome to the Cookbook. Here is a list of your potion recipes
-        </h1>
         <div
-          class="recipes-container"
-        />
+          data-testid="recipe-container-1"
+          id="recipe-container"
+        >
+          <div
+            class="recipe-card"
+          >
+            <h2
+              class="header-card"
+            >
+              Recipe 1
+            </h2>
+            <ul
+              class="content-card"
+            />
+            <div
+              class="footer"
+            >
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium cook-button css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                data-testid="edit-button-1"
+                tabindex="0"
+                type="button"
+              >
+                Edit Recipe
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <a
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium cook-button css-sghohy-MuiButtonBase-root-MuiButton-root"
+                data-testid="cook-button-1"
+                href="/cook"
+                tabindex="0"
+              >
+                Cook
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </a>
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium cook-button css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                data-testid="remove-button-1"
+                tabindex="0"
+                type="button"
+              >
+                Remove Recipe
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          data-testid="recipe-container-2"
+          id="recipe-container"
+        >
+          <div
+            class="recipe-card"
+          >
+            <h2
+              class="header-card"
+            >
+              Recipe 2
+            </h2>
+            <ul
+              class="content-card"
+            />
+            <div
+              class="footer"
+            >
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium cook-button css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                data-testid="edit-button-2"
+                tabindex="0"
+                type="button"
+              >
+                Edit Recipe
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <a
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium cook-button css-sghohy-MuiButtonBase-root-MuiButton-root"
+                data-testid="cook-button-2"
+                href="/cook"
+                tabindex="0"
+              >
+                Cook
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </a>
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium cook-button css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                data-testid="remove-button-2"
+                tabindex="0"
+                type="button"
+              >
+                Remove Recipe
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          data-testid="recipe-container-3"
+          id="recipe-container"
+        >
+          <div
+            class="recipe-card"
+          >
+            <h2
+              class="header-card"
+            >
+              Recipe 3
+            </h2>
+            <ul
+              class="content-card"
+            />
+            <div
+              class="footer"
+            >
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium cook-button css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                data-testid="edit-button-3"
+                tabindex="0"
+                type="button"
+              >
+                Edit Recipe
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <a
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium cook-button css-sghohy-MuiButtonBase-root-MuiButton-root"
+                data-testid="cook-button-3"
+                href="/cook"
+                tabindex="0"
+              >
+                Cook
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </a>
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium cook-button css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                data-testid="remove-button-3"
+                tabindex="0"
+                type="button"
+              >
+                Remove Recipe
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </body>,
-  "container": <div>
-    <header>
-      <a
-        href="/"
-      >
-        <img
-          alt="darkLogo"
-          class="darkLogo"
-          src="darkLogo.JPG"
-        />
-      </a>
-    </header>
-    <div
-      class="cookbook-page-container"
-    >
-      <h1
-        class="MuiTypography-root MuiTypography-h1 css-o2w69a-MuiTypography-root"
-      >
-        Welcome to the Cookbook. Here is a list of your potion recipes
-      </h1>
-      <div
-        class="recipes-container"
-      />
     </div>
   </div>,
   "debug": [Function],
